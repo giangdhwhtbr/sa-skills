@@ -32,6 +32,7 @@ def layout(page: Page, participants: list[Node], messages: list[Edge]) -> None:
         sx, tx = centres[edge.source], centres[edge.target]
         if edge.source == edge.target:
             edge.points = [(sx, y), (sx + LOOP_W, y), (sx + LOOP_W, y + LOOP_H), (sx, y + LOOP_H)]
+            edge.label_at = 0.5  # on the loop's outer side
         else:
             edge.points = [(sx, y), (tx, y)]
         if edge not in page.edges:

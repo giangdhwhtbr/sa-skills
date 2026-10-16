@@ -82,7 +82,7 @@ class Skeleton:
 
 
 def compute(services: int, data_stores: int, externals: int, managed_groups: list[str], columns: int = 4,
-            clients: int = 2, managed_items: int = 2) -> Skeleton:
+            clients: int = 2, managed_items: int = 2, edge_items: int = 2) -> Skeleton:
     """Boxes for clients, edge, backend (holding microservices, data, managed, platform) and external."""
     cols = max(1, columns)
     inner_w = cols * SLOT_W + (cols - 1) * GAP + 2 * PAD
@@ -96,7 +96,7 @@ def compute(services: int, data_stores: int, externals: int, managed_groups: lis
     managed = (inner_x, data[1] + data[3] + ROW_GAP, inner_w, managed_h)
     platform = (inner_x, managed[1] + managed[3] + ROW_GAP, inner_w, HEADER + ITEM_H + PAD)
 
-    stacked = max(clients, 2, externals)
+    stacked = max(clients, edge_items, 2, externals)
     stack_h = HEADER + stacked * (SLOT_H + GAP) - GAP + PAD
     backend_h = max(platform[1] + platform[3] + PAD - top, stack_h)
     backend = (backend_x, top, inner_w + 2 * PAD, backend_h)

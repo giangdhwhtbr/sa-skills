@@ -93,10 +93,17 @@ def _parents_first(groups: list[Group]) -> list[Group]:
 
 def _node(root: ET.Element, node: Node, cid, gid, origin, groups: dict[str, Group]) -> None:
     ox, oy = origin(node.parent)
-    node_style = style.icon_style(node.kind, node.icon) if node.icon else style.node_style(node.kind, node.shape)
+    node_style = style.node_style(node.kind, node.shape)
+    size = min(36.0, node.h - 12)
+    if node.icon:
+        node_style += f"align=left;spacingLeft={size + 10:g};"
     cell = ET.SubElement(root, "mxCell", id=cid(node.id), value=_label(node.label), style=node_style, vertex="1",
                          parent=gid(node.parent) if node.parent in groups else cid("1"))
     _geometry(cell, node.x - ox, node.y - oy, node.w, node.h)
+    if node.icon:  # the cloud icon is drawn inside the node, at its left
+        icon = ET.SubElement(root, "mxCell", id=cid(f"{node.id}--icon"), value="",
+                             style=style.icon_style(node.kind, node.icon), vertex="1", parent=cid(node.id))
+        _geometry(icon, 6, (node.h - size) / 2, size, size)
 
 
 def _edge(root: ET.Element, edge: Edge, cid, node_by_id: dict[str, Node]) -> None:
@@ -110,6 +117,11 @@ def _edge(root: ET.Element, edge: Edge, cid, node_by_id: dict[str, Node]) -> Non
                        "entryDx=0;entryDy=0;")
     elif not edge.points:
         edge_style += "edgeStyle=orthogonalEdgeStyle;"
+    if source and target and source.shape == "lifeline" and target.shape == "lifeline":
+        # sequence messages: text above the arrow, never hiding a short arrow behind its label
+        edge_style += "verticalAlign=bottom;labelBackgroundColor=none;"
+        if edge.source == edge.target:
+            edge_style += "align=left;spacingLeft=8;"
     attrs = {"id": cid(edge.id), "value": _label(edge.label), "style": edge_style, "edge": "1", "parent": cid("1")}
     if source:
         attrs["source"] = cid(edge.source)

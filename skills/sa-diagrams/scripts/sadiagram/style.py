@@ -110,11 +110,10 @@ def node_style(kind: str, shape: str = "box") -> str:
 
 
 def icon_style(kind: str, icon: str) -> str:
-    """AWS resource icon with the label below; the stroke keeps the kind's colour."""
-    _, stroke, _ = NODE_KINDS[kind]
-    return ("sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;"
-            "verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;aspect=fixed;"
-            f"shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.{icon};labelBorderColor={stroke};{FONT}")
+    """AWS resource icon (drawn inside a node of that kind)."""
+    fill = {"datastore": "#C925D1", "broker": "#E7157B", "identity-provider": "#DD344C"}.get(kind, "#8C4FFF")
+    return ("sketch=0;outlineConnect=0;fontColor=#232F3E;strokeColor=#ffffff;dashed=0;html=1;aspect=fixed;"
+            f"fillColor={fill};shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.{icon};")
 
 
 def edge_style(kind: str) -> str:

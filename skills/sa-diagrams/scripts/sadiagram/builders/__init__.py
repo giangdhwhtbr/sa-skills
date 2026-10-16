@@ -84,13 +84,15 @@ def register(key: str, build: Builder) -> None:
 
 from . import (  # noqa: E402  (modules register themselves)
     aggregates,
+    architecture,
     context_map,
     functions,
     logical,
     patterns,
+    saga,
     subdomains,
     use_cases,
 )
 
-__all__ = ["BUILDERS", "NEEDS_ELK", "BuildContext", "aggregates", "context_map", "functions", "logical",
-           "patterns", "subdomains", "use_cases"]
+__all__ = ["BUILDERS", "NEEDS_ELK", "BuildContext", "aggregates", "architecture", "context_map", "functions",
+           "logical", "patterns", "saga", "subdomains", "use_cases"]

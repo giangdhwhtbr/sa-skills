@@ -71,6 +71,8 @@ def edge_crossings(page: Page) -> list[tuple[str, str]]:
     for edge in page.edges:
         for p, q in zip(edge.points, edge.points[1:], strict=False):
             for node in page.nodes:
+                if node.shape == "lifeline":  # sequence messages cross lifelines by design
+                    continue
                 if node.id not in (edge.source, edge.target) and _segment_hits(p, q, rect(node)):
                     found.append((edge.id, node.id))
     return sorted(set(found))

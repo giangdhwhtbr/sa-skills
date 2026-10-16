@@ -221,3 +221,83 @@ def test_use_cases_split_large_group() -> None:
     assert len(pages) >= 2
     assert {n.id for p in pages for n in p.nodes if n.shape == "ellipse"} == {f"uc-{i}" for i in range(50)}
     readable(pages)
+
+
+# ---------- Track 6: saga and architecture ----------
+
+# REQ-DIAGRAMS-005
+def test_saga_pages() -> None:
+    ctx = context(CLINIC)
+    pages = build("saga", ctx)
+    scenarios = ctx.data["saga.yaml"]["scenarios"]
+    assert len(pages) == len(scenarios) == 3
+    first = pages[0]
+    assert [e.label.split(".")[0] for e in first.edges] == [str(i) for i in range(1, 12)]
+    assert first.nodes[0].id == ctx.data["saga.yaml"]["flow"]["orchestrator"]
+    assert all(n.shape == "lifeline" for n in first.nodes)
+    for page, scenario in zip(pages, scenarios, strict=True):
+        assert scenario["name"] in page.title
+        kinds = [e.kind for e in page.edges]
+        assert kinds.count("compensate") == sum(1 for s in scenario["steps"] if s["kind"] == "compensate")
+        assert any("compensation" in note.lower() for note in page.notes)
+        readable([page])
+
+
+def architecture_pages(ctx: BuildContext) -> tuple[Page, Page]:
+    high, physical = build("architecture", ctx)
+    assert "High-level" in high.title and "Physical" in physical.title
+    return high, physical
+
+
+# REQ-DIAGRAMS-005
+def test_architecture_complete() -> None:
+    ctx = context(CLINIC)
+    high, physical = architecture_pages(ctx)
+    services = {s["service"]["id"] for s in ctx.data["subdomains.yaml"]["subdomains"]}
+    comps = [c for layer in ctx.data["logical.yaml"]["layers"] for c in layer["components"]]
+    stores = {c["id"] for c in comps if c["kind"] == "datastore"}
+    externals = {c["id"] for c in comps if c["kind"] == "external"}
+    for page in (high, physical):
+        ids = {n.id for n in page.nodes}
+        assert services | stores | externals <= ids, page.title
+        readable([page])
+    text = " ".join([*(g.label for g in physical.groups), *physical.notes])
+    for tier in ctx.data["architecture.yaml"]["physical"]["tiers"]:
+        assert tier["cidr"] in text
+    assert any(g.kind == "region" for g in physical.groups)
+    assert any(n.icon for n in physical.nodes)
+    assert not any(n.icon for n in high.nodes)
+    for rule in ctx.data["architecture.yaml"]["physical"]["security_rules"]:
+        assert rule in physical.notes
+
+
+def scaled(services: int) -> BuildContext:
+    """The clinic-booking design with a generated number of services."""
+    ctx = context(CLINIC)
+    data = copy.deepcopy(ctx.data)
+    subs = [{"id": f"sub-{i}", "name": f"Sub {i}", "type": ("core", "supporting", "generic")[i % 3],
+             "description": "d", "service": {"id": f"svc-{i}", "name": f"Service {i}"}, "function_ids": []}
+            for i in range(services)]
+    data["subdomains.yaml"] = {"subdomains": subs}
+    for layer in data["logical.yaml"]["layers"]:
+        if any(c["kind"] == "service" for c in layer["components"]):
+            layer["components"] = [{"id": s["service"]["id"], "name": s["service"]["name"], "kind": "service",
+                                    "service_id": s["service"]["id"]} for s in subs]
+    return BuildContext(data, ctx.options, ctx.vendor_terms)
+
+
+# REQ-DIAGRAMS-007
+@pytest.mark.parametrize("services", [None, 3, 15])
+def test_architecture_shared_skeleton(services: int | None) -> None:
+    ctx = context(CLINIC) if services is None else scaled(services)
+    high, physical = architecture_pages(ctx)
+    shared = {"clients", "edge", "backend", "microservices", "data", "managed", "external"}
+    boxes_high = {g.id: (g.x, g.y, g.w, g.h) for g in high.groups if g.id in shared}
+    boxes_physical = {g.id: (g.x, g.y, g.w, g.h) for g in physical.groups if g.id in shared}
+    assert boxes_high == boxes_physical and boxes_high
+    order = [s["service"]["id"] for s in ctx.data["subdomains.yaml"]["subdomains"]]
+    pos_high = {n.id: (n.x, n.y) for n in high.nodes if n.id in order}
+    pos_physical = {n.id: (n.x, n.y) for n in physical.nodes if n.id in order}
+    assert pos_high == pos_physical and len(pos_high) == len(order)
+    assert sorted(order, key=lambda s: (pos_high[s][1], pos_high[s][0])) == order  # grid follows subdomains order
+    readable([high, physical])
