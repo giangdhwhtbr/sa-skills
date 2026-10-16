@@ -44,3 +44,17 @@ def test_sa_review_sections() -> None:
     text = (ROOT / "skills" / "sa-review" / "SKILL.md").read_text()
     for req in ("REQ-REVIEW-001", "REQ-REVIEW-003"):
         assert f"<!-- {req} -->" in text
+
+
+def test_sa_design_sections() -> None:
+    """REQ-DESIGN-001..009, REQ-CONFIG-005, REQ-CONFIG-006: the orchestrator documents every behaviour, in order."""
+    assert _sections("sa-design") == [
+        "## Locate", "## Start of every run", "## Choose the step", "## Run the step", "## Write",
+        "## Checklist", "## Record", "## Changing options", "## Writing style",
+    ]
+    text = (ROOT / "skills" / "sa-design" / "SKILL.md").read_text()
+    reqs = [f"REQ-DESIGN-{n:03d}" for n in range(1, 10)] + ["REQ-CONFIG-005", "REQ-CONFIG-006"]
+    for req in reqs:
+        assert f"<!-- {req} -->" in text, req
+    for name in ("check.py", "--dependents", "--changed", "--step", "references/steps/", "profiles/"):
+        assert name in text, name
