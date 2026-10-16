@@ -100,3 +100,11 @@ def test_presets_only_set_declared_options() -> None:
                 pytest.skip(f"guide for {key} not written yet")
             for name, value in values.items():
                 assert value in steps[key].options[name].values, (preset, key, name)
+
+
+def test_aws_profile_covers_kinds() -> None:
+    """REQ-CONFIG-006: the AWS profile maps every logical component kind except client and external."""
+    text = (REFS / "profiles" / "aws.md").read_text()
+    rows = {line.split("|")[1].strip() for line in text.splitlines() if line.startswith("| ") and "---" not in line}
+    for kind in ("gateway", "identity-provider", "service", "broker", "datastore"):
+        assert kind in rows, kind
