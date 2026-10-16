@@ -1,0 +1,288 @@
+<mxfile host="sa-design-kit" type="device" sa-source-hash="fb9dc5e43c3cdd4b723d7778ac0e0e69154f76fa7683772402deda80b816f697">
+  <diagram id="logical-view-1" name="Logical view">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="968" pageHeight="1350" math="0" shadow="0">
+      <root>
+        <mxCell id="logical-view-1-0" />
+        <mxCell id="logical-view-1-1" parent="logical-view-1-0" />
+        <mxCell id="logical-view-1-title" value="Logical view" style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Helvetica;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="0" y="-50" width="888" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-group-clients" value="Client layer" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#fafafa;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="0" y="0" width="888" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-group-edge" value="Edge" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#fafafa;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="0" y="188" width="888" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-group-services" value="Microservice layer" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#fafafa;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="0" y="376" width="888" height="248" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-group-messaging-data" value="Messaging and data" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#fafafa;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="0" y="680" width="888" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-group-external" value="External systems" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#fafafa;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="0" y="868" width="888" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-patient-web" value="Patient web app" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-clients">
+          <mxGeometry x="20" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-patient-mobile" value="Patient mobile app" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-clients">
+          <mxGeometry x="246" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-staff-portal" value="Staff portal" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-clients">
+          <mxGeometry x="472" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-api-gateway" value="API gateway with web and mobile routes" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-edge">
+          <mxGeometry x="20" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-identity-provider" value="Identity provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-edge">
+          <mxGeometry x="246" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-scheduling-service" value="Scheduling service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-services">
+          <mxGeometry x="20" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-appointment-service" value="Appointment service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-services">
+          <mxGeometry x="246" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-directory-service" value="Directory service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-services">
+          <mxGeometry x="472" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-insurance-service" value="Insurance service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-services">
+          <mxGeometry x="698" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-notification-service" value="Notification service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-services">
+          <mxGeometry x="20" y="148" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-reporting-service" value="Reporting service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-services">
+          <mxGeometry x="246" y="148" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-payment-service" value="Payment service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-services">
+          <mxGeometry x="472" y="148" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-identity-service" value="Identity service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-services">
+          <mxGeometry x="698" y="148" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-message-broker" value="Message broker" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-messaging-data">
+          <mxGeometry x="20" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-service-databases" value="Database per service" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-messaging-data">
+          <mxGeometry x="246" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-cache" value="Cache" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-messaging-data">
+          <mxGeometry x="472" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-search-index" value="Search index" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-messaging-data">
+          <mxGeometry x="698" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-payment-provider" value="Card payment provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-external">
+          <mxGeometry x="20" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-insurer" value="Insurer API" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-external">
+          <mxGeometry x="246" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-messaging-provider" value="SMS and email provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-external">
+          <mxGeometry x="472" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-corporate-idp" value="Corporate identity provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-group-external">
+          <mxGeometry x="698" y="32" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-title" value="Legend" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="0" y="1040" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-0-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="0" y="1068" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-0-label" value="Client" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="38" y="1064" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-1-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="200" y="1068" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-1-label" value="API gateway" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="238" y="1064" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-2-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="400" y="1068" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-2-label" value="Identity provider" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="438" y="1064" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-3-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="600" y="1068" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-3-label" value="Core subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="638" y="1064" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-4-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="0" y="1096" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-4-label" value="Supporting subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="38" y="1092" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-5-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="200" y="1096" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-5-label" value="Generic subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="238" y="1092" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-6-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="400" y="1096" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-6-label" value="Message broker" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="438" y="1092" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-7-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="600" y="1096" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-7-label" value="Data store" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="638" y="1092" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-8-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="0" y="1124" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-8-label" value="External system" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="38" y="1120" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-9-label" value="Authentication" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="238" y="1120" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-10-label" value="Sync call" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="438" y="1120" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-11-label" value="Async event" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="638" y="1120" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-12-label" value="Data access" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="38" y="1148" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-13-label" value="External call" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="238" y="1148" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-legend-notes" value="Layers from clients to external systems; arrows show the main interactions in order." style="shape=note;size=14;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="logical-view-1-1">
+          <mxGeometry x="0" y="1188" width="888" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-flow-1" value="1. sign in, get token" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7B1FA2;strokeWidth=2;fontColor=#7B1FA2;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="logical-view-1-1" source="logical-view-1-patient-mobile" target="logical-view-1-identity-provider">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="logical-view-1-flow-2" value="2. request with token" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5824;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="logical-view-1-1" source="logical-view-1-patient-mobile" target="logical-view-1-api-gateway">
+          <mxGeometry relative="1" as="geometry" x="0.2608">
+            <Array as="points">
+              <mxPoint x="345" y="204" />
+              <mxPoint x="105" y="204" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="logical-view-1-flow-3" value="3. validate token" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7B1FA2;strokeWidth=2;fontColor=#7B1FA2;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="logical-view-1-1" source="logical-view-1-api-gateway" target="logical-view-1-identity-provider">
+          <mxGeometry relative="1" as="geometry" x="0" />
+        </mxCell>
+        <mxCell id="logical-view-1-flow-4" value="4. route to the owning service" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="logical-view-1-1" source="logical-view-1-api-gateway" target="logical-view-1-appointment-service">
+          <mxGeometry relative="1" as="geometry" x="0.2712">
+            <Array as="points">
+              <mxPoint x="105" y="392" />
+              <mxPoint x="331" y="392" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="logical-view-1-flow-5" value="5. commands and events" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="logical-view-1-1" source="logical-view-1-appointment-service" target="logical-view-1-message-broker">
+          <mxGeometry relative="1" as="geometry" x="-0.5192">
+            <Array as="points">
+              <mxPoint x="331" y="515" />
+              <mxPoint x="199" y="515" />
+              <mxPoint x="199" y="696" />
+              <mxPoint x="105" y="696" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="logical-view-1-flow-6" value="6. own data" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#00897B;strokeWidth=2;fontColor=#00897B;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5824;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="logical-view-1-1" source="logical-view-1-appointment-service" target="logical-view-1-service-databases">
+          <mxGeometry relative="1" as="geometry" x="0.6986">
+            <Array as="points">
+              <mxPoint x="345" y="515" />
+              <mxPoint x="425" y="515" />
+              <mxPoint x="425" y="696" />
+              <mxPoint x="331" y="696" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="logical-view-1-flow-7" value="6. search index" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#00897B;strokeWidth=2;fontColor=#00897B;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="logical-view-1-1" source="logical-view-1-directory-service" target="logical-view-1-search-index">
+          <mxGeometry relative="1" as="geometry" x="-0.6596">
+            <Array as="points">
+              <mxPoint x="557" y="515" />
+              <mxPoint x="689" y="515" />
+              <mxPoint x="689" y="696" />
+              <mxPoint x="783" y="696" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="logical-view-1-flow-8" value="7. charge and refund" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="logical-view-1-1" source="logical-view-1-payment-service" target="logical-view-1-payment-provider">
+          <mxGeometry relative="1" as="geometry" x="-0.457">
+            <Array as="points">
+              <mxPoint x="557" y="703" />
+              <mxPoint x="199" y="703" />
+              <mxPoint x="199" y="884" />
+              <mxPoint x="105" y="884" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="logical-view-1-flow-9" value="7. cover check" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="logical-view-1-1" source="logical-view-1-insurance-service" target="logical-view-1-insurer">
+          <mxGeometry relative="1" as="geometry" x="-0.6018">
+            <Array as="points">
+              <mxPoint x="783" y="484" />
+              <mxPoint x="463" y="484" />
+              <mxPoint x="463" y="884" />
+              <mxPoint x="331" y="884" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="logical-view-1-flow-10" value="7. send reminders" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="logical-view-1-1" source="logical-view-1-notification-service" target="logical-view-1-messaging-provider">
+          <mxGeometry relative="1" as="geometry" x="0.5416">
+            <Array as="points">
+              <mxPoint x="105" y="600" />
+              <mxPoint x="237" y="600" />
+              <mxPoint x="237" y="884" />
+              <mxPoint x="557" y="884" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="logical-view-1-flow-11" value="7. staff federation" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="logical-view-1-1" source="logical-view-1-identity-provider" target="logical-view-1-corporate-idp">
+          <mxGeometry relative="1" as="geometry" x="-0.6288">
+            <Array as="points">
+              <mxPoint x="331" y="399" />
+              <mxPoint x="651" y="399" />
+              <mxPoint x="651" y="884" />
+              <mxPoint x="783" y="884" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="logical-view-1-legend-9-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7B1FA2;strokeWidth=2;fontColor=#7B1FA2;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;" edge="1" parent="logical-view-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="1132" as="sourcePoint" />
+            <mxPoint x="230" y="1132" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="logical-view-1-legend-10-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;" edge="1" parent="logical-view-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="1132" as="sourcePoint" />
+            <mxPoint x="430" y="1132" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="logical-view-1-legend-11-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="logical-view-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="1132" as="sourcePoint" />
+            <mxPoint x="630" y="1132" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="logical-view-1-legend-12-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#00897B;strokeWidth=2;fontColor=#00897B;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;" edge="1" parent="logical-view-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="1160" as="sourcePoint" />
+            <mxPoint x="30" y="1160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="logical-view-1-legend-13-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="logical-view-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="1160" as="sourcePoint" />
+            <mxPoint x="230" y="1160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

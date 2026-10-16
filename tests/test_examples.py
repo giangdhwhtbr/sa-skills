@@ -6,6 +6,8 @@ import sys
 from pathlib import Path
 
 import yaml
+from sacheck import checks, config
+from sadiagram import stamp
 
 ROOT = Path(__file__).resolve().parents[1]
 CHECK = ROOT / "skills" / "sa-review" / "scripts" / "check.py"
@@ -60,7 +62,31 @@ def test_neutral_content() -> None:
     hits = []
     for folder in ("skills", "examples"):
         for path in (ROOT / folder).rglob("*"):
-            if path.is_file() and path.suffix in {".md", ".yaml", ".py", ".json"} and "__pycache__" not in path.parts:
+            skip = {"__pycache__", "node_modules"} & set(path.parts)
+            if path.is_file() and path.suffix in {".md", ".yaml", ".py", ".json", ".drawio", ".js"} and not skip:
                 text = path.read_text().lower()
                 hits += [(str(path.relative_to(ROOT)), t) for t in terms if re.search(rf"\b{re.escape(t)}\b", text)]
     assert hits == []
+
+
+DRAWN = {
+    EXAMPLES / "clinic-booking" / "design": list(stamp.DRAWN),
+    EXAMPLES / "food-delivery" / "design": ["functions", "subdomains", "context-map", "aggregates"],
+    EXAMPLES / "food-delivery" / "design-detailed": ["functions", "subdomains", "context-map", "aggregates"],
+}
+
+
+def test_example_diagrams_up_to_date() -> None:
+    """REQ-QUALITY-006: the examples ship their diagrams, each stamped with the hash of its current data."""
+    refs = ROOT / "skills" / "sa-design" / "references"
+    for design, keys in DRAWN.items():
+        cfg = config.effective(design, refs)
+        folder = design / "diagrams"
+        drawn = sorted(p.name for p in folder.glob("[0-9][0-9]-*.drawio"))
+        assert drawn == [f"{stamp.DRAWN[k][0]:02d}-{k}.drawio" for k in keys], design
+        for key in keys:
+            stem = f"{stamp.DRAWN[key][0]:02d}-{key}"
+            assert stamp.read(folder / f"{stem}.drawio") == stamp.step_hash(design, key, cfg.options, cfg.cloud), stem
+            assert (folder / f"{stem}.mermaid.md").exists(), stem
+        assert (folder / "all-diagrams.drawio").exists()
+        assert not [f for f in checks.run(design, refs)[1] if f.rule == "DG-01"]

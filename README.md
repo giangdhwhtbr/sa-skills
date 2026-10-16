@@ -4,6 +4,7 @@ A Claude Code plugin that guides you through a **DDD + microservices solution de
 
 - **`/sa-design`** walks you through 12 design steps: brief, business functions, subdomains, context map, aggregate roots, use cases, logical view, core flow (saga), core patterns, architecture, technology stack and architecture decisions. Each step proposes content, asks you the key decisions one at a time (always with a recommendation), then writes a Markdown document and a YAML data file into your project's `design/` folder.
 - **`/sa-review`** audits the design folder without changing it: completeness, schemas, review rules, cross-step consistency and traceability. It writes `design/review-report.md`.
+- **`/sa-diagrams`** draws the design as editable draw.io diagrams with Mermaid twins (and PNGs if you have draw.io desktop), generated from the YAML data so they never drift from it.
 
 The level of detail is configurable: one high-level preset for architecture reviews, one detailed preset, or your own mix of options and rule severities.
 
@@ -15,7 +16,9 @@ The level of detail is configurable: one high-level preset for architecture revi
 |---|---|---|
 | [Claude Code](https://docs.claude.com/en/docs/claude-code) | recent | runs the skills |
 | Python | 3.10 or newer | the review checks (`check.py`) |
-| `pyyaml`, `jsonschema` | any recent | used by `check.py` |
+| `pyyaml`, `jsonschema` | any recent | used by `check.py` and `diagrams.py` |
+| Node.js + `elkjs` | Node 18 or newer | `/sa-diagrams` only: layout of the context map, aggregates and use cases |
+| draw.io desktop | any recent | `/sa-diagrams --png` only (optional) |
 
 Install the Python packages once for the `python3` on your PATH:
 
@@ -52,7 +55,13 @@ claude plugin install sa-design-kit@sa-design-kit-marketplace --scope local
 claude plugin details sa-design-kit@sa-design-kit-marketplace
 ```
 
-You should see `Skills (2): sa-design, sa-review`. Start a new Claude Code session in your project and the commands `/sa-design` and `/sa-review` are available.
+You should see `Skills (3): sa-design, sa-diagrams, sa-review`. Start a new Claude Code session in your project and the commands `/sa-design`, `/sa-review` and `/sa-diagrams` are available.
+
+For `/sa-diagrams`, install the graph layout package once (Node.js 18+ required):
+
+```bash
+npm install --prefix <plugin>/skills/sa-diagrams/tools
+```
 
 ### Update and uninstall
 
@@ -88,6 +97,13 @@ claude plugin uninstall sa-design-kit@sa-design-kit-marketplace
    ```
 
    and read `design/review-report.md`. Fix findings by re-running the steps it names.
+6. Draw the design:
+
+   ```
+   /sa-diagrams
+   ```
+
+   and open `design/diagrams/all-diagrams.drawio` in draw.io (or diagrams.net).
 
 ---
 
@@ -209,6 +225,47 @@ python3 <plugin>/skills/sa-review/scripts/render_report.py design
 
 ---
 
+## Draw the diagrams
+
+`/sa-diagrams` runs this script for you:
+
+```bash
+python3 <plugin>/skills/sa-diagrams/scripts/diagrams.py design [--only KEY ...] [--png] [--force]
+```
+
+It first runs the checks: if the data a diagram needs has errors, nothing is drawn (exit 1). Then it draws every step from 02 to 10 that is `done`, into `design/diagrams/`:
+
+| Step | Diagram | Layout |
+|---|---|---|
+| 02 functions | one band per actor group | bands |
+| 03 subdomains | core / supporting / generic bands, one service per subdomain | bands |
+| 04 context map | one arrow per relationship, U and D at the ends; external systems behind an ACL under `with-externals` | elkjs |
+| 05 aggregates | aggregate roots and ID references; entities, value objects and events under `full` | elkjs |
+| 06 use cases | one page per actor group (split above 40 shapes) | elkjs |
+| 07 logical view | one band per layer, numbered flows, no vendor names under `vendors: none` | bands + router |
+| 08 saga | one sequence page per scenario; compensations in red | sequence |
+| 09 patterns | one page per pattern (or one page under `combined`), numbered steps | bands + router |
+| 10 architecture | high-level view and physical / network view on one shared skeleton; AWS icons when `cloud: aws` | skeleton + router |
+
+| File | What it is |
+|---|---|
+| `NN-<key>.drawio` | the editable diagram of one step (one page per view) |
+| `NN-<key>.mermaid.md` | the same nodes and arrows as Mermaid blocks |
+| `all-diagrams.drawio` | every page in step order: open this one to present the design |
+| `png/NN-<key>-pN.png` | one PNG per page, with `--png` |
+
+| Option | Effect |
+|---|---|
+| `--only context-map saga` | draw only these steps |
+| `--png` | export PNGs with the draw.io desktop CLI (found through `DRAWIO`, the macOS app, or `drawio` on the PATH); unchanged pages are not exported again |
+| `--force` | redraw even when the data has not changed |
+
+Exit codes: `0` written or already up to date, `1` the design data has errors, `2` usage error or a missing dependency (the message gives the install command). Steps 04-06 need Node.js and elkjs; other steps draw without them.
+
+Every diagram records the hash of the data it was drawn from, so a second run redraws only what changed, and `/sa-review` warns (rule `DG-01`) when a diagram is older than its data. All diagrams share one style: one fill per subdomain type, one arrow style per interaction kind (sync, async, auth, data, external), and a legend on every page that lists only what that page uses.
+
+---
+
 ## Examples
 
 Two fictional design sets show what the output looks like:
@@ -219,7 +276,7 @@ Two fictional design sets show what the output looks like:
 | [`examples/food-delivery/design`](examples/food-delivery/design) | Steps 01-05 for a food ordering and delivery system (`high-level`) |
 | [`examples/food-delivery/design-detailed`](examples/food-delivery/design-detailed) | The same steps under the `detailed` preset: aggregate internals and external systems appear |
 
-Each folder has the sample brief (`brief.md`) next to the generated `design/` folder.
+Each folder has the sample brief (`brief.md`) next to the generated `design/` folder. Every design folder also holds its generated `diagrams/` (draw.io, Mermaid and PNG).
 
 ---
 
@@ -234,6 +291,9 @@ Each folder has the sample brief (`brief.md`) next to the generated `design/` fo
 | `SCHEMA` error | A YAML data file does not match its schema; the item path shows where (for example `relationships[0].pattern`) |
 | A later step is `stale` | An earlier step changed; run `/sa-design` to redo it |
 | You edited a file by hand | `/sa-design` notices it at the start of the next run and offers to mark dependent steps stale |
+| `graph layout needs Node.js and elkjs` | Install Node.js 18+, then `npm install --prefix <plugin>/skills/sa-diagrams/tools`; or draw other steps with `--only` |
+| `png: draw.io CLI not found` | Install draw.io desktop or set `DRAWIO` to its executable; the `.drawio` and Mermaid files are written anyway |
+| `DG-01` warning in the review | The data changed after the diagrams were drawn; run `/sa-diagrams` again |
 
 ---
 
@@ -252,6 +312,10 @@ skills/sa-review/          the review skill
   scripts/check.py         mechanical checks (CLI)
   scripts/render_report.py writes review-report.md
   scripts/sacheck/         the check library
+skills/sa-diagrams/        the diagrams skill
+  scripts/diagrams.py      draws the diagrams (CLI)
+  scripts/sadiagram/       drawing model, layouts, builders per step, draw.io / Mermaid writers
+  tools/                   elkjs graph layout (npm install here)
 examples/                  fictional sample design sets
 tests/                     pytest suite
 docs/specs/                living specification of the plugin
@@ -264,6 +328,7 @@ docs/specs/                living specification of the plugin
 ```bash
 python3 -m venv .venv
 .venv/bin/pip install pyyaml jsonschema pytest ruff
+npm install --prefix skills/sa-diagrams/tools   # graph-layout tests skip without it
 .venv/bin/python -m pytest -q
 .venv/bin/ruff check .
 claude plugin validate .

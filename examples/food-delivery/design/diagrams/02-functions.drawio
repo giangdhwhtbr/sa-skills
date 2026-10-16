@@ -1,0 +1,76 @@
+<mxfile host="sa-design-kit" type="device" sa-source-hash="9e07e3a07ddbf281ddec979cee0ba86b79867a3889ebb75c5ef8e2b1b2bdcaa6">
+  <diagram id="functions-1" name="Main business functions">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="912" pageHeight="770" math="0" shadow="0">
+      <root>
+        <mxCell id="functions-1-0" />
+        <mxCell id="functions-1-1" parent="functions-1-0" />
+        <mxCell id="functions-1-title" value="Main business functions" style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Helvetica;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="0" y="-50" width="832" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-group-customer-functions" value="Customer functions (Customer)" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#f2f7fd;strokeColor=#6c8ebf;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="0" y="0" width="832" height="208" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-group-restaurant-functions" value="Restaurant functions (Restaurant staff)" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#f3f9f2;strokeColor=#82b366;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="0" y="228" width="832" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-group-courier-functions" value="Courier functions (Courier)" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#f7f2f9;strokeColor=#9673a6;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="0" y="376" width="832" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-browse-restaurants" value="Browse restaurants and menus" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-customer-functions">
+          <mxGeometry x="20" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-place-order" value="Place an order" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-customer-functions">
+          <mxGeometry x="224" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-pay-order" value="Pay for the order" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-customer-functions">
+          <mxGeometry x="428" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-track-delivery" value="Track the delivery" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-customer-functions">
+          <mxGeometry x="632" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-rate-order" value="Rate the order" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-customer-functions">
+          <mxGeometry x="20" y="112" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-manage-menu" value="Manage the menu" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-restaurant-functions">
+          <mxGeometry x="20" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-accept-order" value="Accept an order" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-restaurant-functions">
+          <mxGeometry x="224" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-mark-ready" value="Mark an order ready" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-restaurant-functions">
+          <mxGeometry x="428" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-accept-delivery-job" value="Accept a delivery job" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-courier-functions">
+          <mxGeometry x="20" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-confirm-delivery" value="Confirm delivery" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-courier-functions">
+          <mxGeometry x="224" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-title" value="Legend" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="0" y="544" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-0-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="0" y="572" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-0-label" value="Customer functions" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="38" y="568" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-1-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="200" y="572" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-1-label" value="Restaurant functions" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="238" y="568" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-2-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="400" y="572" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-2-label" value="Courier functions" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="438" y="568" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-notes" value="Functions are grouped by the actor who uses them; colours mark the groups." style="shape=note;size=14;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="0" y="608" width="832" height="42" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

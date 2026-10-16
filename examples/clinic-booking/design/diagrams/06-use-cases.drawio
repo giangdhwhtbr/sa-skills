@@ -1,0 +1,358 @@
+<mxfile host="sa-design-kit" type="device" sa-source-hash="4e243cf09a39dbd6402c4309086e52f1d1b57efb42dde8cb639c44a39f69c81e">
+  <diagram id="use-cases-1" name="Use cases: Patient functions">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1411" pageHeight="737" math="0" shadow="0">
+      <root>
+        <mxCell id="use-cases-1-0" />
+        <mxCell id="use-cases-1-1" parent="use-cases-1-0" />
+        <mxCell id="use-cases-1-title" value="Use cases: Patient functions" style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Helvetica;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="20" y="-30" width="1331" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-group-system" value="Clinic booking platform" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=none;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="185" y="20" width="909" height="471" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-uc-find-doctor" value="Find a doctor" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-group-system">
+          <mxGeometry x="190" y="306" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-uc-pay-deposit" value="Pay the deposit" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-group-system">
+          <mxGeometry x="725" y="336" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-uc-book-appointment" value="Book an appointment" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-group-system">
+          <mxGeometry x="461" y="255" width="161" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-uc-check-insurance" value="Check insurance cover" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-group-system">
+          <mxGeometry x="190" y="225" width="175" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-uc-view-appointments" value="View my appointments" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-group-system">
+          <mxGeometry x="190" y="65" width="168" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-uc-reschedule-cancel" value="Reschedule or cancel" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-group-system">
+          <mxGeometry x="190" y="387" width="168" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-uc-receive-reminder" value="Receive a reminder" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-group-system">
+          <mxGeometry x="197.5" y="145" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-patient" value="Patient" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="20" y="106.25" width="90" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-payment-provider" value="Card payment provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="1169" y="359" width="175" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-insurer" value="Insurer API" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="1169" y="263" width="140" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-messaging-provider" value="SMS and email provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="1169" y="167" width="182" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-legend-title" value="Legend" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="20" y="531" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-legend-0-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="20" y="559" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-legend-0-label" value="Use case" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="58" y="555" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-legend-1-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="220" y="559" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-legend-1-label" value="Actor" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="258" y="555" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-legend-2-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="420" y="559" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-legend-2-label" value="External system" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="458" y="555" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-legend-3-label" value="Uses" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="658" y="555" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-legend-4-label" value="Includes / extends" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="858" y="555" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-legend-notes" value="People use the system on the left; external systems it calls are on the right." style="shape=note;size=14;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-1-1">
+          <mxGeometry x="20" y="595" width="1331" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-use-1" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.625;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-1-1" source="use-cases-1-patient" target="use-cases-1-uc-find-doctor">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="140" y="150" />
+              <mxPoint x="140" y="356" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-1-use-2" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.75;exitDx=0;exitDy=0;entryX=0.0;entryY=0.6667;entryDx=0;entryDy=0;" edge="1" parent="use-cases-1-1" source="use-cases-1-patient" target="use-cases-1-uc-pay-deposit">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="158.75" />
+              <mxPoint x="130" y="396" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-1-use-3" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-1-1" source="use-cases-1-uc-pay-deposit" target="use-cases-1-payment-provider">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1109" y="386" />
+              <mxPoint x="1109" y="387" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-1-use-4" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.6667;entryDx=0;entryDy=0;" edge="1" parent="use-cases-1-1" source="use-cases-1-patient" target="use-cases-1-uc-book-appointment">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="150" y="141.25" />
+              <mxPoint x="150" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-1-include-5" value="«include»" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.3333;entryDx=0;entryDy=0;" edge="1" parent="use-cases-1-1" source="use-cases-1-uc-book-appointment" target="use-cases-1-uc-pay-deposit">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="305" />
+              <mxPoint x="900" y="376" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-1-use-6" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.375;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-1-1" source="use-cases-1-patient" target="use-cases-1-uc-check-insurance">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="132.5" />
+              <mxPoint x="160" y="275" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-1-use-7" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.3333;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-1-1" source="use-cases-1-uc-check-insurance" target="use-cases-1-insurer">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="265" />
+              <mxPoint x="560" y="264" />
+              <mxPoint x="1109" y="264" />
+              <mxPoint x="1109" y="291" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-1-extend-8" value="«extend»" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.6667;exitDx=0;exitDy=0;entryX=0.0;entryY=0.3333;entryDx=0;entryDy=0;" edge="1" parent="use-cases-1-1" source="use-cases-1-uc-check-insurance" target="use-cases-1-uc-book-appointment">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="636" y="285" />
+              <mxPoint x="636" y="295" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-1-use-9" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.125;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-1-1" source="use-cases-1-patient" target="use-cases-1-uc-view-appointments">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-use-10" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.875;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-1-1" source="use-cases-1-patient" target="use-cases-1-uc-reschedule-cancel">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="120" y="167.5" />
+              <mxPoint x="120" y="437" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-1-use-11" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.25;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-1-1" source="use-cases-1-patient" target="use-cases-1-uc-receive-reminder">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="123.75" />
+              <mxPoint x="170" y="195" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-1-use-12" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-1-1" source="use-cases-1-uc-receive-reminder" target="use-cases-1-messaging-provider">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-1-legend-3-line" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;" edge="1" parent="use-cases-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="620" y="567" as="sourcePoint" />
+            <mxPoint x="650" y="567" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-1-legend-4-line" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="use-cases-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="820" y="567" as="sourcePoint" />
+            <mxPoint x="850" y="567" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="use-cases-2" name="Use cases: Clinic staff functions">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="971" pageHeight="575" math="0" shadow="0">
+      <root>
+        <mxCell id="use-cases-2-0" />
+        <mxCell id="use-cases-2-1" parent="use-cases-2-0" />
+        <mxCell id="use-cases-2-title" value="Use cases: Clinic staff functions" style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Helvetica;" vertex="1" parent="use-cases-2-1">
+          <mxGeometry x="20" y="-30" width="891" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-group-system" value="Clinic booking platform" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=none;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-1">
+          <mxGeometry x="207" y="20" width="454" height="309" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-uc-manage-schedules" value="Manage doctor schedules" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-group-system">
+          <mxGeometry x="190" y="145" width="189" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-uc-check-in" value="Check in a patient" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-group-system">
+          <mxGeometry x="190" y="65" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-uc-handle-cancellation" value="Handle a cancellation and refund" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-group-system">
+          <mxGeometry x="190" y="225" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-receptionist" value="Receptionist" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-1">
+          <mxGeometry x="20" y="97.5" width="112" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-payment-provider" value="Card payment provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-1">
+          <mxGeometry x="736" y="247" width="175" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-legend-title" value="Legend" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-1">
+          <mxGeometry x="20" y="369" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-legend-0-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-1">
+          <mxGeometry x="20" y="397" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-legend-0-label" value="Use case" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-1">
+          <mxGeometry x="58" y="393" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-legend-1-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-1">
+          <mxGeometry x="220" y="397" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-legend-1-label" value="Actor" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-1">
+          <mxGeometry x="258" y="393" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-legend-2-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-1">
+          <mxGeometry x="420" y="397" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-legend-2-label" value="External system" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-1">
+          <mxGeometry x="458" y="393" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-legend-3-label" value="Uses" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-1">
+          <mxGeometry x="658" y="393" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-legend-notes" value="People use the system on the left; external systems it calls are on the right." style="shape=note;size=14;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-2-1">
+          <mxGeometry x="20" y="433" width="891" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-use-1" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-2-1" source="use-cases-2-receptionist" target="use-cases-2-uc-manage-schedules">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="152" y="132.5" />
+              <mxPoint x="152" y="195" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-2-use-2" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.25;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-2-1" source="use-cases-2-receptionist" target="use-cases-2-uc-check-in">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-use-3" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.75;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-2-1" source="use-cases-2-receptionist" target="use-cases-2-uc-handle-cancellation">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="142" y="150" />
+              <mxPoint x="142" y="275" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-2-use-4" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-2-1" source="use-cases-2-uc-handle-cancellation" target="use-cases-2-payment-provider">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-2-legend-3-line" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;" edge="1" parent="use-cases-2-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="620" y="405" as="sourcePoint" />
+            <mxPoint x="650" y="405" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="use-cases-3" name="Use cases: Administration functions">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1045" pageHeight="655" math="0" shadow="0">
+      <root>
+        <mxCell id="use-cases-3-0" />
+        <mxCell id="use-cases-3-1" parent="use-cases-3-0" />
+        <mxCell id="use-cases-3-title" value="Use cases: Administration functions" style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Helvetica;" vertex="1" parent="use-cases-3-1">
+          <mxGeometry x="20" y="-30" width="965" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-group-system" value="Clinic booking platform" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=none;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-1">
+          <mxGeometry x="255" y="20" width="438" height="389" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-uc-manage-clinics" value="Manage clinics and services" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-group-system">
+          <mxGeometry x="190" y="225" width="217" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-uc-manage-staff" value="Manage staff and roles" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-group-system">
+          <mxGeometry x="211" y="305" width="182" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-uc-view-reports" value="View utilisation reports" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-group-system">
+          <mxGeometry x="190" y="145" width="196" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-uc-configure-templates" value="Configure reminder templates" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-group-system">
+          <mxGeometry x="190" y="65" width="224" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-clinic-admin" value="Clinic administrator" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-1">
+          <mxGeometry x="20" y="101" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-corporate-idp" value="Corporate identity provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-1">
+          <mxGeometry x="768" y="327" width="217" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-legend-title" value="Legend" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-1">
+          <mxGeometry x="20" y="449" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-legend-0-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-1">
+          <mxGeometry x="20" y="477" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-legend-0-label" value="Use case" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-1">
+          <mxGeometry x="58" y="473" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-legend-1-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-1">
+          <mxGeometry x="220" y="477" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-legend-1-label" value="Actor" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-1">
+          <mxGeometry x="258" y="473" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-legend-2-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-1">
+          <mxGeometry x="420" y="477" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-legend-2-label" value="External system" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-1">
+          <mxGeometry x="458" y="473" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-legend-3-label" value="Uses" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-1">
+          <mxGeometry x="658" y="473" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-legend-notes" value="People use the system on the left; external systems it calls are on the right." style="shape=note;size=14;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="use-cases-3-1">
+          <mxGeometry x="20" y="513" width="965" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-use-1" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.6;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-3-1" source="use-cases-3-clinic-admin" target="use-cases-3-uc-manage-clinics">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="143" />
+              <mxPoint x="200" y="275" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-3-use-2" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.8;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-3-1" source="use-cases-3-clinic-admin" target="use-cases-3-uc-manage-staff">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="190" y="157" />
+              <mxPoint x="190" y="355" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-3-use-3" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-3-1" source="use-cases-3-uc-manage-staff" target="use-cases-3-corporate-idp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-use-4" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.4;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-3-1" source="use-cases-3-clinic-admin" target="use-cases-3-uc-view-reports">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="129" />
+              <mxPoint x="210" y="195" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="use-cases-3-use-5" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.2;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="use-cases-3-1" source="use-cases-3-clinic-admin" target="use-cases-3-uc-configure-templates">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="use-cases-3-legend-3-line" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;" edge="1" parent="use-cases-3-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="620" y="485" as="sourcePoint" />
+            <mxPoint x="650" y="485" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

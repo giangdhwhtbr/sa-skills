@@ -1,0 +1,88 @@
+<mxfile host="sa-design-kit" type="device" sa-source-hash="ac874045dc13b657fb3d7b023f020bec0d0bdd54d168fe3698f474c29e50feef">
+  <diagram id="aggregates-1" name="Aggregate roots and references">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1514" pageHeight="532" math="0" shadow="0">
+      <root>
+        <mxCell id="aggregates-1-0" />
+        <mxCell id="aggregates-1-1" parent="aggregates-1-0" />
+        <mxCell id="aggregates-1-title" value="Aggregate roots and references" style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Helvetica;" vertex="1" parent="aggregates-1-1">
+          <mxGeometry x="20" y="-30" width="1434" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-clinic" value="Clinic&lt;br&gt;(Clinic directory)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="aggregates-1-1">
+          <mxGeometry x="1300" y="202.667" width="154" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-doctor-schedule" value="DoctorSchedule&lt;br&gt;(Scheduling)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="aggregates-1-1">
+          <mxGeometry x="905" y="202.667" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-appointment" value="Appointment&lt;br&gt;(Appointments)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="aggregates-1-1">
+          <mxGeometry x="496" y="116" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-insurance-check" value="InsuranceCheck&lt;br&gt;(Insurance verification)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="aggregates-1-1">
+          <mxGeometry x="20" y="116" width="196" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-reminder" value="Reminder&lt;br&gt;(Notifications)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="aggregates-1-1">
+          <mxGeometry x="66" y="20" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-payment" value="Payment&lt;br&gt;(Payments)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="aggregates-1-1">
+          <mxGeometry x="66" y="212" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-user-account" value="UserAccount&lt;br&gt;(Identity)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="aggregates-1-1">
+          <mxGeometry x="905" y="106.667" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-legend-title" value="Legend" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="aggregates-1-1">
+          <mxGeometry x="20" y="308" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-legend-0-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="aggregates-1-1">
+          <mxGeometry x="20" y="336" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-legend-0-label" value="Aggregate root" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="aggregates-1-1">
+          <mxGeometry x="58" y="332" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-legend-1-label" value="ID reference" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="aggregates-1-1">
+          <mxGeometry x="258" y="332" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-legend-notes" value="Aggregates refer to each other by ID only; labels give the ID field and multiplicity.&lt;br&gt;Reporting: no aggregate. Reporting only builds read models from events" style="shape=note;size=14;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="aggregates-1-1">
+          <mxGeometry x="20" y="372" width="1434" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-ref-1" value="clinicId  * : 1" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="aggregates-1-1" source="aggregates-1-doctor-schedule" target="aggregates-1-clinic">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-ref-2" value="scheduleId  * : 1" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.6667;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="aggregates-1-1" source="aggregates-1-appointment" target="aggregates-1-doctor-schedule">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="656" y="153.333" />
+              <mxPoint x="656" y="230.667" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aggregates-1-ref-3" value="patientId  * : 1" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.3333;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="aggregates-1-1" source="aggregates-1-appointment" target="aggregates-1-user-account">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-ref-4" value="appointmentId  * : 1" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="aggregates-1-1" source="aggregates-1-payment" target="aggregates-1-appointment">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="436" y="240" />
+              <mxPoint x="436" y="158" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aggregates-1-ref-5" value="appointmentId  1 : 1" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="aggregates-1-1" source="aggregates-1-insurance-check" target="aggregates-1-appointment">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregates-1-ref-6" value="appointmentId  * : 1" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="aggregates-1-1" source="aggregates-1-reminder" target="aggregates-1-appointment">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="436" y="48" />
+              <mxPoint x="436" y="130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aggregates-1-legend-1-line" value="" style="html=1;rounded=0;endArrow=open;endFill=0;strokeColor=#333333;strokeWidth=2;fontColor=#333333;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="aggregates-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="220" y="344" as="sourcePoint" />
+            <mxPoint x="250" y="344" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

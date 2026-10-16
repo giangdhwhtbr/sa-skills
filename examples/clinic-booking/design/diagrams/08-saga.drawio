@@ -1,0 +1,312 @@
+<mxfile host="sa-design-kit" type="device" sa-source-hash="edcf6c8a6342de0358de5da446e4a4f443c9dac63f13c54798a9bebc2a710c24">
+  <diagram id="saga-1" name="Saga: Book an appointment: Happy path">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1620" pageHeight="964" math="0" shadow="0">
+      <root>
+        <mxCell id="saga-1-0" />
+        <mxCell id="saga-1-1" parent="saga-1-0" />
+        <mxCell id="saga-1-title" value="Saga: Book an appointment: Happy path" style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Helvetica;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="0" y="-50" width="1540" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-appointment-service" value="Appointment service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="0" y="0" width="160" height="680" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-scheduling-service" value="Scheduling service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="230" y="0" width="160" height="680" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-insurance-service" value="Insurance service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="460" y="0" width="160" height="680" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-payment-service" value="Payment service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="690" y="0" width="160" height="680" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-notification-service" value="Notification service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="920" y="0" width="160" height="680" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-payment-provider" value="Card payment provider" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="1150" y="0" width="160" height="680" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-insurer" value="Insurer API" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="1380" y="0" width="160" height="680" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-legend-title" value="Legend" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="0" y="720" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-legend-0-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="0" y="748" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-legend-0-label" value="Core subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="38" y="744" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-legend-1-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="200" y="748" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-legend-1-label" value="Supporting subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="238" y="744" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-legend-2-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="400" y="748" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-legend-2-label" value="Generic subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="438" y="744" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-legend-3-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="600" y="748" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-legend-3-label" value="External system" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="638" y="744" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-legend-4-label" value="Sync call" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="838" y="744" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-legend-5-label" value="Async event" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="1038" y="744" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-legend-notes" value="Happy path (main scenario); orchestrated by Appointment service.&lt;br&gt;Numbers give the order. Red messages are compensations." style="shape=note;size=14;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-1-1">
+          <mxGeometry x="0" y="784" width="1540" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-step-1" value="1. Save appointment as pending with an idempotency key" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.1324;exitDx=0;exitDy=0;entryX=0.5;entryY=0.1647;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;align=left;spacingLeft=8;" edge="1" parent="saga-1-1" source="saga-1-appointment-service" target="saga-1-appointment-service">
+          <mxGeometry relative="1" as="geometry" x="0">
+            <Array as="points">
+              <mxPoint x="120" y="90" />
+              <mxPoint x="120" y="112" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="saga-1-step-2" value="2. Hold the slot for 10 minutes" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.2059;exitDx=0;exitDy=0;entryX=0.5;entryY=0.2059;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-1-1" source="saga-1-appointment-service" target="saga-1-scheduling-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-step-3" value="3. Slot held" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.2794;exitDx=0;exitDy=0;entryX=0.5;entryY=0.2794;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-1-1" source="saga-1-scheduling-service" target="saga-1-appointment-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-step-4" value="4. Check cover (when the service needs it)" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.3529;exitDx=0;exitDy=0;entryX=0.5;entryY=0.3529;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-1-1" source="saga-1-appointment-service" target="saga-1-insurance-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-step-5" value="5. Cover check" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.4265;exitDx=0;exitDy=0;entryX=0.5;entryY=0.4265;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-1-1" source="saga-1-insurance-service" target="saga-1-insurer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-step-6" value="6. Cover confirmed" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-1-1" source="saga-1-insurance-service" target="saga-1-appointment-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-step-7" value="7. Collect the deposit" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.5735;exitDx=0;exitDy=0;entryX=0.5;entryY=0.5735;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-1-1" source="saga-1-appointment-service" target="saga-1-payment-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-step-8" value="8. Charge the deposit with the same key" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.6471;exitDx=0;exitDy=0;entryX=0.5;entryY=0.6471;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-1-1" source="saga-1-payment-service" target="saga-1-payment-provider">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-step-9" value="9. Deposit captured" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.7206;exitDx=0;exitDy=0;entryX=0.5;entryY=0.7206;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-1-1" source="saga-1-payment-service" target="saga-1-appointment-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-step-10" value="10. Commit the slot" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.7941;exitDx=0;exitDy=0;entryX=0.5;entryY=0.7941;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-1-1" source="saga-1-appointment-service" target="saga-1-scheduling-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-step-11" value="11. Appointment confirmed" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.8676;exitDx=0;exitDy=0;entryX=0.5;entryY=0.8676;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-1-1" source="saga-1-appointment-service" target="saga-1-notification-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-1-legend-4-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;" edge="1" parent="saga-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="756" as="sourcePoint" />
+            <mxPoint x="830" y="756" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="saga-1-legend-5-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="saga-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="756" as="sourcePoint" />
+            <mxPoint x="1030" y="756" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="saga-2" name="Saga: Book an appointment: Slot already taken">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1620" pageHeight="564" math="0" shadow="0">
+      <root>
+        <mxCell id="saga-2-0" />
+        <mxCell id="saga-2-1" parent="saga-2-0" />
+        <mxCell id="saga-2-title" value="Saga: Book an appointment: Slot already taken" style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Helvetica;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="0" y="-50" width="1540" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-group-compensation-1" value="" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#fdecea;strokeColor=none;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;opacity=60;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="60" y="170" width="80" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-appointment-service" value="Appointment service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="0" y="0" width="160" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-scheduling-service" value="Scheduling service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="230" y="0" width="160" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-insurance-service" value="Insurance service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="460" y="0" width="160" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-payment-service" value="Payment service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="690" y="0" width="160" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-notification-service" value="Notification service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="920" y="0" width="160" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-payment-provider" value="Card payment provider" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="1150" y="0" width="160" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-insurer" value="Insurer API" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="1380" y="0" width="160" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-legend-title" value="Legend" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="0" y="320" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-legend-0-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="0" y="348" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-legend-0-label" value="Core subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="38" y="344" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-legend-1-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="200" y="348" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-legend-1-label" value="Supporting subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="238" y="344" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-legend-2-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="400" y="348" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-legend-2-label" value="Generic subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="438" y="344" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-legend-3-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="600" y="348" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-legend-3-label" value="External system" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="638" y="344" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-legend-4-label" value="Async event" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="838" y="344" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-legend-5-label" value="Compensation" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="1038" y="344" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-legend-notes" value="Slot already taken (failure scenario); orchestrated by Appointment service.&lt;br&gt;Numbers give the order. Red messages are compensations." style="shape=note;size=14;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-2-1">
+          <mxGeometry x="0" y="384" width="1540" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-step-1" value="1. Hold the slot" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.3214;exitDx=0;exitDy=0;entryX=0.5;entryY=0.3214;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-2-1" source="saga-2-appointment-service" target="saga-2-scheduling-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-step-2" value="2. Slot already taken" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-2-1" source="saga-2-scheduling-service" target="saga-2-appointment-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-2-step-3" value="3. Cancel the pending appointment and offer the next free slots" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#D32F2F;strokeWidth=2;fontColor=#D32F2F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.6786;exitDx=0;exitDy=0;entryX=0.5;entryY=0.7571;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;align=left;spacingLeft=8;" edge="1" parent="saga-2-1" source="saga-2-appointment-service" target="saga-2-appointment-service">
+          <mxGeometry relative="1" as="geometry" x="0">
+            <Array as="points">
+              <mxPoint x="120" y="190" />
+              <mxPoint x="120" y="212" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="saga-2-legend-4-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="saga-2-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="356" as="sourcePoint" />
+            <mxPoint x="830" y="356" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="saga-2-legend-5-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#D32F2F;strokeWidth=2;fontColor=#D32F2F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="saga-2-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="356" as="sourcePoint" />
+            <mxPoint x="1030" y="356" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="saga-3" name="Saga: Book an appointment: Deposit payment times out">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1620" pageHeight="614" math="0" shadow="0">
+      <root>
+        <mxCell id="saga-3-0" />
+        <mxCell id="saga-3-1" parent="saga-3-0" />
+        <mxCell id="saga-3-title" value="Saga: Book an appointment: Deposit payment times out" style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Helvetica;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="0" y="-50" width="1540" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-group-compensation-1" value="" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#fdecea;strokeColor=none;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;opacity=60;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="60" y="170" width="730" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-appointment-service" value="Appointment service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="0" y="0" width="160" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-scheduling-service" value="Scheduling service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="230" y="0" width="160" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-insurance-service" value="Insurance service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="460" y="0" width="160" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-payment-service" value="Payment service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="690" y="0" width="160" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-notification-service" value="Notification service" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="920" y="0" width="160" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-payment-provider" value="Card payment provider" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="1150" y="0" width="160" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-insurer" value="Insurer API" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=0;collapsible=0;size=40;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="1380" y="0" width="160" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-legend-title" value="Legend" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="0" y="370" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-legend-0-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="0" y="398" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-legend-0-label" value="Core subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="38" y="394" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-legend-1-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="200" y="398" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-legend-1-label" value="Supporting subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="238" y="394" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-legend-2-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="400" y="398" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-legend-2-label" value="Generic subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="438" y="394" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-legend-3-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="600" y="398" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-legend-3-label" value="External system" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="638" y="394" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-legend-4-label" value="Sync call" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="838" y="394" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-legend-5-label" value="Compensation" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="1038" y="394" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-legend-notes" value="Deposit payment times out (failure scenario); orchestrated by Appointment service.&lt;br&gt;Numbers give the order. Red messages are compensations." style="shape=note;size=14;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="saga-3-1">
+          <mxGeometry x="0" y="434" width="1540" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-step-1" value="1. Charge the deposit" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.2727;exitDx=0;exitDy=0;entryX=0.5;entryY=0.2727;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-3-1" source="saga-3-payment-service" target="saga-3-payment-provider">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-step-2" value="2. Reconcile later with the same key" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.4242;exitDx=0;exitDy=0;entryX=0.5;entryY=0.4242;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-3-1" source="saga-3-payment-service" target="saga-3-payment-provider">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-step-3" value="3. Release the slot hold when the hold expires unpaid" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#D32F2F;strokeWidth=2;fontColor=#D32F2F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.5758;exitDx=0;exitDy=0;entryX=0.5;entryY=0.5758;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-3-1" source="saga-3-appointment-service" target="saga-3-scheduling-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-step-4" value="4. Refund in full if the payment succeeds after the hold expired" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#D32F2F;strokeWidth=2;fontColor=#D32F2F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=0.7273;exitDx=0;exitDy=0;entryX=0.5;entryY=0.7273;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="saga-3-1" source="saga-3-appointment-service" target="saga-3-payment-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="saga-3-legend-4-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;" edge="1" parent="saga-3-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="406" as="sourcePoint" />
+            <mxPoint x="830" y="406" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="saga-3-legend-5-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#D32F2F;strokeWidth=2;fontColor=#D32F2F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="saga-3-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="406" as="sourcePoint" />
+            <mxPoint x="1030" y="406" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

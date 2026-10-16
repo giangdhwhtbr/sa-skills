@@ -1,0 +1,608 @@
+<mxfile host="sa-design-kit" type="device" sa-source-hash="805bc86a5ac8340b9faf65b7093737cffff74d818640f6c6a757fa2cb3b67785">
+  <diagram id="architecture-1" name="High-level architecture">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1866" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="architecture-1-0" />
+        <mxCell id="architecture-1-1" parent="architecture-1-0" />
+        <mxCell id="architecture-1-title" value="High-level architecture" style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Helvetica;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="80" y="30" width="1706" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-group-clients" value="Clients" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=none;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="80" y="80" width="210" height="756" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-group-edge" value="Edge" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=none;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="360" y="80" width="210" height="756" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-group-backend" value="Backend" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=none;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="640" y="80" width="866" height="756" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-group-external" value="External systems" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=none;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="1576" y="80" width="210" height="756" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-group-microservices" value="Microservices" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#fafafa;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-backend">
+          <mxGeometry x="24" y="34" width="818" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-group-data" value="Data" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#fafafa;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-backend">
+          <mxGeometry x="24" y="286" width="818" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-group-managed" value="Managed services" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#fafafa;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-backend">
+          <mxGeometry x="24" y="438" width="818" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-group-managed-Messaging" value="Messaging" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=none;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-managed">
+          <mxGeometry x="24" y="34" width="770" height="106" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-scheduling-service" value="Scheduling service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-microservices">
+          <mxGeometry x="24" y="34" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-appointment-service" value="Appointment service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-microservices">
+          <mxGeometry x="224" y="34" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-directory-service" value="Directory service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-microservices">
+          <mxGeometry x="424" y="34" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-insurance-service" value="Insurance service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-microservices">
+          <mxGeometry x="624" y="34" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-notification-service" value="Notification service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-microservices">
+          <mxGeometry x="24" y="134" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-reporting-service" value="Reporting service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-microservices">
+          <mxGeometry x="224" y="134" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-payment-service" value="Payment service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-microservices">
+          <mxGeometry x="424" y="134" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-identity-service" value="Identity service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-microservices">
+          <mxGeometry x="624" y="134" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-patient-web" value="Patient web app" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-clients">
+          <mxGeometry x="24" y="34" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-patient-mobile" value="Patient mobile app" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-clients">
+          <mxGeometry x="24" y="134" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-staff-portal" value="Staff portal" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-clients">
+          <mxGeometry x="24" y="234" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-api-gateway" value="API gateway with web and mobile routes" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-edge">
+          <mxGeometry x="24" y="34" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-identity-provider" value="Identity provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-edge">
+          <mxGeometry x="24" y="134" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-service-databases" value="Database per service" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-data">
+          <mxGeometry x="24" y="34" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-cache" value="Cache" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-data">
+          <mxGeometry x="224" y="34" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-search-index" value="Search index" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-data">
+          <mxGeometry x="424" y="34" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-message-broker" value="Message broker" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-managed-Messaging">
+          <mxGeometry x="10" y="34" width="750" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-payment-provider" value="Card payment provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-external">
+          <mxGeometry x="24" y="34" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-insurer" value="Insurer API" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-external">
+          <mxGeometry x="24" y="134" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-messaging-provider" value="SMS and email provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-external">
+          <mxGeometry x="24" y="234" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-corporate-idp" value="Corporate identity provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-group-external">
+          <mxGeometry x="24" y="334" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-title" value="Legend" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="80" y="876" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-0-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="80" y="904" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-0-label" value="Core subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="118" y="900" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-1-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="280" y="904" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-1-label" value="Supporting subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="318" y="900" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-2-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="480" y="904" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-2-label" value="Generic subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="518" y="900" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-3-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="680" y="904" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-3-label" value="Client" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="718" y="900" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-4-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="880" y="904" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-4-label" value="API gateway" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="918" y="900" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-5-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="1080" y="904" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-5-label" value="Identity provider" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="1118" y="900" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-6-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="1280" y="904" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-6-label" value="Data store" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="1318" y="900" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-7-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="1480" y="904" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-7-label" value="Message broker" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="1518" y="900" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-8-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="80" y="932" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-8-label" value="External system" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="118" y="928" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-9-label" value="Authentication" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="318" y="928" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-10-label" value="Sync call" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="518" y="928" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-11-label" value="Async event" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="718" y="928" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-12-label" value="Data access" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="918" y="928" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-13-label" value="External call" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="1118" y="928" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-legend-notes" value="Services follow the subdomain order; the physical view uses the same layout." style="shape=note;size=14;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-1-1">
+          <mxGeometry x="80" y="968" width="1706" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-flow-1" value="1. sign in, get token" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7B1FA2;strokeWidth=2;fontColor=#7B1FA2;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="architecture-1-1" source="architecture-1-patient-mobile" target="architecture-1-identity-provider">
+          <mxGeometry relative="1" as="geometry" x="0" />
+        </mxCell>
+        <mxCell id="architecture-1-flow-2" value="2. request with token" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.7;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="architecture-1-1" source="architecture-1-patient-mobile" target="architecture-1-api-gateway">
+          <mxGeometry relative="1" as="geometry" x="-0.5604">
+            <Array as="points">
+              <mxPoint x="368" y="263" />
+              <mxPoint x="368" y="149" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-1-flow-3" value="3. validate token" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7B1FA2;strokeWidth=2;fontColor=#7B1FA2;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="architecture-1-1" source="architecture-1-api-gateway" target="architecture-1-identity-provider">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-1-flow-4" value="4. route to the owning service" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="architecture-1-1" source="architecture-1-api-gateway" target="architecture-1-appointment-service">
+          <mxGeometry relative="1" as="geometry" x="0.2096">
+            <Array as="points">
+              <mxPoint x="679" y="149" />
+              <mxPoint x="679" y="139" />
+              <mxPoint x="872" y="139" />
+              <mxPoint x="872" y="183" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-1-flow-5" value="5. commands and events" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="architecture-1-1" source="architecture-1-appointment-service" target="architecture-1-message-broker">
+          <mxGeometry relative="1" as="geometry" x="-0.8034">
+            <Array as="points">
+              <mxPoint x="973" y="239" />
+              <mxPoint x="1073" y="239" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-1-flow-6" value="6. own data" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#00897B;strokeWidth=2;fontColor=#00897B;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5824;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="architecture-1-1" source="architecture-1-appointment-service" target="architecture-1-service-databases">
+          <mxGeometry relative="1" as="geometry" x="-0.4646">
+            <Array as="points">
+              <mxPoint x="987" y="234" />
+              <mxPoint x="867" y="234" />
+              <mxPoint x="867" y="384" />
+              <mxPoint x="773" y="384" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-1-flow-7" value="6. search index" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#00897B;strokeWidth=2;fontColor=#00897B;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="architecture-1-1" source="architecture-1-directory-service" target="architecture-1-search-index">
+          <mxGeometry relative="1" as="geometry" x="-0.8102">
+            <Array as="points">
+              <mxPoint x="1173" y="239" />
+              <mxPoint x="1079" y="239" />
+              <mxPoint x="1079" y="384" />
+              <mxPoint x="1173" y="384" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-1-flow-8" value="7. charge and refund" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="architecture-1-1" source="architecture-1-payment-service" target="architecture-1-payment-provider">
+          <mxGeometry relative="1" as="geometry" x="0.4128">
+            <Array as="points">
+              <mxPoint x="1279" y="283" />
+              <mxPoint x="1279" y="227" />
+              <mxPoint x="1584" y="227" />
+              <mxPoint x="1584" y="149" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-1-flow-9" value="7. cover check" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="architecture-1-1" source="architecture-1-insurance-service" target="architecture-1-insurer">
+          <mxGeometry relative="1" as="geometry" x="-0.3942">
+            <Array as="points">
+              <mxPoint x="1584" y="183" />
+              <mxPoint x="1584" y="249" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-1-flow-10" value="7. send reminders" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="architecture-1-1" source="architecture-1-notification-service" target="architecture-1-messaging-provider">
+          <mxGeometry relative="1" as="geometry" x="0.1076">
+            <Array as="points">
+              <mxPoint x="879" y="283" />
+              <mxPoint x="879" y="349" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-1-flow-11" value="7. staff federation" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="architecture-1-1" source="architecture-1-identity-provider" target="architecture-1-corporate-idp">
+          <mxGeometry relative="1" as="geometry" x="0.1602">
+            <Array as="points">
+              <mxPoint x="679" y="249" />
+              <mxPoint x="679" y="391" />
+              <mxPoint x="1584" y="391" />
+              <mxPoint x="1584" y="449" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-1-legend-9-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7B1FA2;strokeWidth=2;fontColor=#7B1FA2;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;" edge="1" parent="architecture-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="940" as="sourcePoint" />
+            <mxPoint x="310" y="940" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-1-legend-10-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;" edge="1" parent="architecture-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="940" as="sourcePoint" />
+            <mxPoint x="510" y="940" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-1-legend-11-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="architecture-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="680" y="940" as="sourcePoint" />
+            <mxPoint x="710" y="940" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-1-legend-12-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#00897B;strokeWidth=2;fontColor=#00897B;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;" edge="1" parent="architecture-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="880" y="940" as="sourcePoint" />
+            <mxPoint x="910" y="940" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-1-legend-13-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="architecture-1-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1080" y="940" as="sourcePoint" />
+            <mxPoint x="1110" y="940" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="architecture-2" name="Physical view and network">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1866" pageHeight="1217" math="0" shadow="0">
+      <root>
+        <mxCell id="architecture-2-0" />
+        <mxCell id="architecture-2-1" parent="architecture-2-0" />
+        <mxCell id="architecture-2-title" value="Physical view and network" style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Helvetica;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="80" y="-38" width="1706" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-group-region" value="AWS region" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=none;strokeColor=#00A4A6;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="315" y="12" width="1236" height="869" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-group-vpc" value="VPC across 2 availability zones" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=none;strokeColor=#8C4FFF;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="340" y="46" width="1186" height="810" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-group-clients" value="Clients" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=none;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="80" y="80" width="210" height="756" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-group-edge" value="Edge: public subnet 10.0.0.0/24 (internet route)" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#E9F3E6;strokeColor=#7AA116;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="360" y="80" width="210" height="756" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-group-backend" value="Private application network (2 availability zones)" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=none;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="640" y="80" width="866" height="756" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-group-external" value="External systems" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=none;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="1576" y="80" width="210" height="756" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-group-microservices" value="Microservices: app subnet 10.0.10.0/24 (no internet route)" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#E6F2F8;strokeColor=#147EBA;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-backend">
+          <mxGeometry x="24" y="34" width="818" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-group-data" value="Data: data subnet 10.0.20.0/24 (no internet route)" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FAF0E6;strokeColor=#D86613;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-backend">
+          <mxGeometry x="24" y="286" width="818" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-group-managed" value="Managed services" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#fafafa;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-backend">
+          <mxGeometry x="24" y="438" width="818" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-group-managed-Messaging" value="Messaging" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=none;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-managed">
+          <mxGeometry x="24" y="34" width="770" height="106" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-scheduling-service" value="Scheduling service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-microservices">
+          <mxGeometry x="24" y="34" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-appointment-service" value="Appointment service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-microservices">
+          <mxGeometry x="224" y="34" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-directory-service" value="Directory service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-microservices">
+          <mxGeometry x="424" y="34" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-insurance-service" value="Insurance service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-microservices">
+          <mxGeometry x="624" y="34" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-notification-service" value="Notification service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-microservices">
+          <mxGeometry x="24" y="134" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-reporting-service" value="Reporting service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-microservices">
+          <mxGeometry x="224" y="134" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-payment-service" value="Payment service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-microservices">
+          <mxGeometry x="424" y="134" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-identity-service" value="Identity service" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=14;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-microservices">
+          <mxGeometry x="624" y="134" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-patient-web" value="Patient web app" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-clients">
+          <mxGeometry x="24" y="34" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-patient-mobile" value="Patient mobile app" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-clients">
+          <mxGeometry x="24" y="134" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-staff-portal" value="Staff portal" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-clients">
+          <mxGeometry x="24" y="234" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-api-gateway" value="Amazon API Gateway (HTTP API)&lt;br&gt;(API gateway with web and mobile routes)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;align=left;spacingLeft=46;" vertex="1" parent="architecture-2-group-edge">
+          <mxGeometry x="24" y="34" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-api-gateway--icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;strokeColor=#ffffff;dashed=0;html=1;aspect=fixed;fillColor=#8C4FFF;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" vertex="1" parent="architecture-2-api-gateway">
+          <mxGeometry x="6" y="17" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-identity-provider" value="Amazon Cognito&lt;br&gt;(Identity provider)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontFamily=Helvetica;fontSize=12;align=left;spacingLeft=46;" vertex="1" parent="architecture-2-group-edge">
+          <mxGeometry x="24" y="134" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-identity-provider--icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;strokeColor=#ffffff;dashed=0;html=1;aspect=fixed;fillColor=#DD344C;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cognito;" vertex="1" parent="architecture-2-identity-provider">
+          <mxGeometry x="6" y="17" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-service-databases" value="Amazon Aurora PostgreSQL&lt;br&gt;(Database per service)" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;align=left;spacingLeft=46;" vertex="1" parent="architecture-2-group-data">
+          <mxGeometry x="24" y="34" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-service-databases--icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;strokeColor=#ffffff;dashed=0;html=1;aspect=fixed;fillColor=#C925D1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.aurora;" vertex="1" parent="architecture-2-service-databases">
+          <mxGeometry x="6" y="17" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-cache" value="Amazon ElastiCache (Redis)&lt;br&gt;(Cache)" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;align=left;spacingLeft=46;" vertex="1" parent="architecture-2-group-data">
+          <mxGeometry x="224" y="34" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-cache--icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;strokeColor=#ffffff;dashed=0;html=1;aspect=fixed;fillColor=#C925D1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elasticache;" vertex="1" parent="architecture-2-cache">
+          <mxGeometry x="6" y="17" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-search-index" value="Amazon OpenSearch Service&lt;br&gt;(Search index)" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;align=left;spacingLeft=46;" vertex="1" parent="architecture-2-group-data">
+          <mxGeometry x="424" y="34" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-search-index--icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;strokeColor=#ffffff;dashed=0;html=1;aspect=fixed;fillColor=#C925D1;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elasticsearch_service;" vertex="1" parent="architecture-2-search-index">
+          <mxGeometry x="6" y="17" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-message-broker" value="Amazon SNS FIFO + Amazon SQS FIFO&lt;br&gt;(Message broker)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;align=left;spacingLeft=46;" vertex="1" parent="architecture-2-group-managed-Messaging">
+          <mxGeometry x="10" y="34" width="750" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-message-broker--icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;strokeColor=#ffffff;dashed=0;html=1;aspect=fixed;fillColor=#E7157B;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sns;" vertex="1" parent="architecture-2-message-broker">
+          <mxGeometry x="6" y="6" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-payment-provider" value="Card payment provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-external">
+          <mxGeometry x="24" y="34" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-insurer" value="Insurer API" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-external">
+          <mxGeometry x="24" y="134" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-messaging-provider" value="SMS and email provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-external">
+          <mxGeometry x="24" y="234" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-corporate-idp" value="Corporate identity provider" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-group-external">
+          <mxGeometry x="24" y="334" width="162" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-title" value="Legend" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="80" y="921" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-0-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="80" y="949" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-0-label" value="Core subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="118" y="945" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-1-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="280" y="949" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-1-label" value="Supporting subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="318" y="945" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-2-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="480" y="949" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-2-label" value="Generic subdomain" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="518" y="945" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-3-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="680" y="949" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-3-label" value="Client" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="718" y="945" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-4-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="880" y="949" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-4-label" value="API gateway" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="918" y="945" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-5-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="1080" y="949" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-5-label" value="Identity provider" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="1118" y="945" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-6-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="1280" y="949" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-6-label" value="Data store" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="1318" y="945" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-7-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="1480" y="949" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-7-label" value="Message broker" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="1518" y="945" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-8-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="80" y="977" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-8-label" value="External system" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="118" y="973" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-9-label" value="Authentication" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="318" y="973" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-10-label" value="Sync call" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="518" y="973" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-11-label" value="Async event" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="718" y="973" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-12-label" value="Data access" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="918" y="973" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-13-label" value="External call" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="1118" y="973" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-legend-notes" value="The load balancer accepts only the gateway's VPC Link&lt;br&gt;Service tasks accept only the load balancer&lt;br&gt;Databases accept only the service tasks&lt;br&gt;AWS services are reached through VPC endpoints" style="shape=note;size=14;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="architecture-2-1">
+          <mxGeometry x="80" y="1013" width="1706" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-flow-1" value="1. sign in, get token" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7B1FA2;strokeWidth=2;fontColor=#7B1FA2;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="architecture-2-1" source="architecture-2-patient-mobile" target="architecture-2-identity-provider">
+          <mxGeometry relative="1" as="geometry" x="0" />
+        </mxCell>
+        <mxCell id="architecture-2-flow-2" value="2. request with token" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.7;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="architecture-2-1" source="architecture-2-patient-mobile" target="architecture-2-api-gateway">
+          <mxGeometry relative="1" as="geometry" x="-0.5604">
+            <Array as="points">
+              <mxPoint x="368" y="263" />
+              <mxPoint x="368" y="149" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-2-flow-3" value="3. validate token" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7B1FA2;strokeWidth=2;fontColor=#7B1FA2;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="architecture-2-1" source="architecture-2-api-gateway" target="architecture-2-identity-provider">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="architecture-2-flow-4" value="4. route to the owning service" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="architecture-2-1" source="architecture-2-api-gateway" target="architecture-2-appointment-service">
+          <mxGeometry relative="1" as="geometry" x="0.2096">
+            <Array as="points">
+              <mxPoint x="679" y="149" />
+              <mxPoint x="679" y="139" />
+              <mxPoint x="872" y="139" />
+              <mxPoint x="872" y="183" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-2-flow-5" value="5. commands and events" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="architecture-2-1" source="architecture-2-appointment-service" target="architecture-2-message-broker">
+          <mxGeometry relative="1" as="geometry" x="-0.8034">
+            <Array as="points">
+              <mxPoint x="973" y="239" />
+              <mxPoint x="1073" y="239" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-2-flow-6" value="6. own data" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#00897B;strokeWidth=2;fontColor=#00897B;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5824;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="architecture-2-1" source="architecture-2-appointment-service" target="architecture-2-service-databases">
+          <mxGeometry relative="1" as="geometry" x="-0.4646">
+            <Array as="points">
+              <mxPoint x="987" y="234" />
+              <mxPoint x="867" y="234" />
+              <mxPoint x="867" y="384" />
+              <mxPoint x="773" y="384" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-2-flow-7" value="6. search index" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#00897B;strokeWidth=2;fontColor=#00897B;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="architecture-2-1" source="architecture-2-directory-service" target="architecture-2-search-index">
+          <mxGeometry relative="1" as="geometry" x="-0.8102">
+            <Array as="points">
+              <mxPoint x="1173" y="239" />
+              <mxPoint x="1079" y="239" />
+              <mxPoint x="1079" y="384" />
+              <mxPoint x="1173" y="384" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-2-flow-8" value="7. charge and refund" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="architecture-2-1" source="architecture-2-payment-service" target="architecture-2-payment-provider">
+          <mxGeometry relative="1" as="geometry" x="0.4128">
+            <Array as="points">
+              <mxPoint x="1279" y="283" />
+              <mxPoint x="1279" y="227" />
+              <mxPoint x="1584" y="227" />
+              <mxPoint x="1584" y="149" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-2-flow-9" value="7. cover check" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="architecture-2-1" source="architecture-2-insurance-service" target="architecture-2-insurer">
+          <mxGeometry relative="1" as="geometry" x="-0.3942">
+            <Array as="points">
+              <mxPoint x="1584" y="183" />
+              <mxPoint x="1584" y="249" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-2-flow-10" value="7. send reminders" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="architecture-2-1" source="architecture-2-notification-service" target="architecture-2-messaging-provider">
+          <mxGeometry relative="1" as="geometry" x="0.1076">
+            <Array as="points">
+              <mxPoint x="879" y="283" />
+              <mxPoint x="879" y="349" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-2-flow-11" value="7. staff federation" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;exitX=1.0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="architecture-2-1" source="architecture-2-identity-provider" target="architecture-2-corporate-idp">
+          <mxGeometry relative="1" as="geometry" x="0.1602">
+            <Array as="points">
+              <mxPoint x="679" y="249" />
+              <mxPoint x="679" y="391" />
+              <mxPoint x="1584" y="391" />
+              <mxPoint x="1584" y="449" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-2-legend-9-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7B1FA2;strokeWidth=2;fontColor=#7B1FA2;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;" edge="1" parent="architecture-2-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="985" as="sourcePoint" />
+            <mxPoint x="310" y="985" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-2-legend-10-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#1A73E8;strokeWidth=2;fontColor=#1A73E8;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;" edge="1" parent="architecture-2-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="985" as="sourcePoint" />
+            <mxPoint x="510" y="985" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-2-legend-11-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#E8A400;strokeWidth=2;fontColor=#E8A400;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="architecture-2-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="680" y="985" as="sourcePoint" />
+            <mxPoint x="710" y="985" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-2-legend-12-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#00897B;strokeWidth=2;fontColor=#00897B;labelBackgroundColor=#ffffff;fontFamily=Helvetica;fontSize=12;" edge="1" parent="architecture-2-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="880" y="985" as="sourcePoint" />
+            <mxPoint x="910" y="985" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="architecture-2-legend-13-line" value="" style="html=1;rounded=0;endArrow=block;endFill=1;strokeColor=#7F7F7F;strokeWidth=2;fontColor=#7F7F7F;labelBackgroundColor=#ffffff;dashed=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="architecture-2-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1080" y="985" as="sourcePoint" />
+            <mxPoint x="1110" y="985" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

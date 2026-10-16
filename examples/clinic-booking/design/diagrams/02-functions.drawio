@@ -1,0 +1,91 @@
+<mxfile host="sa-design-kit" type="device" sa-source-hash="2626424ee78103420e5ad66fb1761ef6907bc2ebcd7eabb67fefd59c0a8fe070">
+  <diagram id="functions-1" name="Main business functions">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="912" pageHeight="770" math="0" shadow="0">
+      <root>
+        <mxCell id="functions-1-0" />
+        <mxCell id="functions-1-1" parent="functions-1-0" />
+        <mxCell id="functions-1-title" value="Main business functions" style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Helvetica;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="0" y="-50" width="832" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-group-patient-functions" value="Patient functions (Patient)" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#f2f7fd;strokeColor=#6c8ebf;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="0" y="0" width="832" height="208" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-group-clinic-staff-functions" value="Clinic staff functions (Receptionist)" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#f3f9f2;strokeColor=#82b366;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="0" y="228" width="832" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-group-administration-functions" value="Administration functions (Clinic administrator)" style="rounded=0;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#f7f2f9;strokeColor=#9673a6;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="0" y="376" width="832" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-find-clinic-and-doctor" value="Find a clinic and doctor" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-patient-functions">
+          <mxGeometry x="20" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-view-available-slots" value="View available slots" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-patient-functions">
+          <mxGeometry x="224" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-book-appointment" value="Book an appointment" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-patient-functions">
+          <mxGeometry x="428" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-pay-deposit" value="Pay a deposit" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-patient-functions">
+          <mxGeometry x="632" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-check-insurance" value="Check insurance cover" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-patient-functions">
+          <mxGeometry x="20" y="112" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-receive-reminders" value="Receive reminders" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-patient-functions">
+          <mxGeometry x="224" y="112" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-view-my-appointments" value="View my appointments" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-patient-functions">
+          <mxGeometry x="428" y="112" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-reschedule-or-cancel" value="Reschedule or cancel" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-patient-functions">
+          <mxGeometry x="632" y="112" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-manage-doctor-schedules" value="Manage doctor schedules" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-clinic-staff-functions">
+          <mxGeometry x="20" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-check-in-patient" value="Check in a patient" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-clinic-staff-functions">
+          <mxGeometry x="224" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-handle-cancellations-and-refunds" value="Handle cancellations and refunds" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-clinic-staff-functions">
+          <mxGeometry x="428" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-manage-clinics-and-services" value="Manage clinics and services" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-administration-functions">
+          <mxGeometry x="20" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-manage-staff-and-roles" value="Manage staff and roles" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-administration-functions">
+          <mxGeometry x="224" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-view-utilisation-reports" value="View utilisation reports" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-administration-functions">
+          <mxGeometry x="428" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-configure-reminder-templates" value="Configure reminder templates" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-group-administration-functions">
+          <mxGeometry x="632" y="32" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-title" value="Legend" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="0" y="544" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-0-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="0" y="572" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-0-label" value="Patient functions" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="38" y="568" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-1-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="200" y="572" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-1-label" value="Clinic staff functions" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="238" y="568" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-2-swatch" value="" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="400" y="572" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-2-label" value="Administration functions" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="438" y="568" width="156" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="functions-1-legend-notes" value="Functions are grouped by the actor who uses them; colours mark the groups." style="shape=note;size=14;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="functions-1-1">
+          <mxGeometry x="0" y="608" width="832" height="42" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
