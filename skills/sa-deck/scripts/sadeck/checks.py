@@ -94,6 +94,11 @@ def run(deck: Deck, design_dir: Path) -> list[Finding]:
                 elif ref.page > pages:
                     found.append(Finding("error", slide.number, "block.page",
                                          f"'{ref.step}' has {pages} page(s), not page {ref.page}"))
+            for i, row in enumerate(block.rows, 1):
+                if block.header and len(row) != len(block.header):
+                    found.append(Finding("error", slide.number, "block.rows",
+                                         f"row {i} has {len(row)} cells for {len(block.header)} columns "
+                                         "(quote cells that contain commas)"))
             if block.kind == "image" and block.file:
                 found += _file(deck_dir, block.file, slide.number, "block.file")
         if services is not None:

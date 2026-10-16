@@ -1,0 +1,241 @@
+meta:
+  title: Clinic booking platform
+  subtitle: Target architecture for online booking
+  presenter: Solution architect
+  date: "2026-10-16"
+  minutes: 20
+cover:
+  notes: >-
+    Good morning. Today I will present the target architecture for the clinic booking platform. We will go from
+    the problems of today's system to the domain design, the main flows and the deployment on the cloud.
+  seconds: 20
+sections:
+- title: Agenda
+  slides:
+  - title: Agenda
+    message: From today's problems to the target architecture, following the 4+1 views
+    block: {type: agenda}
+    notes: >-
+      First the problems and the proposed solution. Then the domain design and the use cases. Then the logical and
+      process views with the booking saga, the core patterns, the deployment, and finally the technology and the
+      key decisions.
+    seconds: 20
+- title: Introduction
+  slides:
+  - title: Proposed solution
+    message: Five pain points, each answered by a **subdomain**, a **pattern** or a **decision**
+    block:
+      type: table
+      header: [Problem today, Answer in the target architecture]
+      widths: [1, 1.3]
+      rows:
+      - - Schedules live in per-clinic spreadsheets, so double bookings happen weekly
+        - '**Scheduling** is the only owner of slots; a slot is held for 10 minutes, then committed'
+      - - Patients can only book by phone during opening hours
+        - '**Online booking** on web and mobile through **one API gateway** with web and mobile routes'
+      - - One deployable and one database; every change needs a full regression
+        - '**One service per subdomain**, each with its own database, released on its own'
+      - - When the card-payment integration hangs, nobody can book in any clinic
+        - '**Isolated partner calls** (timeouts, retries, circuit breakers), with an **outbox** and idempotency keys'
+      - - Reminders are sent by hand, so no-shows are high
+        - '**Event-driven reminders** from the notification service'
+    notes: >-
+      Today's system has five problems. Double bookings, because schedules live in spreadsheets: in the new design,
+      the scheduling service is the only owner of slots. Booking by phone only: patients will book on web and
+      mobile. One deployable and one database: we split the platform into one service per subdomain. A hanging
+      payment partner blocks everyone: partner calls are isolated, and the outbox keeps every step safe to retry.
+      And reminders by hand: the notification service sends them from appointment events.
+    seconds: 75
+  - title: Main business functions
+    message: Fifteen functions for patients, clinic staff and administrators
+    block: {type: diagram, step: functions, page: 1}
+    notes: >-
+      Three groups of users. Patients find a doctor, book, pay a deposit, check insurance cover, get reminders and
+      manage their appointments. Clinic staff manage schedules, check patients in and handle cancellations.
+      Administrators manage clinics, staff, reports and reminder templates.
+    seconds: 45
+- title: Domain design
+  slides:
+  - title: Subdomains
+    message: Scheduling and appointments are the core; each of the 8 subdomains is owned by one service
+    block: {type: diagram, step: subdomains, page: 1}
+    notes: >-
+      We split the domain into eight subdomains. Scheduling and appointments are the core: they hold the slots and
+      the booking flow, which is where the business wins or loses. Clinic directory, insurance verification,
+      notifications and reporting support them. Payments and identity are generic, so we use managed services
+      behind our own small services. Each subdomain has exactly one service.
+    seconds: 55
+  - title: Context map
+    message: Appointments depends on four upstream contexts and feeds notifications and reporting with events
+    block: {type: diagram, step: context-map, page: 1}
+    notes: >-
+      The context map shows who depends on whom. Appointments is downstream of scheduling for slot holds, of
+      payments for the deposit, of insurance verification for cover checks, and of identity for the patient.
+      Appointments is upstream of notifications and reporting, and it talks to them only through domain events.
+      Scheduling depends on the clinic directory for doctors and services.
+    seconds: 60
+  - title: Aggregate roots
+    message: Seven aggregates refer to each other by ID only; the appointment is at the centre
+    block: {type: diagram, step: aggregates, page: 1}
+    notes: >-
+      Each subdomain protects its rules in an aggregate. The appointment is at the centre. Reminders, insurance
+      checks and payments refer to it by appointment ID. The appointment refers to the patient account and the
+      doctor schedule by ID, never by a shared table. Reporting has no aggregate: it only builds read models from
+      events.
+    seconds: 50
+- title: Use case view
+  slides:
+  - title: 'Use cases: Patient functions'
+    message: Patients book online; booking includes the deposit and may extend into an insurance check
+    block: {type: diagram, step: use-cases, page: 1}
+    notes: >-
+      For patients, the main use case is booking an appointment. It always includes paying the deposit, through the
+      card payment provider, and it can be extended by an insurance check with the insurer. Patients also find
+      doctors, view and reschedule appointments and receive reminders.
+    seconds: 45
+  - title: 'Use cases: Clinic staff functions'
+    message: Receptionists run schedules, check-in and refunds
+    block: {type: diagram, step: use-cases, page: 2}
+    notes: >-
+      Receptionists manage doctor schedules, check patients in, and handle cancellations, which may refund the
+      deposit through the payment provider.
+    seconds: 30
+  - title: 'Use cases: Administration functions'
+    message: Administrators manage clinics, staff and roles, reports and reminder templates
+    block: {type: diagram, step: use-cases, page: 3}
+    notes: >-
+      Administrators manage clinics and services, staff and roles through the corporate identity provider,
+      utilisation reports and reminder templates.
+    seconds: 30
+- title: Logical view
+  slides:
+  - title: Logical view
+    message: Every request passes one gateway and the identity provider; every service owns its data
+    block: {type: diagram, step: logical-view, page: 1}
+    notes: >-
+      Follow the numbers. The patient app signs in with the identity provider and gets a token. Every request
+      goes through the API gateway, which checks the token and routes to the owning service. Services send
+      commands and events through the message broker, and each service owns its own database. Calls to partners,
+      for payment, insurance and messages, always leave from one service, and staff sign in through the corporate
+      identity provider.
+    seconds: 70
+- title: Process view
+  slides:
+  - title: 'Saga: Book an appointment: Happy path'
+    message: The appointment service orchestrates the booking as a saga of eleven steps
+    block: {type: diagram, step: saga, page: 1}
+    notes: >-
+      This is the core flow. The appointment service saves the booking as pending, with an idempotency key. It
+      asks scheduling to hold the slot for ten minutes. It checks insurance cover when the service needs it, then
+      asks payments to collect the deposit with the same key. When the deposit is captured, it commits the slot
+      and tells notifications that the appointment is confirmed. Every step is a message through the outbox, so
+      a retry never books twice.
+    seconds: 75
+  - title: 'Saga: Book an appointment: Slot already taken'
+    message: When the slot is gone, the booking is cancelled and the next free slots are offered
+    block: {type: diagram, step: saga, page: 2}
+    notes: >-
+      First failure: the slot is already taken. Scheduling answers that the hold failed. The appointment service
+      compensates: it cancels the pending appointment and offers the patient the next free slots.
+    seconds: 45
+  - title: 'Saga: Book an appointment: Deposit payment times out'
+    message: A payment timeout never leaves a slot held or money taken without an appointment
+    block: {type: diagram, step: saga, page: 3}
+    notes: >-
+      Second failure: the payment provider times out. Payments reconciles later with the same key. If the hold
+      expires unpaid, the slot is released. If the payment succeeds after the hold expired, the deposit is
+      refunded in full.
+    seconds: 50
+- title: Core patterns
+  slides:
+  - title: Security pattern
+    message: 'Zero trust: tokens from the identity provider, checked at the gateway and again in every service'
+    block: {type: diagram, step: patterns, page: 1}
+    notes: >-
+      Security follows zero trust. Patients sign in and get a token, and staff federate through the corporate
+      identity provider. Every call carries the token. The gateway validates it, and each service checks roles and
+      resources again.
+    seconds: 45
+  - title: Observability pattern
+    message: One trace follows a booking through every service and message
+    block: {type: diagram, step: patterns, page: 2}
+    notes: >-
+      Every service emits traces, metrics and structured logs. The trace context travels with commands and events
+      through the outbox, so one trace follows a booking end to end, and alarms notify the on-call team.
+    seconds: 35
+  - title: Resilience pattern
+    message: Timeouts, retries, circuit breakers and fallbacks on every partner call
+    block: {type: diagram, step: patterns, page: 3}
+    notes: >-
+      Every outbound call has a timeout, retries with backoff and jitter, and a circuit breaker. When the insurer
+      is down and the circuit is open, we book without the check and verify later, so a partner problem no longer
+      stops booking.
+    seconds: 45
+- title: High-level and physical view
+  slides:
+  - title: High-level architecture
+    message: Clients reach 8 services through one gateway; data and messaging are managed services
+    block: {type: diagram, step: architecture, page: 1}
+    notes: >-
+      Here is the whole system from left to right. Three clients, the gateway and identity provider at the edge,
+      the eight services in the middle, each with its own data, the message broker as a managed service, and the
+      four external partners on the right. The physical view uses exactly the same layout.
+    seconds: 60
+  - title: Physical view and network
+    message: One AWS region, two availability zones, and three subnet tiers
+    block: {type: diagram, step: architecture, page: 2}
+    notes: >-
+      On AWS, everything runs in one region across two availability zones. The edge sits in a public subnet behind
+      API Gateway and Cognito. Services run on Fargate in a private app subnet. Aurora, ElastiCache and OpenSearch
+      sit in a data subnet with no internet route. Databases accept only the service tasks, and AWS services are
+      reached through VPC endpoints.
+    seconds: 70
+- title: Development view
+  slides:
+  - title: Technology stack
+    message: Managed AWS services and one main language, chosen for the saga, the outbox and the Monday peak
+    block:
+      type: table
+      header: [Layer, Choice, Why]
+      widths: [0.7, 1.3, 1.6]
+      rows:
+      - [Clients, React and React Native with TypeScript, 'One team owns patient web, mobile and the staff portal']
+      - [Edge, 'Route 53, CloudFront, WAF and API Gateway', Managed entry point with web and mobile routes]
+      - [Services and API, Java and Spring Boot; REST with OpenAPI, 'Libraries for transactions, resilience and tracing; contract-first']
+      - [Messaging, SNS FIFO and SQS FIFO with dead-letter queues, Ordered per appointment; no brokers to run]
+      - [Data, 'Aurora PostgreSQL per service, ElastiCache, OpenSearch, S3', 'Transactions, cache, search and documents, all managed']
+      - [Compute, ECS on Fargate with auto scaling, No cluster to operate; scales for the Monday peak]
+      - [Observability, 'OpenTelemetry, X-Ray and CloudWatch', 'Managed tracing, metrics, logs and alarms']
+      - [Security, 'Cognito, corporate identity federation, Secrets Manager', Zero trust with managed identity and secrets]
+    notes: >-
+      The stack follows the design. React for all three clients. A managed edge with API Gateway. Java and Spring
+      Boot for the services, because the saga and the outbox need solid transaction, resilience and tracing
+      libraries. FIFO queues keep messages in order per appointment. Every data store is managed, and Fargate
+      scales out for the Monday morning peak without a cluster to run.
+    seconds: 60
+  - title: Architecture decisions
+    message: Seven decisions shape the design; each one has a trade-off we accept
+    block:
+      type: table
+      header: [Decision, Alternatives, Trade-off]
+      widths: [1.3, 1.2, 1.2]
+      rows:
+      - [One service per subdomain, One modular deployable; a service per aggregate, 'More services to run, deploy and monitor']
+      - [Slots held and committed by the scheduling service, Lock rows in a shared database; optimistic booking, A hold can expire while the patient pays]
+      - [Orchestrated booking saga, Choreography with events only, The appointment service becomes a central component]
+      - [Outbox and idempotency keys, Two-phase commit; dual writes, Eventual consistency; consumers must deduplicate]
+      - [One API gateway with web and mobile routes, Clients calling services directly; a GraphQL layer, No response composition at the edge]
+      - [Isolate partner calls, Synchronous calls without protection, More code paths and tuning per partner]
+      - [Event-driven reminders, Reminders sent by staff; a nightly batch export, Another service to run]
+    notes: >-
+      Seven decisions shape the design. The two most important: one service per subdomain, which costs us more
+      services to run but lets each area release on its own; and the orchestrated saga with outbox and idempotency
+      keys, which accepts eventual consistency in exchange for no double bookings and safe retries. Every decision
+      lists the alternatives we rejected and the trade-off we accept.
+    seconds: 75
+- title: Q&A
+  slides:
+  - title: Questions
+    message: Thank you
+    notes: Thank you. I am happy to take your questions.
+    seconds: 15

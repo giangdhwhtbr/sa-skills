@@ -5,6 +5,7 @@ A Claude Code plugin that guides you through a **DDD + microservices solution de
 - **`/sa-design`** walks you through 12 design steps: brief, business functions, subdomains, context map, aggregate roots, use cases, logical view, core flow (saga), core patterns, architecture, technology stack and architecture decisions. Each step proposes content, asks you the key decisions one at a time (always with a recommendation), then writes a Markdown document and a YAML data file into your project's `design/` folder.
 - **`/sa-review`** audits the design folder without changing it: completeness, schemas, review rules, cross-step consistency and traceability. It writes `design/review-report.md`.
 - **`/sa-diagrams`** draws the design as editable draw.io diagrams with Mermaid twins (and PNGs if you have draw.io desktop), generated from the YAML data so they never drift from it.
+- **`/sa-deck`** turns the design into a timed talk: it drafts the slides with you (key messages and speaker scripts within a time budget), then renders a self-contained HTML deck and an editable PowerPoint from one source file.
 
 The level of detail is configurable: one high-level preset for architecture reviews, one detailed preset, or your own mix of options and rule severities.
 
@@ -18,7 +19,8 @@ The level of detail is configurable: one high-level preset for architecture revi
 | Python | 3.10 or newer | the review checks (`check.py`) |
 | `pyyaml`, `jsonschema` | any recent | used by `check.py` and `diagrams.py` |
 | Node.js + `elkjs` | Node 18 or newer | `/sa-diagrams` only: layout of the context map, aggregates and use cases |
-| draw.io desktop | any recent | `/sa-diagrams --png` only (optional) |
+| draw.io desktop | any recent | `/sa-diagrams --png` and the slide images of `/sa-deck` (optional) |
+| Node.js + `pptxgenjs` | Node 18 or newer | `/sa-deck` only: the PowerPoint file (the HTML deck needs nothing) |
 
 Install the Python packages once for the `python3` on your PATH:
 
@@ -55,12 +57,13 @@ claude plugin install sa-design-kit@sa-design-kit-marketplace --scope local
 claude plugin details sa-design-kit@sa-design-kit-marketplace
 ```
 
-You should see `Skills (3): sa-design, sa-diagrams, sa-review`. Start a new Claude Code session in your project and the commands `/sa-design`, `/sa-review` and `/sa-diagrams` are available.
+You should see `Skills (4): sa-deck, sa-design, sa-diagrams, sa-review`. Start a new Claude Code session in your project and the commands `/sa-design`, `/sa-review`, `/sa-diagrams` and `/sa-deck` are available.
 
-For `/sa-diagrams`, install the graph layout package once (Node.js 18+ required):
+For `/sa-diagrams` and `/sa-deck`, install the Node packages once (Node.js 18+ required):
 
 ```bash
 npm install --prefix <plugin>/skills/sa-diagrams/tools
+npm install --prefix <plugin>/skills/sa-deck/tools
 ```
 
 ### Update and uninstall
@@ -104,6 +107,13 @@ claude plugin uninstall sa-design-kit@sa-design-kit-marketplace
    ```
 
    and open `design/diagrams/all-diagrams.drawio` in draw.io (or diagrams.net).
+7. Build the talk:
+
+   ```
+   /sa-deck
+   ```
+
+   It asks the talk length and audience, drafts every slide with you, and writes `design/deck/deck.html` and `design/deck/deck.pptx`.
 
 ---
 
@@ -266,13 +276,58 @@ Every diagram records the hash of the data it was drawn from, so a second run re
 
 ---
 
+## Build the deck
+
+`/sa-deck` drafts `design/deck/deck.yaml` with you and renders it. The single source holds, for every slide, the title, the key message, one body block, the spoken script and the seconds. You can also run the script yourself:
+
+```bash
+python3 <plugin>/skills/sa-deck/scripts/deck.py design --outline --minutes 20   # print a draft deck.yaml
+python3 <plugin>/skills/sa-deck/scripts/deck.py design [--force]                # check and render
+```
+
+The draft follows the 4+1 views and contains only the steps that are done:
+1. cover and agenda;
+2. introduction: proposed solution, business functions;
+3. domain design: subdomains, context map, aggregates;
+4. the use case, logical and process views (one slide per saga scenario);
+5. core patterns, then the high-level and physical views;
+6. technology stack, ADRs, and Q&A.
+
+The seconds are scaled to fit the talk length. `skills/sa-deck/references/outline.md` explains what each slide's key message and script should say.
+
+| Block | Shows |
+|---|---|
+| `bullets` | up to 6 points, `**bold**` allowed |
+| `table` | header and up to 8 rows |
+| `diagram` / `diagrams` | one or two `/sa-diagrams` pages, with the legend as chips underneath |
+| `diagram-text` | a diagram page with 2–4 points beside it |
+| `agenda` | the section titles with their slide numbers |
+| `image` | a PNG or JPEG inside `design/deck/` |
+
+| File | What it is |
+|---|---|
+| `deck/deck.yaml` | the source you edit |
+| `deck/deck.html` | one self-contained file; ← → or Space to move, `N` for speaker notes, `#n` to jump; print gives one slide per PDF page |
+| `deck/deck.pptx` | the same slides, text, tables and speaker notes as editable PowerPoint |
+| `deck/assets/` | slide images exported from the diagrams (cached) |
+
+**Checks before rendering.**
+- **Errors** (exit 1, nothing written): a schema problem, a diagram page that does not exist, an image outside `deck/`, a table row with the wrong number of cells, or a stated "N services" that differs from `subdomains.yaml`.
+- **Warnings** (rendering continues): the talk runs over its time budget, or a script is longer than its seconds at about 130 words per minute.
+
+**Missing tools.** Without Node or pptxgenjs, only the HTML is written. Without draw.io, cached slide images are used and other diagrams show a placeholder.
+
+**Rebuilds.** A second run with unchanged sources reports `unchanged deck`. `/sa-review` warns with `DK-01` when the deck is older than `deck.yaml` or the diagrams it shows.
+
+---
+
 ## Examples
 
 Two fictional design sets show what the output looks like:
 
 | Example | Content |
 |---|---|
-| [`examples/clinic-booking`](examples/clinic-booking) | All 12 steps for a clinic appointment platform (`high-level` preset), with the review report |
+| [`examples/clinic-booking`](examples/clinic-booking) | All 12 steps for a clinic appointment platform (`high-level` preset), with the review report, the diagrams and a 20-minute deck (`design/deck/`) |
 | [`examples/food-delivery/design`](examples/food-delivery/design) | Steps 01-05 for a food ordering and delivery system (`high-level`) |
 | [`examples/food-delivery/design-detailed`](examples/food-delivery/design-detailed) | The same steps under the `detailed` preset: aggregate internals and external systems appear |
 
@@ -294,6 +349,9 @@ Each folder has the sample brief (`brief.md`) next to the generated `design/` fo
 | `graph layout needs Node.js and elkjs` | Install Node.js 18+, then `npm install --prefix <plugin>/skills/sa-diagrams/tools`; or draw other steps with `--only` |
 | `png: draw.io CLI not found` | Install draw.io desktop or set `DRAWIO` to its executable; the `.drawio` and Mermaid files are written anyway |
 | `DG-01` warning in the review | The data changed after the diagrams were drawn; run `/sa-diagrams` again |
+| `pptx skipped` | Install Node.js 18+, then `npm install --prefix <plugin>/skills/sa-deck/tools`; the HTML deck is written anyway |
+| `row N has M cells for K columns` | A table cell contains a comma in a YAML `[...]` list; quote the cell or write the row as a block list |
+| `DK-01` warning in the review | `deck.yaml` or a diagram it shows changed after the deck was rendered; run `/sa-deck` again |
 
 ---
 
@@ -316,6 +374,11 @@ skills/sa-diagrams/        the diagrams skill
   scripts/diagrams.py      draws the diagrams (CLI)
   scripts/sadiagram/       drawing model, layouts, builders per step, draw.io / Mermaid writers
   tools/                   elkjs graph layout (npm install here)
+skills/sa-deck/            the presentation skill
+  scripts/deck.py          drafts the outline, checks and renders the deck (CLI)
+  scripts/sadeck/          deck model, schema, outline, checks, HTML and PowerPoint renderers
+  references/              deck schema, default theme, outline guide
+  tools/                   pptxgenjs PowerPoint renderer (npm install here)
 examples/                  fictional sample design sets
 tests/                     pytest suite
 docs/specs/                living specification of the plugin
@@ -329,6 +392,7 @@ docs/specs/                living specification of the plugin
 python3 -m venv .venv
 .venv/bin/pip install pyyaml jsonschema pytest ruff
 npm install --prefix skills/sa-diagrams/tools   # graph-layout tests skip without it
+npm install --prefix skills/sa-deck/tools       # PowerPoint tests skip without it
 .venv/bin/python -m pytest -q
 .venv/bin/ruff check .
 claude plugin validate .

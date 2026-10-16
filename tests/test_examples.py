@@ -63,7 +63,7 @@ def test_neutral_content() -> None:
     for folder in ("skills", "examples"):
         for path in (ROOT / folder).rglob("*"):
             skip = {"__pycache__", "node_modules"} & set(path.parts)
-            if path.is_file() and path.suffix in {".md", ".yaml", ".py", ".json", ".drawio", ".js"} and not skip:
+            if path.is_file() and path.suffix in {".md", ".yaml", ".py", ".json", ".drawio", ".js", ".html"} and not skip:
                 text = path.read_text().lower()
                 hits += [(str(path.relative_to(ROOT)), t) for t in terms if re.search(rf"\b{re.escape(t)}\b", text)]
     assert hits == []
@@ -90,3 +90,26 @@ def test_example_diagrams_up_to_date() -> None:
             assert (folder / f"{stem}.mermaid.md").exists(), stem
         assert (folder / "all-diagrams.drawio").exists()
         assert not [f for f in checks.run(design, refs)[1] if f.rule == "DG-01"]
+
+
+def test_example_deck_up_to_date() -> None:
+    """REQ-QUALITY-007: the clinic-booking deck is rendered from its current sources."""
+    from sadeck import stamp as deck_stamp
+
+    design = EXAMPLES / "clinic-booking" / "design"
+    for name in ("deck.yaml", "deck.html", "deck.pptx"):
+        assert (design / "deck" / name).exists(), name
+    assert deck_stamp.read(design) == deck_stamp.deck_hash(design)
+    findings = checks.run(design, ROOT / "skills" / "sa-design" / "references")[1]
+    assert not [f for f in findings if f.rule in ("DK-01", "DG-01")]
+
+
+def test_example_deck_fits() -> None:
+    """REQ-DECK-006, REQ-QUALITY-007: the example deck has no errors and no budget or script warnings."""
+    from sadeck import checks as deck_checks
+    from sadeck import schema as deck_schema
+
+    design = EXAMPLES / "clinic-booking" / "design"
+    deck = deck_schema.load(design, ROOT / "skills" / "sa-deck" / "references")
+    assert deck.minutes == 20 and deck.seconds <= 20 * 60
+    assert deck_checks.run(deck, design) == []

@@ -89,3 +89,11 @@ def test_image_outside_deck(tmp_path: Path) -> None:
     def logo(d: dict[str, Any], design: Path) -> None:
         d["theme"] = {"logo": "logo.png"}
     assert [(f.slide, f.field) for f in findings(tmp_path / "c", logo)] == [(1, "theme.logo")]
+
+
+# REQ-DECK-007
+def test_table_row_width_matches_header(tmp_path: Path) -> None:
+    # an unquoted comma in a YAML flow list splits one cell into two
+    found = findings(tmp_path, lambda d, _: slide(d, 0, 1)["block"]["rows"].append(["Spreadsheets", " so double bookings", "x"]))
+    assert [(f.severity, f.slide, f.field) for f in found] == [("error", 3, "block.rows")]
+    assert "3 cells" in found[0].message and "2 columns" in found[0].message

@@ -1,0 +1,18 @@
+{
+ "02-functions-p1.png": "80dc8154df3f3be8f04366af3b521dd7dc5ba49db1ee2938c17043a36b8176f2",
+ "03-subdomains-p1.png": "2018704b505db9544adcc0fa7ec447ff661806b5420cbc7d723dd4e2cf6d552c",
+ "04-context-map-p1.png": "c21759a67f802a9000ce5a4ada8033f90748d26fd7aaf92c9d93d9e604b67987",
+ "05-aggregates-p1.png": "f46e817454fb2a06a61e740953a1f6fe22e950d98423aea896ba7d790079ae73",
+ "06-use-cases-p1.png": "3e8efab6bf106a94f103cf14be2046dd20c010fd09ef89fe7ed277915809e09d",
+ "06-use-cases-p2.png": "ee46a182da9ce72c3d37e6d23fde7ec0947158c4b149e22c01de916a143dc516",
+ "06-use-cases-p3.png": "9fa8d3cfd7839465f7881ce4bcf1aac7aa97838733945af475d230e91c6d1a0c",
+ "07-logical-view-p1.png": "f8e59d5b4186415dabf5abe64c171e6825df9ebce5b9db9ad00c0c2dec242e01",
+ "08-saga-p1.png": "61f0d57e5aa412f7a53c5b3c9c0f8f0a726272e68589b2e203be5e14e40ba0b8",
+ "08-saga-p2.png": "7365d65e5e1884b10fd855ffebf1a5e832a446794d61772943b235587031ea14",
+ "08-saga-p3.png": "f4aeccef1b82ebceced417efc0b680b9714ca587bf34cc3537227b37fbc25ce1",
+ "09-patterns-p1.png": "1ba9d82a3fbc66546477fc942e16d5d2362baadf1dc35ce0e1398a5e56c786cc",
+ "09-patterns-p2.png": "6c3dfaa89b69cde64b2ebf6b5ef063893a24c97474a66f445f668c0abb92f52a",
+ "09-patterns-p3.png": "e7ae1e9d20520beb2c63d7116913f9c293eadb5b4d8ff575e3d47b11e3335bd6",
+ "10-architecture-p1.png": "7b63a5d7c3a342d81561cd8833e919fe9f50e2f687ad9c72bfd8d88a67fe6f71",
+ "10-architecture-p2.png": "19734a4f787eb15d775a9f0ffe29a0401cc6abfd9d9a1f9ee35b97246f5300d7"
+}
