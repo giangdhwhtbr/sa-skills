@@ -1,0 +1,8 @@
+{
+  "name": "sa-diagrams-tools",
+  "private": true,
+  "description": "Graph layout for sa-diagrams (elkjs)",
+  "dependencies": {
+    "elkjs": "^0.9.3"
+  }
+}

@@ -6,3 +6,7 @@
 .beads/proxieddb/
 *.gate.lock*
 .venv/
+
+# sa-diagrams graph layout dependency (npm install --prefix skills/sa-diagrams/tools)
+skills/sa-diagrams/tools/node_modules/
+skills/sa-diagrams/tools/package-lock.json
