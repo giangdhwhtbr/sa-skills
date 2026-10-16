@@ -1,0 +1,115 @@
+flow:
+  id: book-appointment-saga
+  name: Book an appointment
+  orchestrator: appointment-service
+participants:
+- appointment-service
+- scheduling-service
+- insurance-service
+- payment-service
+- notification-service
+- payment-provider
+- insurer
+scenarios:
+- id: happy-path
+  name: Happy path
+  kind: happy
+  steps:
+  - n: 1
+    from: appointment-service
+    to: appointment-service
+    message: Save appointment as pending with an idempotency key
+    kind: self
+  - n: 2
+    from: appointment-service
+    to: scheduling-service
+    message: Hold the slot for 10 minutes
+    kind: async
+  - n: 3
+    from: scheduling-service
+    to: appointment-service
+    message: Slot held
+    kind: async
+  - n: 4
+    from: appointment-service
+    to: insurance-service
+    message: Check cover (when the service needs it)
+    kind: async
+  - n: 5
+    from: insurance-service
+    to: insurer
+    message: Cover check
+    kind: sync
+  - n: 6
+    from: insurance-service
+    to: appointment-service
+    message: Cover confirmed
+    kind: async
+  - n: 7
+    from: appointment-service
+    to: payment-service
+    message: Collect the deposit
+    kind: async
+  - n: 8
+    from: payment-service
+    to: payment-provider
+    message: Charge the deposit with the same key
+    kind: sync
+  - n: 9
+    from: payment-service
+    to: appointment-service
+    message: Deposit captured
+    kind: async
+  - n: 10
+    from: appointment-service
+    to: scheduling-service
+    message: Commit the slot
+    kind: async
+  - n: 11
+    from: appointment-service
+    to: notification-service
+    message: Appointment confirmed
+    kind: async
+- id: slot-taken
+  name: Slot already taken
+  kind: failure
+  steps:
+  - n: 1
+    from: appointment-service
+    to: scheduling-service
+    message: Hold the slot
+    kind: async
+  - n: 2
+    from: scheduling-service
+    to: appointment-service
+    message: Slot already taken
+    kind: async
+  - n: 3
+    from: appointment-service
+    to: appointment-service
+    message: Cancel the pending appointment and offer the next free slots
+    kind: compensate
+- id: deposit-timeout
+  name: Deposit payment times out
+  kind: failure
+  steps:
+  - n: 1
+    from: payment-service
+    to: payment-provider
+    message: Charge the deposit
+    kind: sync
+  - n: 2
+    from: payment-service
+    to: payment-provider
+    message: Reconcile later with the same key
+    kind: sync
+  - n: 3
+    from: appointment-service
+    to: scheduling-service
+    message: Release the slot hold when the hold expires unpaid
+    kind: compensate
+  - n: 4
+    from: appointment-service
+    to: payment-service
+    message: Refund in full if the payment succeeds after the hold expired
+    kind: compensate

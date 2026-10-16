@@ -1,0 +1,121 @@
+use_cases:
+- id: uc-find-doctor
+  name: Find a doctor
+  actor_ids:
+  - patient
+  function_ids:
+  - find-clinic-and-doctor
+  - view-available-slots
+  includes: []
+  extends: []
+- id: uc-pay-deposit
+  name: Pay the deposit
+  actor_ids:
+  - patient
+  - payment-provider
+  function_ids:
+  - pay-deposit
+  includes: []
+  extends: []
+- id: uc-book-appointment
+  name: Book an appointment
+  actor_ids:
+  - patient
+  function_ids:
+  - book-appointment
+  includes:
+  - uc-pay-deposit
+  extends: []
+- id: uc-check-insurance
+  name: Check insurance cover
+  actor_ids:
+  - patient
+  - insurer
+  function_ids:
+  - check-insurance
+  includes: []
+  extends:
+  - uc-book-appointment
+- id: uc-view-appointments
+  name: View my appointments
+  actor_ids:
+  - patient
+  function_ids:
+  - view-my-appointments
+  includes: []
+  extends: []
+- id: uc-reschedule-cancel
+  name: Reschedule or cancel
+  actor_ids:
+  - patient
+  function_ids:
+  - reschedule-or-cancel
+  includes: []
+  extends: []
+- id: uc-receive-reminder
+  name: Receive a reminder
+  actor_ids:
+  - patient
+  - messaging-provider
+  function_ids:
+  - receive-reminders
+  includes: []
+  extends: []
+- id: uc-manage-schedules
+  name: Manage doctor schedules
+  actor_ids:
+  - receptionist
+  function_ids:
+  - manage-doctor-schedules
+  includes: []
+  extends: []
+- id: uc-check-in
+  name: Check in a patient
+  actor_ids:
+  - receptionist
+  function_ids:
+  - check-in-patient
+  includes: []
+  extends: []
+- id: uc-handle-cancellation
+  name: Handle a cancellation and refund
+  actor_ids:
+  - receptionist
+  - payment-provider
+  function_ids:
+  - handle-cancellations-and-refunds
+  includes: []
+  extends: []
+- id: uc-manage-clinics
+  name: Manage clinics and services
+  actor_ids:
+  - clinic-admin
+  function_ids:
+  - manage-clinics-and-services
+  includes: []
+  extends: []
+- id: uc-manage-staff
+  name: Manage staff and roles
+  actor_ids:
+  - clinic-admin
+  - corporate-idp
+  function_ids:
+  - manage-staff-and-roles
+  includes: []
+  extends: []
+- id: uc-view-reports
+  name: View utilisation reports
+  actor_ids:
+  - clinic-admin
+  function_ids:
+  - view-utilisation-reports
+  includes: []
+  extends: []
+- id: uc-configure-templates
+  name: Configure reminder templates
+  actor_ids:
+  - clinic-admin
+  function_ids:
+  - configure-reminder-templates
+  includes: []
+  extends: []

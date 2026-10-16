@@ -1,0 +1,107 @@
+version: 1
+steps:
+- key: brief
+  status: done
+  decisions:
+  - Three pain points kept, ordered by impact
+  - 'Both external systems listed: payment and maps'
+  - Numbers set for durability, latency and peak load
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    brief.yaml: 80ee396b80027cef188997a03525775b6469dbd8d9ed52ac31b56f9db4c9463f
+    01-brief.md: 05b953f0f6de09dca1a3115841363f98378d53055bcd5a36156be0ef9dd6d3b1
+- key: functions
+  status: done
+  decisions:
+  - 'Groups by kind of user: customer, restaurant, courier'
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    functions.yaml: dd4a5af06211a87d0a8a875442236e3396e01cf5566a2d45041468e2d69e68f7
+    02-functions.md: 91193cab4372a41c80543c7f463294002f2e7006528c2224de018267c5ff17d4
+- key: subdomains
+  status: done
+  decisions:
+  - Ordering and dispatch are core
+  - 'Kitchen is split from ordering: it runs at the restaurant and changes with it'
+  - One service per subdomain
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    subdomains.yaml: f521ea6bfab31812a0bd9d7c1160c68d38e3b2c3e5ae0c8d8eb142113cd6a2be
+    03-subdomains.md: 677074d04299245e158a5bfc46e77656f67344e2a23179c2328e6ee40a5a4c27
+- key: context-map
+  status: done
+  decisions:
+  - Upstream owns the data or rule
+  - 'Detail: with-externals'
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    context-map.yaml: d1493c388f06a59008254a3bbb4ccebac734675b6fe5b1d7a50bcb2d454f0e74
+    04-context-map.md: 51a9a3e1787f09c34440dcf2773700413e6ae9d5cc957f0bc4d0af5caf6131ba
+- key: aggregates
+  status: done
+  decisions:
+  - Order is the hub
+  - 'Detail: full'
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    aggregates.yaml: d602f21be8421fd2ce7f87a1912e4a8e1159a400e8d48674931f07a5e74b47be
+    05-aggregates.md: 5560cb20d4ba38c292f6750738562dbeb634f011673c836f8a47fff47e8c5994
+- key: use-cases
+  status: todo
+  decisions: []
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files: {}
+- key: logical-view
+  status: todo
+  decisions: []
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files: {}
+- key: saga
+  status: todo
+  decisions: []
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files: {}
+- key: patterns
+  status: todo
+  decisions: []
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files: {}
+- key: architecture
+  status: todo
+  decisions: []
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files: {}
+- key: stack
+  status: todo
+  decisions: []
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files: {}
+- key: adrs
+  status: todo
+  decisions: []
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files: {}

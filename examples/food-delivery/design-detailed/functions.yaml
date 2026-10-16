@@ -1,0 +1,46 @@
+groups:
+- id: customer-functions
+  name: Customer functions
+  actor_ids:
+  - customer
+  functions:
+  - id: browse-restaurants
+    name: Browse restaurants and menus
+    description: Find restaurants that deliver to the address
+  - id: place-order
+    name: Place an order
+    description: Choose dishes and confirm
+  - id: pay-order
+    name: Pay for the order
+    description: Pay online when ordering
+  - id: track-delivery
+    name: Track the delivery
+    description: See the courier on the way
+  - id: rate-order
+    name: Rate the order
+    description: Rate food and delivery
+- id: restaurant-functions
+  name: Restaurant functions
+  actor_ids:
+  - restaurant-staff
+  functions:
+  - id: manage-menu
+    name: Manage the menu
+    description: Dishes, prices and availability
+  - id: accept-order
+    name: Accept an order
+    description: Confirm and start preparing
+  - id: mark-ready
+    name: Mark an order ready
+    description: Tell dispatch the order can be picked up
+- id: courier-functions
+  name: Courier functions
+  actor_ids:
+  - courier
+  functions:
+  - id: accept-delivery-job
+    name: Accept a delivery job
+    description: Take a job offered by dispatch
+  - id: confirm-delivery
+    name: Confirm delivery
+    description: Mark the order delivered

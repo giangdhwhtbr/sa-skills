@@ -1,5 +1,6 @@
 {
   "name": "sa-design-kit-marketplace",
+  "description": "Guided DDD + microservices solution design and review skills.",
   "owner": {
     "name": "sa-design-kit contributors"
   },

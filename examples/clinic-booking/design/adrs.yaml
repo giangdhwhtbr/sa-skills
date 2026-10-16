@@ -1,0 +1,77 @@
+adrs:
+- id: adr-service-per-subdomain
+  title: One service per subdomain
+  decision: Split the platform into 8 services, one per subdomain
+  alternatives:
+  - One modular deployable
+  - A service per aggregate
+  tradeoff: More services to run, deploy and monitor
+  rationale: A change touches one service and releases independently
+  status: accepted
+  pain_points:
+  - pp-monolith-releases
+- id: adr-slot-holds
+  title: Slots held and committed by the scheduling service
+  decision: Scheduling is the only owner of slots; booking holds a slot for 10 minutes, then commits it
+  alternatives:
+  - Lock rows in a shared database
+  - Optimistic booking with later conflict resolution
+  tradeoff: A hold can expire while the patient pays
+  rationale: A slot can only be held once, which ends double bookings
+  status: accepted
+  pain_points:
+  - pp-double-booking
+- id: adr-orchestrated-saga
+  title: Orchestrated booking saga
+  decision: The appointment service orchestrates booking as a saga with compensation
+  alternatives:
+  - Choreography with events only
+  tradeoff: The appointment service becomes a central component
+  rationale: One place shows and recovers every booking
+  status: accepted
+  pain_points:
+  - pp-double-booking
+- id: adr-outbox-idempotency
+  title: Outbox and idempotency keys
+  decision: Every state change writes an outbox row in the same local transaction; every command carries an idempotency
+    key
+  alternatives:
+  - Two-phase commit
+  - Dual writes
+  tradeoff: Eventual consistency; consumers must deduplicate
+  rationale: No message is lost and retries are safe
+  status: accepted
+  pain_points:
+  - pp-outage-spread
+- id: adr-api-gateway
+  title: One API gateway with web and mobile routes
+  decision: One managed gateway is the only entry point, with separate web and mobile routes
+  alternatives:
+  - Clients calling services directly
+  - A GraphQL layer
+  tradeoff: No response composition at the edge
+  rationale: Self-service channels with one security and rate-limit point; read models combine data
+  status: accepted
+  pain_points:
+  - pp-phone-only
+- id: adr-isolate-partners
+  title: Isolate partner calls
+  decision: Every partner call goes through timeouts, retries, circuit breakers and bulkheads, with fallbacks
+  alternatives:
+  - Synchronous calls without protection
+  tradeoff: More code paths and tuning per partner
+  rationale: A hanging partner no longer stops booking in every clinic
+  status: accepted
+  pain_points:
+  - pp-outage-spread
+- id: adr-automatic-reminders
+  title: Event-driven reminders
+  decision: The notification service sends confirmations and reminders from appointment events
+  alternatives:
+  - Reminders sent by staff
+  - A nightly batch export
+  tradeoff: Another service to run
+  rationale: Reminders go out on time without staff effort
+  status: accepted
+  pain_points:
+  - pp-no-shows

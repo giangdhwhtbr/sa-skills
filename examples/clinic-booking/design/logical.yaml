@@ -1,0 +1,132 @@
+layers:
+- id: clients
+  name: Client layer
+  components:
+  - id: patient-web
+    name: Patient web app
+    kind: client
+  - id: patient-mobile
+    name: Patient mobile app
+    kind: client
+  - id: staff-portal
+    name: Staff portal
+    kind: client
+- id: edge
+  name: Edge
+  components:
+  - id: api-gateway
+    name: API gateway with web and mobile routes
+    kind: gateway
+  - id: identity-provider
+    name: Identity provider
+    kind: identity-provider
+- id: services
+  name: Microservice layer
+  components:
+  - id: scheduling-service
+    name: Scheduling service
+    kind: service
+    service_id: scheduling-service
+  - id: appointment-service
+    name: Appointment service
+    kind: service
+    service_id: appointment-service
+  - id: directory-service
+    name: Directory service
+    kind: service
+    service_id: directory-service
+  - id: insurance-service
+    name: Insurance service
+    kind: service
+    service_id: insurance-service
+  - id: notification-service
+    name: Notification service
+    kind: service
+    service_id: notification-service
+  - id: reporting-service
+    name: Reporting service
+    kind: service
+    service_id: reporting-service
+  - id: payment-service
+    name: Payment service
+    kind: service
+    service_id: payment-service
+  - id: identity-service
+    name: Identity service
+    kind: service
+    service_id: identity-service
+- id: messaging-data
+  name: Messaging and data
+  components:
+  - id: message-broker
+    name: Message broker
+    kind: broker
+  - id: service-databases
+    name: Database per service
+    kind: datastore
+  - id: cache
+    name: Cache
+    kind: datastore
+  - id: search-index
+    name: Search index
+    kind: datastore
+- id: external
+  name: External systems
+  components:
+  - id: payment-provider
+    name: Card payment provider
+    kind: external
+  - id: insurer
+    name: Insurer API
+    kind: external
+  - id: messaging-provider
+    name: SMS and email provider
+    kind: external
+  - id: corporate-idp
+    name: Corporate identity provider
+    kind: external
+flows:
+- from: patient-mobile
+  to: identity-provider
+  kind: auth
+  label: 1. sign in, get token
+- from: patient-mobile
+  to: api-gateway
+  kind: sync
+  label: 2. request with token
+- from: api-gateway
+  to: identity-provider
+  kind: auth
+  label: 3. validate token
+- from: api-gateway
+  to: appointment-service
+  kind: sync
+  label: 4. route to the owning service
+- from: appointment-service
+  to: message-broker
+  kind: async
+  label: 5. commands and events
+- from: appointment-service
+  to: service-databases
+  kind: data
+  label: 6. own data
+- from: directory-service
+  to: search-index
+  kind: data
+  label: 6. search index
+- from: payment-service
+  to: payment-provider
+  kind: external
+  label: 7. charge and refund
+- from: insurance-service
+  to: insurer
+  kind: external
+  label: 7. cover check
+- from: notification-service
+  to: messaging-provider
+  kind: external
+  label: 7. send reminders
+- from: identity-provider
+  to: corporate-idp
+  kind: external
+  label: 7. staff federation

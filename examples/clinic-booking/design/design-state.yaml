@@ -1,0 +1,148 @@
+version: 1
+steps:
+- key: brief
+  status: done
+  decisions:
+  - 'Five pain points kept, ordered by business impact (recommended: 3-6 that the design must visibly answer)'
+  - 'All four external systems listed now: payment, insurer, messaging, corporate identity'
+  - Numbers set for availability, search latency, peak load and data residency
+  - 'Hard constraints: corporate staff sign-in and regional patient data'
+  open_questions:
+  - Confirm the deposit and refund policy with the business
+  exceptions: []
+  stale_reason: null
+  files:
+    brief.yaml: 8ccbfdd2887e46653a0d14bf44dec0f549cbcc24e9b3865f47131de1a478872b
+    01-brief.md: 5d77b7055109a7ff6bd324aee8e98883871795ef83aad0b6bbba3c7d187ce051
+- key: functions
+  status: done
+  decisions:
+  - 'Groups by kind of user: patient, clinic staff, administration'
+  - Deposit payment and insurance check are separate patient functions
+  - Reports and reminder templates belong to administration
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    functions.yaml: 14d8273fa01d7e6337fcecfd92dc5f68da339c107925433051b0c62de8d6d534
+    02-functions.md: d391b7e9a5e3bdd93405cca07198edb199a534298d41bbcb7c946da436246bd4
+- key: subdomains
+  status: done
+  decisions:
+  - 'Scheduling and appointments are core: they decide whether a patient gets a slot'
+  - 'Scheduling is split from appointments: schedules change daily and are owned by clinics'
+  - 'Payments and identity are generic: integrate the provider and the corporate directory'
+  - One service per subdomain (option service-per-subdomain = one)
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    subdomains.yaml: d8866d1a7abe5db3f48fe0b565b2abf960799c2ee838c49612715ef5c7afe044
+    03-subdomains.md: 6f2348fc6bcba9e1355c3cc553bf44571b03619cd47e2f4e2aa8e4ca8d319f74
+- key: context-map
+  status: done
+  decisions:
+  - Upstream is the context that owns the data or rule
+  - Detail kept at ud-only for a high-level design
+  - 'No two-way relationships: commands one way, events the other'
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    context-map.yaml: 66e40b92a729fe82bf4fd34f77fb12f57297cc41e36b23f08c48e6a0c37a3129
+    04-context-map.md: e8bfd88d8f4e647e714ceeb11c7ed7a984931121f4d4c73bbec7403e861d5448
+- key: aggregates
+  status: done
+  decisions:
+  - DoctorSchedule owns slots and holds, so a slot can only be held once
+  - Reporting has no aggregate
+  - References by ID only (option detail = roots-only)
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    aggregates.yaml: df5f37470d77e73c2a68bd22bdafd98d3209d97d26dde2a8fc74e3f3d9ecb858
+    05-aggregates.md: 433c5feab363ec11486b87b69bdb83f81831f32c2af5e3a51f2103be9a8ff24f
+- key: use-cases
+  status: done
+  decisions:
+  - Booking always includes paying the deposit
+  - The insurance check extends booking for services that need it
+  - Every function from step 02 is covered by at least one use case
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    use-cases.yaml: cf6efb94ff9e7cb3504f877408fa42d9158ee196c5485672a27376f5a817e7e6
+    06-use-cases.md: d7520abc4c5d802dbe34902a573d49793dd0e3f78745ba84c88af0a336881a4f
+- key: logical-view
+  status: done
+  decisions:
+  - One API gateway with web and mobile routes as the only entry point
+  - Queries are synchronous; the booking flow and notifications are asynchronous
+  - Slot search reads the directory's search index; data from several services is combined in read models
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    logical.yaml: 0ced370e579ed91975fe31c9f308d24c9481e06cb0a812a502ff0bb22269b74d
+    07-logical-view.md: 86388ed308035f7bf9ba3bd1d54724e78076977b07983436431aed5be483b977
+- key: saga
+  status: done
+  decisions:
+  - Orchestration by the appointment service, which owns the booking state
+  - 'Failure scenarios: a business rejection (slot taken) and a technical uncertainty (deposit timeout)'
+  - A failed compensation is retried with the same key, then sent to a dead-letter queue with an alert
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    saga.yaml: 4811e80fb1187fdbe621ec491f25ba3c9e3bfdb4dcde305cdcc3fdc324066f5a
+    08-saga.md: e5bf6bf0db34ab10c3a2ba825ef894d1474bcb0d5e9e7f041161cd772af90bf2
+- key: patterns
+  status: done
+  decisions:
+  - Authorization is checked in every service through one shared library, not only at the gateway
+  - The core booking flow is traced end to end, including its asynchronous steps
+  - Every call to a partner is protected; the insurer has a fallback
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    patterns.yaml: 3e35c39805d98b09ad34112c962ccfefd181554909c62d64321a6d37818a3578
+    09-patterns.md: 4dbbb5ca01f227f1ce19fb2c89e70f264fe7830a9f4301df9506eea92be91b17
+- key: architecture
+  status: done
+  decisions:
+  - Managed services from the AWS profile for every logical component
+  - One region in the patients' home region and two availability zones
+  - The high-level and physical views share one layout (option shared-layout = true)
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    architecture.yaml: 6e965831620879c71ef1245542dccbb4f260daa08764e3b6a2a14c5d6d18b561
+    10-architecture.md: 5430f7399cbb62e8b8fe088f05c165bbe80bafc92453d594d3462e786a2ec2b3
+- key: stack
+  status: done
+  decisions:
+  - Managed over self-run in every layer
+  - Java and Spring Boot for the services
+  - No second server-side runtime
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    stack.yaml: 0d82ca730d6a50a4dc7fd63fdb4f2ae597266e9cbc1d5655902e02ad4a0d91d6
+    11-stack.md: 0c97affb795008fcc52d74bc3f64f168c491289ef646087a87183312d8126b48
+- key: adrs
+  status: done
+  decisions:
+  - Decisions phrased against real alternatives
+  - Every pain point is answered by at least one decision
+  open_questions: []
+  exceptions: []
+  stale_reason: null
+  files:
+    adrs.yaml: dc4bf4484fa2b7f74c78a8a21f3f18bbd4b14fd409a51e722a96516633d9161b
+    12-adrs.md: dc679fed1a486b2e09bc165fe41f302cd2f5687b86f5fd7ca9b0d44331ca08a7

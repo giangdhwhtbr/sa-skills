@@ -1,0 +1,25 @@
+relationships:
+- upstream: restaurant-catalog
+  downstream: ordering
+  pattern: customer-supplier
+  label: menus and prices
+- upstream: payments
+  downstream: ordering
+  pattern: customer-supplier
+  label: payment
+- upstream: ordering
+  downstream: kitchen
+  pattern: domain-events
+  label: order placed
+- upstream: ordering
+  downstream: dispatch
+  pattern: domain-events
+  label: order placed
+- upstream: kitchen
+  downstream: dispatch
+  pattern: domain-events
+  label: order ready
+- upstream: ordering
+  downstream: ratings
+  pattern: domain-events
+  label: order delivered

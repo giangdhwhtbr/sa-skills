@@ -1,0 +1,44 @@
+system:
+  name: Food ordering and delivery
+  summary: Customers order from local restaurants; restaurants prepare orders; couriers deliver them.
+goals:
+- Never lose an order
+- Assign couriers automatically
+- Stay fast at lunch and dinner peaks
+pain_points:
+- id: pp-lost-orders
+  text: Orders are lost when a restaurant tablet is offline
+- id: pp-manual-dispatch
+  text: A dispatcher assigns couriers by chat
+- id: pp-peak-slowness
+  text: The single application slows down for everyone at peaks
+actors:
+- id: customer
+  name: Customer
+  kind: person
+- id: restaurant-staff
+  name: Restaurant staff
+  kind: person
+- id: courier
+  name: Courier
+  kind: person
+- id: payment-provider
+  name: Card payment provider
+  kind: system
+- id: maps-provider
+  name: Maps and routing provider
+  kind: system
+nfrs:
+- id: nfr-no-loss
+  category: durability
+  target: no accepted order is lost
+- id: nfr-latency
+  category: latency
+  target: order placement under 2 s for 95% of requests
+- id: nfr-peak
+  category: peak load
+  target: 15 times the average load at meal peaks
+constraints:
+- Payment is taken when the order is placed
+assumptions:
+- Restaurants keep a tablet or phone online during opening hours

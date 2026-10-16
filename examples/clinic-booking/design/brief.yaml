@@ -1,0 +1,62 @@
+system:
+  name: Clinic booking platform
+  summary: Patients of a 40-clinic network find doctors, book and pay online and get reminders; staff run schedules
+    and check-in.
+goals:
+- Let patients book online at any time, on web and mobile
+- Stop double bookings with one source of truth for doctors' slots
+- Release changes to one area without a full regression
+- Keep booking available when a partner system fails
+- Cut no-shows with automatic reminders
+pain_points:
+- id: pp-double-booking
+  text: Schedules live in per-clinic spreadsheets, so double bookings happen weekly
+- id: pp-phone-only
+  text: Patients can only book by phone during opening hours
+- id: pp-monolith-releases
+  text: One deployable and one database; every change needs a full regression and a weekend release
+- id: pp-outage-spread
+  text: When the card-payment integration hangs, nobody can book in any clinic
+- id: pp-no-shows
+  text: Reminders are sent by hand, so no-shows are high
+actors:
+- id: patient
+  name: Patient
+  kind: person
+- id: receptionist
+  name: Receptionist
+  kind: person
+- id: clinic-admin
+  name: Clinic administrator
+  kind: person
+- id: payment-provider
+  name: Card payment provider
+  kind: system
+- id: insurer
+  name: Insurer API
+  kind: system
+- id: messaging-provider
+  name: SMS and email provider
+  kind: system
+- id: corporate-idp
+  name: Corporate identity provider
+  kind: system
+nfrs:
+- id: nfr-availability
+  category: availability
+  target: 99.9% monthly
+- id: nfr-search-latency
+  category: latency
+  target: slot search under 1 s for 95% of requests
+- id: nfr-peak
+  category: peak load
+  target: Monday 8:00 peak at 20 times the average
+- id: nfr-residency
+  category: data residency
+  target: patient data stays in the home region
+constraints:
+- Staff sign in with the group's corporate identity provider
+- Patient data stays in the home region
+assumptions:
+- A deposit is charged at booking and refunded on timely cancellation
+- The insurer API answers within 3 seconds most of the time

@@ -1,0 +1,71 @@
+aggregates:
+- id: clinic
+  root: Clinic
+  subdomain_id: clinic-directory
+  entities: []
+  value_objects: []
+  events: []
+- id: doctor-schedule
+  root: DoctorSchedule
+  subdomain_id: scheduling
+  entities: []
+  value_objects: []
+  events: []
+- id: appointment
+  root: Appointment
+  subdomain_id: appointments
+  entities: []
+  value_objects: []
+  events: []
+- id: insurance-check
+  root: InsuranceCheck
+  subdomain_id: insurance-verification
+  entities: []
+  value_objects: []
+  events: []
+- id: reminder
+  root: Reminder
+  subdomain_id: notifications
+  entities: []
+  value_objects: []
+  events: []
+- id: payment
+  root: Payment
+  subdomain_id: payments
+  entities: []
+  value_objects: []
+  events: []
+- id: user-account
+  root: UserAccount
+  subdomain_id: identity
+  entities: []
+  value_objects: []
+  events: []
+references:
+- from: doctor-schedule
+  to: clinic
+  via: clinicId
+  multiplicity: '* : 1'
+- from: appointment
+  to: doctor-schedule
+  via: scheduleId
+  multiplicity: '* : 1'
+- from: appointment
+  to: user-account
+  via: patientId
+  multiplicity: '* : 1'
+- from: payment
+  to: appointment
+  via: appointmentId
+  multiplicity: '* : 1'
+- from: insurance-check
+  to: appointment
+  via: appointmentId
+  multiplicity: '1 : 1'
+- from: reminder
+  to: appointment
+  via: appointmentId
+  multiplicity: '* : 1'
+no_aggregate:
+- subdomain_id: reporting
+  reason: Reporting only builds read models from events

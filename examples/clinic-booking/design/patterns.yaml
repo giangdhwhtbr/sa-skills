@@ -1,0 +1,38 @@
+patterns:
+- id: security
+  summary: 'Zero trust: tokens from the identity provider, checked at the gateway and again in every service'
+  steps:
+  - n: 1
+    from: patient-mobile
+    to: identity-provider
+    text: Sign in and get a token; staff federate through the corporate identity provider
+  - n: 2
+    from: patient-mobile
+    to: api-gateway
+    text: Every call carries the token
+  - n: 3
+    from: api-gateway
+    to: appointment-service
+    text: The gateway validates the token and the service checks roles and resources
+- id: observability
+  summary: Traces, metrics and structured logs from every service; one trace follows a booking
+  steps:
+  - n: 1
+    from: appointment-service
+    to: message-broker
+    text: Trace context travels with commands and events through the outbox
+  - n: 2
+    from: appointment-service
+    to: appointment-service
+    text: Metrics and alarms notify the on-call team
+- id: resilience
+  summary: Timeouts, retries with jitter, circuit breakers and bulkheads on every outbound call
+  steps:
+  - n: 1
+    from: payment-service
+    to: payment-provider
+    text: Timeout, retry with backoff and jitter, circuit breaker
+  - n: 2
+    from: insurance-service
+    to: insurer
+    text: When the circuit is open, book without the check and verify later

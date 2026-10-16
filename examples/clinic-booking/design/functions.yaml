@@ -1,0 +1,61 @@
+groups:
+- id: patient-functions
+  name: Patient functions
+  actor_ids:
+  - patient
+  functions:
+  - id: find-clinic-and-doctor
+    name: Find a clinic and doctor
+    description: Search by service, location and language
+  - id: view-available-slots
+    name: View available slots
+    description: See free slots per doctor and day
+  - id: book-appointment
+    name: Book an appointment
+    description: Choose a slot and confirm the booking
+  - id: pay-deposit
+    name: Pay a deposit
+    description: Pay the booking deposit online
+  - id: check-insurance
+    name: Check insurance cover
+    description: Check cover with the insurer before booking
+  - id: receive-reminders
+    name: Receive reminders
+    description: Get confirmation and reminders by SMS and email
+  - id: view-my-appointments
+    name: View my appointments
+    description: See upcoming and past appointments
+  - id: reschedule-or-cancel
+    name: Reschedule or cancel
+    description: Move or cancel an appointment under the policy
+- id: clinic-staff-functions
+  name: Clinic staff functions
+  actor_ids:
+  - receptionist
+  functions:
+  - id: manage-doctor-schedules
+    name: Manage doctor schedules
+    description: Publish working hours, leave and slot lengths
+  - id: check-in-patient
+    name: Check in a patient
+    description: Mark arrival and no-shows
+  - id: handle-cancellations-and-refunds
+    name: Handle cancellations and refunds
+    description: Cancel for patients and refund deposits
+- id: administration-functions
+  name: Administration functions
+  actor_ids:
+  - clinic-admin
+  functions:
+  - id: manage-clinics-and-services
+    name: Manage clinics and services
+    description: Clinics, doctors, services and prices
+  - id: manage-staff-and-roles
+    name: Manage staff and roles
+    description: Staff accounts and roles from the corporate directory
+  - id: view-utilisation-reports
+    name: View utilisation reports
+    description: Utilisation, no-shows and revenue per clinic
+  - id: configure-reminder-templates
+    name: Configure reminder templates
+    description: Texts and timing of reminders

@@ -1,0 +1,59 @@
+subdomains:
+- id: ordering
+  name: Ordering
+  type: core
+  description: Order lifecycle; orders are stored before any restaurant sees them (pp-lost-orders)
+  service:
+    id: order-service
+    name: Order service
+  function_ids:
+  - place-order
+- id: dispatch
+  name: Dispatch
+  type: core
+  description: Automatic courier assignment and tracking (pp-manual-dispatch)
+  service:
+    id: dispatch-service
+    name: Dispatch service
+  function_ids:
+  - accept-delivery-job
+  - confirm-delivery
+  - track-delivery
+- id: restaurant-catalog
+  name: Restaurant catalogue
+  type: supporting
+  description: Restaurants, menus and search; scales apart from ordering (pp-peak-slowness)
+  service:
+    id: catalog-service
+    name: Catalogue service
+  function_ids:
+  - browse-restaurants
+  - manage-menu
+- id: kitchen
+  name: Kitchen
+  type: supporting
+  description: Order acceptance and preparation at the restaurant
+  service:
+    id: kitchen-service
+    name: Kitchen service
+  function_ids:
+  - accept-order
+  - mark-ready
+- id: ratings
+  name: Ratings
+  type: supporting
+  description: Ratings of food and delivery
+  service:
+    id: rating-service
+    name: Rating service
+  function_ids:
+  - rate-order
+- id: payments
+  name: Payments
+  type: generic
+  description: Card payments through the provider
+  service:
+    id: payment-service
+    name: Payment service
+  function_ids:
+  - pay-order

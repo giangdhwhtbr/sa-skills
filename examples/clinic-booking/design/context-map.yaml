@@ -1,0 +1,33 @@
+relationships:
+- upstream: clinic-directory
+  downstream: scheduling
+  pattern: customer-supplier
+  label: doctors and services
+- upstream: scheduling
+  downstream: appointments
+  pattern: customer-supplier
+  label: slot holds
+- upstream: payments
+  downstream: appointments
+  pattern: customer-supplier
+  label: deposit collection
+- upstream: insurance-verification
+  downstream: appointments
+  pattern: customer-supplier
+  label: cover checks
+- upstream: identity
+  downstream: appointments
+  pattern: open-host-service
+  label: patient identity
+- upstream: appointments
+  downstream: notifications
+  pattern: domain-events
+  label: appointment events
+- upstream: appointments
+  downstream: reporting
+  pattern: domain-events
+  label: appointment events
+- upstream: scheduling
+  downstream: reporting
+  pattern: domain-events
+  label: schedule events

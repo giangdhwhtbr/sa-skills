@@ -1,0 +1,56 @@
+cloud: aws
+mapping:
+- logical_id: api-gateway
+  cloud_service: Amazon API Gateway (HTTP API)
+  notes: web and mobile routes; VPC Link to an internal load balancer
+- logical_id: identity-provider
+  cloud_service: Amazon Cognito
+  notes: patients in a user pool; staff federated from the corporate identity provider
+- logical_id: message-broker
+  cloud_service: Amazon SNS FIFO + Amazon SQS FIFO
+  notes: ordered per appointment; dead-letter queues
+- logical_id: service-databases
+  cloud_service: Amazon Aurora PostgreSQL
+  notes: one database per service
+- logical_id: cache
+  cloud_service: Amazon ElastiCache (Redis)
+  notes: slot availability cache
+- logical_id: search-index
+  cloud_service: Amazon OpenSearch Service
+  notes: clinic and doctor search
+high_level:
+  groups:
+  - Clients
+  - Edge
+  - Microservices
+  - Data
+  - Managed services
+  - External systems
+physical:
+  regions: 1
+  availability_zones: 2
+  groups:
+  - Clients
+  - Edge
+  - Microservices
+  - Data
+  - Managed services
+  - External systems
+  tiers:
+  - id: public
+    name: public
+    internet_route: true
+    cidr: 10.0.0.0/24
+  - id: app
+    name: app
+    internet_route: false
+    cidr: 10.0.10.0/24
+  - id: data
+    name: data
+    internet_route: false
+    cidr: 10.0.20.0/24
+  security_rules:
+  - The load balancer accepts only the gateway's VPC Link
+  - Service tasks accept only the load balancer
+  - Databases accept only the service tasks
+  - AWS services are reached through VPC endpoints

@@ -1,0 +1,79 @@
+aggregates:
+- id: order
+  root: Order
+  subdomain_id: ordering
+  entities:
+  - OrderLine
+  value_objects:
+  - Money
+  - DeliveryAddress
+  events:
+  - OrderPlaced
+  - OrderDelivered
+- id: delivery-job
+  root: DeliveryJob
+  subdomain_id: dispatch
+  entities:
+  - RouteLeg
+  value_objects:
+  - GeoPoint
+  events:
+  - CourierAssigned
+  - Delivered
+- id: restaurant
+  root: Restaurant
+  subdomain_id: restaurant-catalog
+  entities:
+  - MenuItem
+  value_objects:
+  - OpeningHours
+  events:
+  - MenuChanged
+- id: kitchen-ticket
+  root: KitchenTicket
+  subdomain_id: kitchen
+  entities: []
+  value_objects:
+  - PrepTime
+  events:
+  - OrderAccepted
+  - OrderReady
+- id: rating
+  root: Rating
+  subdomain_id: ratings
+  entities: []
+  value_objects:
+  - Score
+  events:
+  - OrderRated
+- id: payment
+  root: Payment
+  subdomain_id: payments
+  entities:
+  - Refund
+  value_objects:
+  - Money
+  events:
+  - PaymentCaptured
+references:
+- from: order
+  to: restaurant
+  via: restaurantId
+  multiplicity: '* : 1'
+- from: delivery-job
+  to: order
+  via: orderId
+  multiplicity: '1 : 1'
+- from: kitchen-ticket
+  to: order
+  via: orderId
+  multiplicity: '1 : 1'
+- from: rating
+  to: order
+  via: orderId
+  multiplicity: '0..1 : 1'
+- from: payment
+  to: order
+  via: orderId
+  multiplicity: '* : 1'
+no_aggregate: []

@@ -1,0 +1,80 @@
+subdomains:
+- id: scheduling
+  name: Scheduling
+  type: core
+  description: 'Doctor schedules, slot availability and holds: one source of truth for slots (pp-double-booking)'
+  service:
+    id: scheduling-service
+    name: Scheduling service
+  function_ids:
+  - view-available-slots
+  - manage-doctor-schedules
+- id: appointments
+  name: Appointments
+  type: core
+  description: Appointment lifecycle and the online booking flow (pp-phone-only, pp-no-shows)
+  service:
+    id: appointment-service
+    name: Appointment service
+  function_ids:
+  - book-appointment
+  - view-my-appointments
+  - reschedule-or-cancel
+  - check-in-patient
+  - handle-cancellations-and-refunds
+- id: clinic-directory
+  name: Clinic directory
+  type: supporting
+  description: Clinics, doctors, services and the search index
+  service:
+    id: directory-service
+    name: Directory service
+  function_ids:
+  - find-clinic-and-doctor
+  - manage-clinics-and-services
+- id: insurance-verification
+  name: Insurance verification
+  type: supporting
+  description: Cover checks with the insurer
+  service:
+    id: insurance-service
+    name: Insurance service
+  function_ids:
+  - check-insurance
+- id: notifications
+  name: Notifications
+  type: supporting
+  description: Confirmations and automatic reminders (pp-no-shows)
+  service:
+    id: notification-service
+    name: Notification service
+  function_ids:
+  - receive-reminders
+  - configure-reminder-templates
+- id: reporting
+  name: Reporting
+  type: supporting
+  description: Utilisation and no-show read models
+  service:
+    id: reporting-service
+    name: Reporting service
+  function_ids:
+  - view-utilisation-reports
+- id: payments
+  name: Payments
+  type: generic
+  description: Deposits and refunds through the payment provider
+  service:
+    id: payment-service
+    name: Payment service
+  function_ids:
+  - pay-deposit
+- id: identity
+  name: Identity
+  type: generic
+  description: Patient accounts, guest access and staff roles from the corporate directory
+  service:
+    id: identity-service
+    name: Identity service
+  function_ids:
+  - manage-staff-and-roles

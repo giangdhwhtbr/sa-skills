@@ -1,0 +1,37 @@
+layers:
+- id: clients
+  name: Clients
+  choice: React and React Native with TypeScript
+  reason: One team owns patient web, mobile and the staff portal
+- id: edge
+  name: Edge
+  choice: Route 53, CloudFront, WAF and API Gateway
+  reason: Managed entry point with web and mobile routes
+- id: services
+  name: Services
+  choice: Java and Spring Boot
+  reason: Mature libraries for transactions, resilience and tracing, which the saga and outbox need
+- id: api-contract
+  name: API contract
+  choice: REST with OpenAPI; generated clients
+  reason: Contract-first and tool-friendly
+- id: messaging
+  name: Messaging
+  choice: SNS FIFO and SQS FIFO with dead-letter queues
+  reason: Ordered per appointment; no brokers to run
+- id: data
+  name: Data
+  choice: Aurora PostgreSQL per service, ElastiCache, OpenSearch, S3
+  reason: Transactions, cache, search and documents, all managed
+- id: compute
+  name: Compute
+  choice: ECS on Fargate with auto scaling
+  reason: No cluster to operate; scales for the Monday peak
+- id: observability
+  name: Observability
+  choice: OpenTelemetry, X-Ray and CloudWatch
+  reason: Managed tracing, metrics, logs and alarms
+- id: security
+  name: Security
+  choice: Cognito, corporate identity federation, Secrets Manager
+  reason: Zero trust with managed identity and secrets
