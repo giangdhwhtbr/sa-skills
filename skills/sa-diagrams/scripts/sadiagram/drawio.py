@@ -113,7 +113,10 @@ def _edge(root: ET.Element, edge: Edge, cid, node_by_id: dict[str, Node]) -> Non
     if target:
         attrs["target"] = cid(edge.target)
     cell = ET.SubElement(root, "mxCell", **attrs)
-    geo = ET.SubElement(cell, "mxGeometry", relative="1", **{"as": "geometry"})
+    geo_attrs = {"relative": "1", "as": "geometry"}
+    if edge.label_at is not None:
+        geo_attrs["x"] = _fmt(round(edge.label_at * 2 - 1, 4))
+    geo = ET.SubElement(cell, "mxGeometry", **geo_attrs)
     if edge.points and not (source and target):
         ET.SubElement(geo, "mxPoint", x=_fmt(edge.points[0][0]), y=_fmt(edge.points[0][1]), **{"as": "sourcePoint"})
         ET.SubElement(geo, "mxPoint", x=_fmt(edge.points[-1][0]), y=_fmt(edge.points[-1][1]), **{"as": "targetPoint"})

@@ -50,3 +50,27 @@ def bounds(page: Page) -> Rect:
     x1 = max(r[0] + r[2] for r in items)
     y1 = max(r[1] + r[3] for r in items)
     return (x0, y0, x1 - x0, y1 - y0)
+
+
+def _segment_hits(p: tuple[float, float], q: tuple[float, float], r: Rect, inset: float = 2) -> bool:
+    """True when an axis-parallel segment passes through the inside of a rectangle."""
+    x0, y0, x1, y1 = r[0] + inset, r[1] + inset, r[0] + r[2] - inset, r[1] + r[3] - inset
+    if p[1] == q[1]:  # horizontal
+        lo, hi = sorted((p[0], q[0]))
+        return y0 < p[1] < y1 and lo < x1 and hi > x0
+    if p[0] == q[0]:  # vertical
+        lo, hi = sorted((p[1], q[1]))
+        return x0 < p[0] < x1 and lo < y1 and hi > y0
+    return False
+
+
+def edge_crossings(page: Page) -> list[tuple[str, str]]:
+    """(edge, node) pairs where a routed edge runs through a node other than its own ends.
+    Only edges with explicit axis-parallel points are checked."""
+    found = []
+    for edge in page.edges:
+        for p, q in zip(edge.points, edge.points[1:], strict=False):
+            for node in page.nodes:
+                if node.id not in (edge.source, edge.target) and _segment_hits(p, q, rect(node)):
+                    found.append((edge.id, node.id))
+    return sorted(set(found))

@@ -47,6 +47,7 @@ class Edge:
     points: list[tuple[float, float]] = field(default_factory=list)
     source_label: str = ""     # e.g. "U"
     target_label: str = ""     # e.g. "D"
+    label_at: float | None = None  # label position as a fraction of the path length (None: middle)
 
 
 @dataclass

@@ -18,7 +18,7 @@ def _grid_size(count: int, columns: int) -> int:
 
 
 def layout(page: Page, bands: list[tuple[Group, list[Node]]], columns: int, direction: str = "rows",
-           x0: float = 0, y0: float = 0) -> None:
+           x0: float = 0, y0: float = 0, gap: float = GAP, band_gap: float = BAND_GAP) -> None:
     """Place every band and its nodes. Bands get equal widths (rows) or equal heights (columns).
     Nodes and groups not yet on the page are added to it."""
     if direction not in ("rows", "columns"):
@@ -26,9 +26,9 @@ def layout(page: Page, bands: list[tuple[Group, list[Node]]], columns: int, dire
     node_w = max((n.w for _, nodes in bands for n in nodes), default=160)
     node_h = max((n.h for _, nodes in bands for n in nodes), default=56)
     cols = max(1, columns)
-    inner_w = cols * node_w + (cols - 1) * GAP
+    inner_w = cols * node_w + (cols - 1) * gap
     band_w = inner_w + 2 * PAD
-    heights = [HEADER + PAD + _grid_size(len(nodes), cols) * (node_h + GAP) - GAP + PAD for _, nodes in bands]
+    heights = [HEADER + PAD + _grid_size(len(nodes), cols) * (node_h + gap) - gap + PAD for _, nodes in bands]
     band_h = max(heights, default=0)
 
     x, y = x0, y0
@@ -38,12 +38,12 @@ def layout(page: Page, bands: list[tuple[Group, list[Node]]], columns: int, dire
         for i, node in enumerate(nodes):
             row, col = divmod(i, cols)
             node.parent = group.id
-            node.x = x + PAD + col * (node_w + GAP) + (node_w - node.w) / 2
-            node.y = y + HEADER + row * (node_h + GAP) + (node_h - node.h) / 2
+            node.x = x + PAD + col * (node_w + gap) + (node_w - node.w) / 2
+            node.y = y + HEADER + row * (node_h + gap) + (node_h - node.h) / 2
         if direction == "rows":
-            y += h + BAND_GAP
+            y += h + band_gap
         else:
-            x += band_w + BAND_GAP
+            x += band_w + band_gap
         if group not in page.groups:
             page.groups.append(group)
         page.nodes.extend(n for n in nodes if n not in page.nodes)
@@ -96,3 +96,137 @@ def split(page: Page, max_nodes: int = 40) -> list[Page]:
                           notes=list(page.notes), width=page.width,
                           height=max(g.y + g.h for g in sub_groups), legend_labels=dict(page.legend_labels)))
     return pages
+
+
+# ---------- gutter routing ----------
+
+def _clusters(values: list[tuple[float, float]]) -> list[tuple[float, float]]:
+    """Merge (start, end) intervals that overlap into sorted, disjoint intervals."""
+    merged: list[list[float]] = []
+    for start, end in sorted(values):
+        if merged and start < merged[-1][1]:
+            merged[-1][1] = max(merged[-1][1], end)
+        else:
+            merged.append([start, end])
+    return [(a, b) for a, b in merged]
+
+
+def _index(intervals: list[tuple[float, float]], value: float) -> int:
+    return next(i for i, (a, b) in enumerate(intervals) if a <= value <= b)
+
+
+class _Lanes:
+    """Spreads lines that share a gutter or a node side: 0, +s, -s, +2s, -2s ... within a limit."""
+
+    def __init__(self, step: float) -> None:
+        self.step = step
+        self.used: dict[object, int] = {}
+
+    def take(self, key: object, limit: float) -> float:
+        n = self.used.get(key, 0)
+        self.used[key] = n + 1
+        offset = ((n + 1) // 2) * self.step * (1 if n % 2 else -1)
+        return max(-limit, min(limit, offset))
+
+
+def route(page: Page) -> None:
+    """Route every edge between different nodes through the gaps between node rows and columns, so that no
+    edge runs through a node. Works for any band layout whose bands share one column grid."""
+    nodes = {n.id: n for n in page.nodes}
+    groups = {g.id: g for g in page.groups}
+    if not nodes:
+        return
+    rows = _clusters([(n.y, n.y + n.h) for n in page.nodes])
+    cols = _clusters([(n.x, n.x + n.w) for n in page.nodes])
+    row_of = {n.id: _index(rows, n.y) for n in page.nodes}
+    col_of = {n.id: _index(cols, n.x) for n in page.nodes}
+    band_of_row: dict[int, Group | None] = {}
+    for n in page.nodes:
+        band_of_row.setdefault(row_of[n.id], groups.get(n.parent) if n.parent else None)
+
+    def h_gutter(r: int) -> tuple[float, float]:
+        """Free y range between row r and row r + 1 (below the last row: the bottom padding of its band)."""
+        band = band_of_row.get(r)
+        if r + 1 < len(rows):
+            nxt = band_of_row.get(r + 1)
+            if band is not None and nxt is not None and band is not nxt:
+                return (band.y + band.h, nxt.y)
+            return (rows[r][1], rows[r + 1][0])
+        if band is not None and band.y + band.h - rows[r][1] >= 12:
+            return (rows[r][1], band.y + band.h)
+        return (rows[r][1], rows[r][1] + BAND_GAP)
+
+    def v_gutter(c: int) -> tuple[float, float]:
+        """Free x range left of column c (c == len(cols): right of the last column)."""
+        left = cols[c - 1][1] if c > 0 else cols[0][0] - PAD
+        right = cols[c][0] if c < len(cols) else cols[-1][1] + PAD
+        return (left, right)
+
+    lanes, ports = _Lanes(10), _Lanes(14)
+    labels_on: dict[float, int] = {}  # labels already placed per horizontal line
+
+    def lane_y(r: int) -> float:
+        a, b = h_gutter(r)
+        return (a + b) / 2 + lanes.take(("h", r), max(0.0, (b - a) / 2 - 3))
+
+    def lane_x(c: int) -> float:
+        a, b = v_gutter(c)
+        return (a + b) / 2 + lanes.take(("v", c), max(0.0, (b - a) / 2 - 3))
+
+    def port(node: Node, side: str) -> float:
+        return node.x + node.w / 2 + ports.take((node.id, side), node.w / 2 - 12)
+
+    def best_gutter(ax: float, bx: float) -> int:
+        def cost(c: int) -> float:
+            a, b = v_gutter(c)
+            mid = (a + b) / 2
+            outer = 1000 if c in (0, len(cols)) and len(cols) > 1 else 0
+            return abs(mid - ax) + abs(mid - bx) + outer
+        return min(range(len(cols) + 1), key=cost)
+
+    for edge in page.edges:
+        a, b = nodes.get(edge.source), nodes.get(edge.target)
+        if a is None or b is None or a is b:
+            continue
+        ra, rb = row_of[a.id], row_of[b.id]
+        if ra == rb:
+            if abs(col_of[a.id] - col_of[b.id]) == 1:
+                y = a.y + a.h / 2
+                ax, bx = (a.x + a.w, b.x) if a.x < b.x else (a.x, b.x + b.w)
+                edge.points = [(ax, y), (bx, y)]
+                continue
+            ax, bx, y = port(a, "bottom"), port(b, "bottom"), lane_y(ra)
+            edge.points = [(ax, a.y + a.h), (ax, y), (bx, y), (bx, b.y + b.h)]
+            continue
+        down = rb > ra
+        ax = port(a, "bottom" if down else "top")
+        bx = port(b, "top" if down else "bottom")
+        a_end, b_end = (a.y + a.h, b.y) if down else (a.y, b.y + b.h)
+        first = lane_y(ra if down else ra - 1)
+        if abs(rb - ra) == 1:
+            points = [(ax, a_end), (ax, first), (bx, first), (bx, b_end)]
+        else:
+            last = lane_y(rb - 1 if down else rb)
+            vx = lane_x(best_gutter(ax, bx))
+            points = [(ax, a_end), (ax, first), (vx, first), (vx, last), (bx, last), (bx, b_end)]
+        edge.points = [p for i, p in enumerate(points) if i == 0 or p != points[i - 1]]
+        edge.label_at = label_position(edge.points, labels_on)
+
+
+SPREAD = (0.5, 0.25, 0.75, 0.15, 0.85)
+
+
+def label_position(points: list[tuple[float, float]], labels_on: dict[float, int] | None = None) -> float | None:
+    """Fraction of the path length on its longest horizontal segment (labels read best on horizontal runs,
+    which lie in the gutters between rows). Labels sharing a horizontal line are spread along it."""
+    lengths = [abs(q[0] - p[0]) + abs(q[1] - p[1]) for p, q in zip(points, points[1:], strict=False)]
+    total = sum(lengths)
+    horizontal = [i for i, (p, q) in enumerate(zip(points, points[1:], strict=False)) if p[1] == q[1] and p[0] != q[0]]
+    if not total or not horizontal:
+        return None
+    best = max(horizontal, key=lambda i: lengths[i])
+    used = labels_on if labels_on is not None else {}
+    line = round(points[best][1] / 30)
+    share = SPREAD[used.get(line, 0) % len(SPREAD)]
+    used[line] = used.get(line, 0) + 1
+    return round((sum(lengths[:best]) + lengths[best] * share) / total, 4)

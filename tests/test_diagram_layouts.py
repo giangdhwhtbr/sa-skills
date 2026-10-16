@@ -117,3 +117,22 @@ def test_split_large_page() -> None:
     assert [e.id for e in pages[0].edges] == ["e1"]
     assert min(g.y for g in pages[1].groups) == min(g.y for g in pages[0].groups)
     assert bands.split(pages[1], max_nodes=40) == [pages[1]]
+
+
+# REQ-DIAGRAMS-009
+def test_route_avoids_nodes() -> None:
+    page, spec = band_page([8, 8, 4])
+    bands.layout(page, spec, columns=4, gap=56, band_gap=36)
+    pairs = [("n0-0", "n2-3"), ("n0-3", "n1-0"), ("n0-1", "n0-3"), ("n0-1", "n0-2"), ("n2-0", "n0-2"),
+             ("n1-5", "n1-1"), ("n0-0", "n2-0"), ("n1-2", "n1-2")]
+    page.edges = [Edge(f"e{i}", a, b, "sync") for i, (a, b) in enumerate(pairs)]
+    bands.route(page)
+    assert geometry.edge_crossings(page) == []
+    nodes = {n.id: n for n in page.nodes}
+    for edge in page.edges[:-1]:
+        assert len(edge.points) >= 2
+        for (x1, y1), (x2, y2) in zip(edge.points, edge.points[1:], strict=False):
+            assert x1 == x2 or y1 == y2  # orthogonal
+        for (x, y), node in ((edge.points[0], nodes[edge.source]), (edge.points[-1], nodes[edge.target])):
+            assert node.x <= x <= node.x + node.w and node.y <= y <= node.y + node.h
+    assert page.edges[-1].points == []  # self loop left to draw.io
