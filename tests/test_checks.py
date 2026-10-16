@@ -189,7 +189,7 @@ def test_every_script_rule_implemented() -> None:
 
 def test_every_script_rule_has_negative_test() -> None:
     """REQ-QUALITY-002: every script rule has a negative case here or in a dedicated test above."""
-    dedicated = {"LV-01", "AD-01", "TR-01", "XS-01", "XS-02", "AG-01", "DG-01"}
+    dedicated = {"LV-01", "AD-01", "TR-01", "XS-01", "XS-02", "AG-01", "DG-01", "DK-01"}
     assert set(checks.RULES) == set(NEGATIVE) | dedicated
 
 
@@ -289,3 +289,43 @@ def test_hash_functions_identical(tmp_path: Path) -> None:
     for key in stamp.DRAWN:
         assert checks.diagram_hash(design, key, cfg.options, cfg.cloud) == stamp.step_hash(
             design, key, cfg.options, cfg.cloud)
+
+
+DECK_YAML = """\
+meta: {title: Parcel lockers, minutes: 5}
+cover: {notes: Hello., seconds: 20}
+sections:
+- title: Close
+  slides:
+  - {title: Questions, message: Thank you, notes: Questions please., seconds: 20}
+"""
+
+
+def test_dk01_out_of_date(tmp_path: Path) -> None:
+    """REQ-REVIEW-008: a rendered deck older than its sources is reported as a DK-01 warning."""
+    from sadeck import stamp as deck_stamp
+
+    design = make_design(tmp_path)
+    (design / "deck").mkdir()
+    (design / "deck" / "deck.yaml").write_text(DECK_YAML)
+    assert findings_of(design, "DK-01") == []  # never rendered: no stamp
+    deck_stamp.write(design, deck_stamp.deck_hash(design))
+    assert findings_of(design, "DK-01") == []  # up to date
+    (design / "deck" / "deck.yaml").write_text(DECK_YAML.replace("Thank you", "Thanks"))
+    hits = findings_of(design, "DK-01")
+    assert [(f.severity, f.file, f.item) for f in hits] == [("warn", "deck/deck.html", "deck.html")]
+
+
+def test_deck_hash_identical(tmp_path: Path) -> None:
+    """REQ-REVIEW-008: sacheck's copy of the deck hash equals sadeck's, including diagram pages and images."""
+    from sadeck import stamp as deck_stamp
+
+    clinic = Path(__file__).resolve().parents[1] / "examples" / "clinic-booking" / "design"
+    design = tmp_path / "design"
+    shutil.copytree(clinic, design, ignore=shutil.ignore_patterns("deck"))
+    (design / "deck").mkdir()
+    fixture = Path(__file__).resolve().parent / "fixtures" / "deck" / "deck.yaml"
+    (design / "deck" / "deck.yaml").write_text(fixture.read_text().replace("meta:\n", "theme: {logo: logo.png}\nmeta:\n", 1))
+    (design / "deck" / "logo.png").write_bytes(b"logo")
+    assert checks.deck_hash(design) == deck_stamp.deck_hash(design)
+    assert checks.DECK_STEP_NUMBERS == deck_stamp.NUMBERS

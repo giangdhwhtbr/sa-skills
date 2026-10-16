@@ -462,6 +462,68 @@ def rule_dg_01(ctx: Context) -> list[Hit]:
     return hits
 
 
+# ---------- deck (local copy of sadeck.stamp, kept identical by tests/test_checks.py) ----------
+
+DECK_STEP_NUMBERS = {key: number for key, (number, _, _) in DRAWN.items()}
+
+
+def _deck_page(design_dir: Path, step: str, page: int) -> bytes:
+    path = design_dir / DIAGRAMS_DIR / f"{DECK_STEP_NUMBERS.get(step, 0):02d}-{step}.drawio"
+    try:
+        pages = ET.parse(path).getroot().findall("diagram")
+    except (OSError, ET.ParseError):
+        return b"<missing>"
+    if not 1 <= page <= len(pages):
+        return b"<missing>"
+    return ET.tostring(pages[page - 1])
+
+
+def deck_hash(design_dir: Path) -> str:
+    """Same value as sadeck.stamp.deck_hash: deck.yaml, its image and logo files, and the diagram pages it shows."""
+    deck_dir = design_dir / "deck"
+    source = (deck_dir / "deck.yaml").read_bytes()
+    digest = hashlib.sha256(source)
+    try:
+        data = schemas.parse(source.decode()) or {}
+    except (UnicodeDecodeError, ValueError):
+        data = {}
+    if not isinstance(data, dict):
+        data = {}
+    files = [(data.get("theme") or {}).get("logo")]
+    refs: list[tuple[str, int]] = []
+    for section in data.get("sections") or []:
+        for slide in section.get("slides") or []:
+            block = slide.get("block") or {}
+            if block.get("type") == "image":
+                files.append(block.get("file"))
+            if block.get("type") == "diagrams":
+                sides = [block.get(side) for side in ("left", "right")]
+                refs += [(side["step"], side["page"]) for side in sides if isinstance(side, dict)]
+            elif "step" in block and "page" in block:
+                refs.append((block["step"], block["page"]))
+    for name in files:
+        if name:
+            path = deck_dir / name
+            digest.update(name.encode() + b"\0" + (path.read_bytes() if path.is_file() else b"<missing>"))
+    for step, page in refs:
+        digest.update(f"{step}:{page}".encode() + b"\0" + _deck_page(design_dir, step, page))
+    return digest.hexdigest()
+
+
+def rule_dk_01(ctx: Context) -> list[Hit]:
+    stamp_file = ctx.design_dir / "deck" / ".deck-stamp.json"
+    if not stamp_file.exists() or not (ctx.design_dir / "deck" / "deck.yaml").exists():
+        return []
+    try:
+        recorded = json.loads(stamp_file.read_text()).get("hash")
+    except (OSError, ValueError, AttributeError):
+        recorded = None
+    if recorded == deck_hash(ctx.design_dir):
+        return []
+    message = "deck is out of date with deck.yaml or its diagrams; run /sa-deck to rebuild it"
+    return [("deck/deck.html", "deck.html", message)]
+
+
 RULES: dict[str, Callable[[Context], list[Hit]]] = {
     "BR-01": rule_br_01, "FN-02": rule_fn_02, "SD-01": rule_sd_01, "SD-02": rule_sd_02,
     "CM-01": rule_cm_01, "CM-02": rule_cm_02, "CM-03": rule_cm_03,
@@ -469,7 +531,7 @@ RULES: dict[str, Callable[[Context], list[Hit]]] = {
     "LV-01": rule_lv_01, "LV-02": rule_lv_02, "SG-01": rule_sg_01, "SG-02": rule_sg_02, "SG-03": rule_sg_03,
     "PT-01": rule_pt_01, "AR-01": rule_ar_01, "AR-02": rule_ar_02, "AR-03": rule_ar_03, "ST-01": rule_st_01,
     "AD-01": rule_ad_01, "TR-01": rule_tr_01, "XS-01": rule_xs_01, "XS-02": rule_xs_02,
-    "DG-01": rule_dg_01,
+    "DG-01": rule_dg_01, "DK-01": rule_dk_01,
 }
 
 
