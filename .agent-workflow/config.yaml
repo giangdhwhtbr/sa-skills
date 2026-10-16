@@ -47,7 +47,7 @@ verify:
   checks:
     build: ''
     e2e: ''
-    lint: ''
-    test: ''
+    lint: .venv/bin/ruff check .
+    test: .venv/bin/python -m pytest -q
     typecheck: ''
 workflow_version: '2.7'

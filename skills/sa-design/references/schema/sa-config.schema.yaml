@@ -1,0 +1,15 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: sa-config.yaml
+type: object
+additionalProperties: false
+required: [profile, cloud, steps, rules]
+properties:
+  profile: {type: string}
+  cloud: {type: string, pattern: "^[a-z0-9-]+$"}
+  steps:
+    type: object
+    additionalProperties:
+      type: object
+  rules:
+    type: object
+    additionalProperties: {type: string}

@@ -1,0 +1,69 @@
+# Review rule catalogue. check: script = implemented in sa-review/scripts/sacheck/checks.py under the same ID;
+# check: judgement = applied by the agent when reading the documents.
+# condition: the rule is active only when the step option equals the value; null = always active.
+# A project can override any severity in design/sa-config.yaml (rules: {ID: error|warn|off}).
+rules:
+  - {id: BR-01, step: brief, severity: error, condition: null, check: script,
+     statement: "Every pain point, actor and NFR has a unique ID"}
+  - {id: FN-01, step: functions, severity: error, condition: null, check: judgement,
+     statement: "The functions document lists functions grouped by actor; it does not draw a flow"}
+  - {id: FN-02, step: functions, severity: error, condition: null, check: script,
+     statement: "Every function group names at least one actor from brief.yaml"}
+  - {id: SD-01, step: subdomains, severity: warn, condition: null, check: script,
+     statement: "At least one subdomain is core"}
+  - {id: SD-02, step: subdomains, severity: error,
+     condition: {step: subdomains, option: service-per-subdomain, equals: one}, check: script,
+     statement: "Every subdomain has exactly one service and service IDs are unique"}
+  - {id: CM-01, step: context-map, severity: error,
+     condition: {step: context-map, option: detail, equals: ud-only}, check: script,
+     statement: "The context map has no external systems"}
+  - {id: CM-02, step: context-map, severity: error, condition: null, check: script,
+     statement: "Every relationship end is a known context and upstream differs from downstream"}
+  - {id: CM-03, step: context-map, severity: warn, condition: null, check: script,
+     statement: "Every context appears in at least one relationship"}
+  - {id: AG-01, step: aggregates, severity: error,
+     condition: {step: aggregates, option: detail, equals: roots-only}, check: script,
+     statement: "Aggregates list roots only: entities, value objects and events are empty"}
+  - {id: AG-02, step: aggregates, severity: error, condition: null, check: script,
+     statement: "Every aggregate belongs to a known subdomain and every reference joins two known aggregates by an ID field"}
+  - {id: AG-03, step: aggregates, severity: warn, condition: null, check: script,
+     statement: "Every subdomain has an aggregate or a no_aggregate entry with a reason"}
+  - {id: UC-01, step: use-cases, severity: error, condition: null, check: script,
+     statement: "Every use case has an actor from brief.yaml and refers to known functions"}
+  - {id: LV-01, step: logical-view, severity: error,
+     condition: {step: logical-view, option: vendors, equals: none}, check: script,
+     statement: "The logical view names no vendor or product (vendor-terms.yaml)"}
+  - {id: LV-02, step: logical-view, severity: error, condition: null, check: script,
+     statement: "Every service in subdomains.yaml appears as a service component"}
+  - {id: SG-01, step: saga, severity: error, condition: null, check: script,
+     statement: "The saga has a happy scenario and at least saga.failure-scenarios failure scenarios"}
+  - {id: SG-02, step: saga, severity: error, condition: null, check: script,
+     statement: "Every failure scenario contains a compensate step"}
+  - {id: SG-03, step: saga, severity: error, condition: null, check: script,
+     statement: "The orchestrator and every participant are known services or externals"}
+  - {id: PT-01, step: patterns, severity: error, condition: null, check: script,
+     statement: "Security, observability and resilience are each described"}
+  - {id: PT-02, step: patterns, severity: warn,
+     condition: {step: patterns, option: split, equals: one-per-pattern}, check: judgement,
+     statement: "Each pattern has its own section and view"}
+  - {id: AR-01, step: architecture, severity: error, condition: null, check: script,
+     statement: "Every logical component of kind gateway, identity-provider, broker or datastore maps to a cloud service"}
+  - {id: AR-02, step: architecture, severity: error,
+     condition: {step: architecture, option: shared-layout, equals: true}, check: script,
+     statement: "high_level.groups and physical.groups are the same list in the same order"}
+  - {id: AR-03, step: architecture, severity: warn, condition: null, check: script,
+     statement: "A tier named data has internet_route false"}
+  - {id: ST-01, step: stack, severity: error, condition: null, check: script,
+     statement: "Every stack layer has a choice and a reason"}
+  - {id: AD-01, step: adrs, severity: error, condition: null, check: script,
+     statement: "Every ADR has at least one alternative and a non-empty trade-off"}
+  - {id: TR-01, step: adrs, severity: error, condition: null, check: script,
+     statement: "Every pain point in brief.yaml is referenced by an ADR or by a subdomain description"}
+  - {id: XS-01, step: all, severity: error, condition: null, check: script,
+     statement: "Every ID referenced in any data file is defined in its source file"}
+  - {id: XS-02, step: all, severity: error, condition: null, check: script,
+     statement: "Any '<number> services' statement in the Markdown files equals the number of services in subdomains.yaml"}
+  - {id: DOC-01, step: all, severity: warn, condition: null, check: judgement,
+     statement: "Each document's title matches what its content shows"}
+  - {id: DOC-02, step: all, severity: warn, condition: null, check: judgement,
+     statement: "Documents describe the solution, not how the design evolved or who reviewed it"}

@@ -1,0 +1,87 @@
+# Progress of the design. Maintained by /sa-design.
+version: 1
+steps:
+  - key: brief
+    status: todo
+    decisions: []
+    open_questions: []
+    exceptions: []
+    stale_reason: null
+    files: {}
+  - key: functions
+    status: todo
+    decisions: []
+    open_questions: []
+    exceptions: []
+    stale_reason: null
+    files: {}
+  - key: subdomains
+    status: todo
+    decisions: []
+    open_questions: []
+    exceptions: []
+    stale_reason: null
+    files: {}
+  - key: context-map
+    status: todo
+    decisions: []
+    open_questions: []
+    exceptions: []
+    stale_reason: null
+    files: {}
+  - key: aggregates
+    status: todo
+    decisions: []
+    open_questions: []
+    exceptions: []
+    stale_reason: null
+    files: {}
+  - key: use-cases
+    status: todo
+    decisions: []
+    open_questions: []
+    exceptions: []
+    stale_reason: null
+    files: {}
+  - key: logical-view
+    status: todo
+    decisions: []
+    open_questions: []
+    exceptions: []
+    stale_reason: null
+    files: {}
+  - key: saga
+    status: todo
+    decisions: []
+    open_questions: []
+    exceptions: []
+    stale_reason: null
+    files: {}
+  - key: patterns
+    status: todo
+    decisions: []
+    open_questions: []
+    exceptions: []
+    stale_reason: null
+    files: {}
+  - key: architecture
+    status: todo
+    decisions: []
+    open_questions: []
+    exceptions: []
+    stale_reason: null
+    files: {}
+  - key: stack
+    status: todo
+    decisions: []
+    open_questions: []
+    exceptions: []
+    stale_reason: null
+    files: {}
+  - key: adrs
+    status: todo
+    decisions: []
+    open_questions: []
+    exceptions: []
+    stale_reason: null
+    files: {}

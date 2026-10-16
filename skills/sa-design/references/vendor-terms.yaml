@@ -1,0 +1,41 @@
+# Vendor and product names that must not appear in vendor-neutral documents (rule LV-01, guides 01-09).
+terms:
+  - aws
+  - amazon
+  - azure
+  - gcp
+  - google cloud
+  - kafka
+  - rabbitmq
+  - sns
+  - sqs
+  - eventbridge
+  - kinesis
+  - aurora
+  - postgresql
+  - postgres
+  - mysql
+  - oracle
+  - mongodb
+  - dynamodb
+  - redis
+  - elasticache
+  - opensearch
+  - elasticsearch
+  - s3
+  - lambda
+  - fargate
+  - ecs
+  - eks
+  - kubernetes
+  - cognito
+  - entra
+  - okta
+  - keycloak
+  - cloudfront
+  - route 53
+  - nginx
+  - spring
+  - nestjs
+  - react
+  - next.js

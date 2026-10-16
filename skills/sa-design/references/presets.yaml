@@ -1,0 +1,13 @@
+# Preset -> option values. "custom" has no entry: every option takes its explicit value or its default.
+high-level:
+  context-map: {detail: ud-only}
+  aggregates: {detail: roots-only}
+  logical-view: {vendors: none}
+  patterns: {split: one-per-pattern}
+  architecture: {shared-layout: true}
+detailed:
+  context-map: {detail: with-externals}
+  aggregates: {detail: full}
+  logical-view: {vendors: technology-hints}
+  patterns: {split: one-per-pattern}
+  architecture: {shared-layout: true}

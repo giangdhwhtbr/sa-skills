@@ -1,0 +1,31 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: design-state.yaml
+type: object
+additionalProperties: false
+required: [version, steps]
+properties:
+  version: {const: 1}
+  steps:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required: [key, status, decisions, open_questions, exceptions, stale_reason, files]
+      properties:
+        key: {type: string}
+        status: {enum: [todo, done, stale, needs-review]}
+        decisions: {type: array, items: {type: string}}
+        open_questions: {type: array, items: {type: string}}
+        exceptions:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required: [rule, reason]
+            properties:
+              rule: {type: string}
+              reason: {type: string, minLength: 1}
+        stale_reason: {type: [string, "null"]}
+        files:
+          type: object
+          additionalProperties: {type: string}

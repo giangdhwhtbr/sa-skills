@@ -1,0 +1,13 @@
+{
+  "name": "sa-design-kit-marketplace",
+  "owner": {
+    "name": "sa-design-kit contributors"
+  },
+  "plugins": [
+    {
+      "name": "sa-design-kit",
+      "description": "Guided DDD + microservices solution design and review.",
+      "source": "./"
+    }
+  ]
+}
