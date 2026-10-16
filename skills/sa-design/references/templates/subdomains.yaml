@@ -1,0 +1,8 @@
+# Step 03 - subdomains; the subdomain id is also the bounded-context id used by later steps.
+subdomains:
+  - id: ordering
+    name: Ordering
+    type: core
+    description: Takes and tracks orders (addresses pp-example)
+    service: {id: ordering-service, name: Ordering service}
+    function_ids: [place-order]

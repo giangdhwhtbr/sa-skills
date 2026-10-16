@@ -1,0 +1,17 @@
+# Step 07 - logical view: layers and components, no vendor names unless logical-view.vendors allows them.
+layers:
+  - id: clients
+    name: Client layer
+    components:
+      - {id: web-app, name: Web app, kind: client}
+  - id: edge
+    name: Edge
+    components:
+      - {id: api-gateway, name: API gateway, kind: gateway}
+  - id: services
+    name: Microservice layer
+    components:
+      - {id: ordering-service, name: Ordering service, kind: service, service_id: ordering-service}
+flows:
+  - {from: web-app, to: api-gateway, kind: sync, label: request}
+  - {from: api-gateway, to: ordering-service, kind: sync, label: route}

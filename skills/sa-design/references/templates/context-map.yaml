@@ -1,0 +1,5 @@
+# Step 04 - context map: who is upstream (provider) and downstream (consumer).
+relationships: []
+# externals: only when context-map.detail = with-externals
+# externals:
+#   - {id: payment-provider, name: Payment provider, direction: outbound}

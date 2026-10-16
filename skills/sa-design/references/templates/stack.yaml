@@ -1,0 +1,3 @@
+# Step 11 - one technology choice per layer, with the reason.
+layers:
+  - {id: services, name: Services, choice: Example language and framework, reason: Why this fits the team and the workload}

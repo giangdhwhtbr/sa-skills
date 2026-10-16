@@ -1,0 +1,43 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: adrs.yaml
+type: object
+additionalProperties: false
+required:
+- adrs
+properties:
+  adrs:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - title
+      - decision
+      - alternatives
+      - tradeoff
+      - rationale
+      - status
+      - pain_points
+      properties:
+        id: &id003
+          type: string
+          pattern: ^[a-z0-9]+(-[a-z0-9]+)*$
+        title: &id001
+          type: string
+          minLength: 1
+        decision: *id001
+        alternatives:
+          type: array
+          items: *id001
+        tradeoff: &id002
+          type: string
+        rationale: *id002
+        status:
+          enum:
+          - proposed
+          - accepted
+          - superseded
+        pain_points:
+          type: array
+          items: *id003

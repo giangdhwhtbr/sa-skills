@@ -1,0 +1,76 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: architecture.yaml
+type: object
+additionalProperties: false
+required:
+- cloud
+- mapping
+- high_level
+- physical
+properties:
+  cloud: &id001
+    type: string
+    pattern: ^[a-z0-9]+(-[a-z0-9]+)*$
+  mapping:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - logical_id
+      - cloud_service
+      - notes
+      properties:
+        logical_id: *id001
+        cloud_service: &id002
+          type: string
+          minLength: 1
+        notes: &id003
+          type: string
+  high_level:
+    type: object
+    additionalProperties: false
+    required:
+    - groups
+    properties:
+      groups:
+        type: array
+        items: *id002
+  physical:
+    type: object
+    additionalProperties: false
+    required:
+    - regions
+    - availability_zones
+    - groups
+    - tiers
+    - security_rules
+    properties:
+      regions:
+        type: integer
+        minimum: 1
+      availability_zones:
+        type: integer
+        minimum: 1
+      groups:
+        type: array
+        items: *id002
+      tiers:
+        type: array
+        items:
+          type: object
+          additionalProperties: false
+          required:
+          - id
+          - name
+          - internet_route
+          - cidr
+          properties:
+            id: *id001
+            name: *id002
+            internet_route:
+              type: boolean
+            cidr: *id003
+      security_rules:
+        type: array
+        items: *id002

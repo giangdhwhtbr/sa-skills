@@ -1,0 +1,41 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: functions.yaml
+type: object
+additionalProperties: false
+required:
+- groups
+properties:
+  groups:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - actor_ids
+      - functions
+      properties:
+        id: &id001
+          type: string
+          pattern: ^[a-z0-9]+(-[a-z0-9]+)*$
+        name: &id002
+          type: string
+          minLength: 1
+        actor_ids:
+          type: array
+          items: *id001
+        functions:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required:
+            - id
+            - name
+            - description
+            properties:
+              id: *id001
+              name: *id002
+              description:
+                type: string

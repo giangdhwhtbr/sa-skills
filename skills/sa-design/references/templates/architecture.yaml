@@ -1,0 +1,16 @@
+# Step 10 - logical components mapped to the cloud profile; high-level and physical views.
+cloud: aws
+mapping:
+  - {logical_id: api-gateway, cloud_service: Example managed gateway, notes: ""}
+high_level:
+  groups: [Clients, Edge, Microservices, Data, Managed services, External systems]
+physical:
+  regions: 1
+  availability_zones: 2
+  groups: [Clients, Edge, Microservices, Data, Managed services, External systems]
+  tiers:
+    - {id: public, name: public, internet_route: true, cidr: 10.0.0.0/24}
+    - {id: app, name: app, internet_route: false, cidr: 10.0.10.0/24}
+    - {id: data, name: data, internet_route: false, cidr: 10.0.20.0/24}
+  security_rules:
+    - Each tier accepts traffic only from the tier before it

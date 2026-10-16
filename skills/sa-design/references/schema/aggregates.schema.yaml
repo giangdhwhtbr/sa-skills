@@ -1,0 +1,65 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: aggregates.yaml
+type: object
+additionalProperties: false
+required:
+- aggregates
+- references
+- no_aggregate
+properties:
+  aggregates:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - root
+      - subdomain_id
+      - entities
+      - value_objects
+      - events
+      properties:
+        id: &id001
+          type: string
+          pattern: ^[a-z0-9]+(-[a-z0-9]+)*$
+        root: &id002
+          type: string
+          minLength: 1
+        subdomain_id: *id001
+        entities:
+          type: array
+          items: *id002
+        value_objects:
+          type: array
+          items: *id002
+        events:
+          type: array
+          items: *id002
+  references:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - from
+      - to
+      - via
+      - multiplicity
+      properties:
+        from: *id001
+        to: *id001
+        via:
+          type: string
+        multiplicity: *id002
+  no_aggregate:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - subdomain_id
+      - reason
+      properties:
+        subdomain_id: *id001
+        reason: *id002

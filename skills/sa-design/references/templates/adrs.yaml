@@ -1,0 +1,10 @@
+# Step 12 - architecture decisions, each with alternatives and the trade-off accepted.
+adrs:
+  - id: adr-example
+    title: Example decision
+    decision: What we decided
+    alternatives: [What we did not choose]
+    tradeoff: What we give up
+    rationale: Why we accept it
+    status: proposed
+    pain_points: [pp-example]

@@ -1,0 +1,75 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: brief.yaml
+type: object
+additionalProperties: false
+required:
+- system
+- goals
+- pain_points
+- actors
+- nfrs
+- constraints
+- assumptions
+properties:
+  system:
+    type: object
+    additionalProperties: false
+    required:
+    - name
+    - summary
+    properties:
+      name: &id001
+        type: string
+        minLength: 1
+      summary: *id001
+  goals:
+    type: array
+    items: *id001
+  pain_points:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - text
+      properties:
+        id: &id002
+          type: string
+          pattern: ^[a-z0-9]+(-[a-z0-9]+)*$
+        text: *id001
+  actors:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - kind
+      properties:
+        id: *id002
+        name: *id001
+        kind:
+          enum:
+          - person
+          - system
+  nfrs:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - category
+      - target
+      properties:
+        id: *id002
+        category: *id001
+        target: *id001
+  constraints:
+    type: array
+    items: *id001
+  assumptions:
+    type: array
+    items: *id001

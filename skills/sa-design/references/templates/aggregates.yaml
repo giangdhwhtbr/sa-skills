@@ -1,0 +1,5 @@
+# Step 05 - aggregate roots and the ID references between them.
+aggregates:
+  - {id: order, root: Order, subdomain_id: ordering, entities: [], value_objects: [], events: []}
+references: []
+no_aggregate: []

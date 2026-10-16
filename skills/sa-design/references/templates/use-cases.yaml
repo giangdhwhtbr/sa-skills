@@ -1,0 +1,3 @@
+# Step 06 - use cases per actor.
+use_cases:
+  - {id: uc-place-order, name: Place an order, actor_ids: [customer], function_ids: [place-order], includes: [], extends: []}

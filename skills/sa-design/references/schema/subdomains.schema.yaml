@@ -1,0 +1,45 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: subdomains.yaml
+type: object
+additionalProperties: false
+required:
+- subdomains
+properties:
+  subdomains:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - type
+      - description
+      - service
+      - function_ids
+      properties:
+        id: &id001
+          type: string
+          pattern: ^[a-z0-9]+(-[a-z0-9]+)*$
+        name: &id002
+          type: string
+          minLength: 1
+        type:
+          enum:
+          - core
+          - supporting
+          - generic
+        description:
+          type: string
+        service:
+          type: object
+          additionalProperties: false
+          required:
+          - id
+          - name
+          properties:
+            id: *id001
+            name: *id002
+        function_ids:
+          type: array
+          items: *id001

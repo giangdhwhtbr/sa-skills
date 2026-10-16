@@ -1,0 +1,51 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: context-map.yaml
+type: object
+additionalProperties: false
+required:
+- relationships
+properties:
+  relationships:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - upstream
+      - downstream
+      - pattern
+      properties:
+        upstream: &id001
+          type: string
+          pattern: ^[a-z0-9]+(-[a-z0-9]+)*$
+        downstream: *id001
+        pattern:
+          enum:
+          - customer-supplier
+          - open-host-service
+          - published-language
+          - conformist
+          - anti-corruption-layer
+          - partnership
+          - shared-kernel
+          - domain-events
+        label:
+          type: string
+  externals:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - direction
+      properties:
+        id: *id001
+        name:
+          type: string
+          minLength: 1
+        direction:
+          enum:
+          - inbound
+          - outbound

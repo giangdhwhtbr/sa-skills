@@ -1,0 +1,38 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: use-cases.yaml
+type: object
+additionalProperties: false
+required:
+- use_cases
+properties:
+  use_cases:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - actor_ids
+      - function_ids
+      - includes
+      - extends
+      properties:
+        id: &id001
+          type: string
+          pattern: ^[a-z0-9]+(-[a-z0-9]+)*$
+        name:
+          type: string
+          minLength: 1
+        actor_ids:
+          type: array
+          items: *id001
+        function_ids:
+          type: array
+          items: *id001
+        includes:
+          type: array
+          items: *id001
+        extends:
+          type: array
+          items: *id001

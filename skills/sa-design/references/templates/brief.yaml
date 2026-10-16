@@ -1,0 +1,17 @@
+# Step 01 - brief. Replace the example values.
+system:
+  name: Example system
+  summary: One sentence on what the system does and for whom.
+goals:
+  - Example goal the new design must achieve
+pain_points:
+  - {id: pp-example, text: Example problem of the current system}
+actors:
+  - {id: customer, name: Customer, kind: person}
+  - {id: payment-provider, name: Payment provider, kind: system}
+nfrs:
+  - {id: nfr-availability, category: availability, target: "99.9% monthly"}
+constraints:
+  - Example hard constraint (regulation, platform, identity provider)
+assumptions:
+  - Example assumption that needs confirming

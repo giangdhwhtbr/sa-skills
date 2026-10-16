@@ -1,0 +1,68 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: saga.yaml
+type: object
+additionalProperties: false
+required:
+- flow
+- participants
+- scenarios
+properties:
+  flow:
+    type: object
+    additionalProperties: false
+    required:
+    - id
+    - name
+    - orchestrator
+    properties:
+      id: &id001
+        type: string
+        pattern: ^[a-z0-9]+(-[a-z0-9]+)*$
+      name: &id002
+        type: string
+        minLength: 1
+      orchestrator: *id001
+  participants:
+    type: array
+    items: *id001
+  scenarios:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - kind
+      - steps
+      properties:
+        id: *id001
+        name: *id002
+        kind:
+          enum:
+          - happy
+          - failure
+        steps:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required:
+            - n
+            - from
+            - to
+            - message
+            - kind
+            properties:
+              n:
+                type: integer
+                minimum: 1
+              from: *id001
+              to: *id001
+              message: *id002
+              kind:
+                enum:
+                - sync
+                - async
+                - compensate
+                - self

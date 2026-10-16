@@ -1,0 +1,9 @@
+# Step 08 - the core multi-service flow as a saga: one happy scenario and failure scenarios with compensation.
+flow: {id: place-order-saga, name: Place order, orchestrator: ordering-service}
+participants: [ordering-service]
+scenarios:
+  - id: happy-path
+    name: Happy path
+    kind: happy
+    steps:
+      - {n: 1, from: ordering-service, to: ordering-service, message: Save order as pending, kind: self}

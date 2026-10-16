@@ -1,0 +1,14 @@
+# Step 09 - core patterns: security, observability, resilience.
+patterns:
+  - id: security
+    summary: How identity and authorization work end to end
+    steps:
+      - {n: 1, from: web-app, to: api-gateway, text: Call with token}
+  - id: observability
+    summary: How traces, metrics and logs flow
+    steps:
+      - {n: 1, from: ordering-service, to: ordering-service, text: Emit trace and metrics}
+  - id: resilience
+    summary: How failures are contained
+    steps:
+      - {n: 1, from: ordering-service, to: ordering-service, text: Timeout and retry on outbound calls}

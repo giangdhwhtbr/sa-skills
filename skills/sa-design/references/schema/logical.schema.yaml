@@ -1,0 +1,67 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: logical.yaml
+type: object
+additionalProperties: false
+required:
+- layers
+- flows
+properties:
+  layers:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - components
+      properties:
+        id: &id001
+          type: string
+          pattern: ^[a-z0-9]+(-[a-z0-9]+)*$
+        name: &id002
+          type: string
+          minLength: 1
+        components:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required:
+            - id
+            - name
+            - kind
+            properties:
+              id: *id001
+              name: *id002
+              kind:
+                enum:
+                - client
+                - gateway
+                - identity-provider
+                - service
+                - broker
+                - datastore
+                - external
+              service_id: *id001
+  flows:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - from
+      - to
+      - kind
+      properties:
+        from: *id001
+        to: *id001
+        kind:
+          enum:
+          - sync
+          - async
+          - data
+          - auth
+          - external
+        label:
+          type: string

@@ -1,0 +1,7 @@
+# Step 02 - business functions grouped by the actor who uses them.
+groups:
+  - id: customer-functions
+    name: Customer functions
+    actor_ids: [customer]
+    functions:
+      - {id: place-order, name: Place an order, description: Choose items and confirm the order}
