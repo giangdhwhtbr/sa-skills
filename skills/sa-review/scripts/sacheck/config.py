@@ -6,8 +6,6 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-import yaml
-
 from . import catalog
 from .model import Finding
 
@@ -57,7 +55,7 @@ def _apply(options: dict[str, dict[str, Any]], steps: dict[str, catalog.StepSpec
 
 def effective(design_dir: Path, refs: Path) -> EffectiveConfig:
     """Compute the effective configuration of a design folder; problems are returned, not raised."""
-    raw = yaml.safe_load((design_dir / CONFIG_FILE).read_text()) or {}
+    raw = catalog.parse_yaml((design_dir / CONFIG_FILE).read_text()) or {}
     steps = {s.key: s for s in catalog.load_steps(refs)}
     rules = catalog.load_rules(refs)
     presets = catalog.load_presets(refs)

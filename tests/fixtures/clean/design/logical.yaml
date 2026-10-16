@@ -1,0 +1,40 @@
+layers:
+  - id: clients
+    name: Client layer
+    components:
+      - {id: mobile-app, name: Mobile app, kind: client}
+      - {id: web-app, name: Web app, kind: client}
+      - {id: operator-portal, name: Operator portal, kind: client}
+  - id: edge
+    name: Edge
+    components:
+      - {id: api-gateway, name: API gateway with web and mobile routes, kind: gateway}
+      - {id: identity-provider, name: Identity provider, kind: identity-provider}
+  - id: services
+    name: Microservice layer
+    components:
+      - {id: delivery-service, name: Delivery service, kind: service, service_id: delivery-service}
+      - {id: locker-service, name: Locker service, kind: service, service_id: locker-service}
+      - {id: notification-service, name: Notification service, kind: service, service_id: notification-service}
+      - {id: payment-service, name: Payment service, kind: service, service_id: payment-service}
+      - {id: identity-service, name: Identity service, kind: service, service_id: identity-service}
+  - id: messaging-data
+    name: Messaging and data
+    components:
+      - {id: message-broker, name: Message broker, kind: broker}
+      - {id: service-databases, name: Database per service, kind: datastore}
+      - {id: cache, name: Cache, kind: datastore}
+  - id: external
+    name: External systems
+    components:
+      - {id: payment-provider, name: Payment provider, kind: external}
+      - {id: sms-provider, name: SMS provider, kind: external}
+flows:
+  - {from: mobile-app, to: identity-provider, kind: auth, label: "1. sign in, get token"}
+  - {from: mobile-app, to: api-gateway, kind: sync, label: "2. request with token"}
+  - {from: api-gateway, to: identity-provider, kind: auth, label: "3. validate token"}
+  - {from: api-gateway, to: delivery-service, kind: sync, label: "4. route"}
+  - {from: delivery-service, to: message-broker, kind: async, label: "5. commands and events"}
+  - {from: delivery-service, to: service-databases, kind: data, label: "6. own data"}
+  - {from: payment-service, to: payment-provider, kind: external, label: "7. charge"}
+  - {from: notification-service, to: sms-provider, kind: external, label: "7. send SMS"}

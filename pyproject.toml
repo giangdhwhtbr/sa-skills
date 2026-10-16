@@ -17,3 +17,7 @@ line-length = 120
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "BLE"]
+
+[tool.ruff.lint.per-file-ignores]
+# Test tables of mutations read best one per line.
+"tests/*" = ["E501"]

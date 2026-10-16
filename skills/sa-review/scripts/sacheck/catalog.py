@@ -9,6 +9,8 @@ from typing import Any
 
 import yaml
 
+_LOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)  # libyaml when installed: much faster
+
 STEP_KEYS: tuple[str, ...] = (
     "brief", "functions", "subdomains", "context-map", "aggregates", "use-cases",
     "logical-view", "saga", "patterns", "architecture", "stack", "adrs",
@@ -17,6 +19,11 @@ SEVERITIES = ("error", "warn", "off")
 CHECK_KINDS = ("script", "judgement")
 _RULE_ID = re.compile(r"[A-Z]{2,3}-\d{2}")
 _FRONT_MATTER = re.compile(r"\A---\n(.*?)\n---\n", re.DOTALL)
+
+
+def parse_yaml(text: str) -> Any:
+    """Parse YAML text with the fastest safe loader available."""
+    return yaml.load(text, Loader=_LOADER)  # noqa: S506 - safe loader only
 
 
 @dataclass(frozen=True)
@@ -69,7 +76,7 @@ def read_front_matter(path: Path) -> dict[str, Any]:
     match = _FRONT_MATTER.match(path.read_text())
     if not match:
         raise ValueError(f"{path.name}: missing front matter")
-    data = yaml.safe_load(match.group(1))
+    data = parse_yaml(match.group(1))
     if not isinstance(data, dict):
         raise ValueError(f"{path.name}: front matter is not a mapping")
     return data
@@ -100,7 +107,7 @@ def load_steps(refs: Path) -> list[StepSpec]:
 
 def load_rules(refs: Path) -> dict[str, RuleSpec]:
     """Load and validate rules.yaml; raise ValueError naming the first bad rule."""
-    raw = yaml.safe_load((refs / "rules.yaml").read_text())
+    raw = parse_yaml((refs / "rules.yaml").read_text())
     rules: dict[str, RuleSpec] = {}
     for entry in raw.get("rules", []):
         rule_id = str(entry.get("id", ""))
@@ -132,13 +139,13 @@ def load_rules(refs: Path) -> dict[str, RuleSpec]:
 
 def load_presets(refs: Path) -> dict[str, dict[str, dict[str, Any]]]:
     """Load presets.yaml: preset name -> step key -> option -> value."""
-    data = yaml.safe_load((refs / "presets.yaml").read_text())
+    data = parse_yaml((refs / "presets.yaml").read_text())
     return {str(name): {str(k): dict(v) for k, v in steps.items()} for name, steps in data.items()}
 
 
 def load_vendor_terms(refs: Path) -> list[str]:
     """Load the vendor and product names used by vendor-neutrality checks."""
-    return [str(t).lower() for t in yaml.safe_load((refs / "vendor-terms.yaml").read_text())["terms"]]
+    return [str(t).lower() for t in parse_yaml((refs / "vendor-terms.yaml").read_text())["terms"]]
 
 
 def cloud_profiles(refs: Path) -> list[str]:

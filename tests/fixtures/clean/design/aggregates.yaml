@@ -1,0 +1,12 @@
+aggregates:
+  - {id: delivery, root: Delivery, subdomain_id: deliveries, entities: [], value_objects: [], events: []}
+  - {id: locker, root: Locker, subdomain_id: lockers, entities: [], value_objects: [], events: []}
+  - {id: notification-request, root: NotificationRequest, subdomain_id: notifications, entities: [], value_objects: [], events: []}
+  - {id: payment, root: Payment, subdomain_id: payments, entities: [], value_objects: [], events: []}
+  - {id: user-account, root: UserAccount, subdomain_id: identity, entities: [], value_objects: [], events: []}
+references:
+  - {from: delivery, to: locker, via: lockerId, multiplicity: "* : 1"}
+  - {from: delivery, to: user-account, via: customerId, multiplicity: "* : 0..1"}
+  - {from: payment, to: delivery, via: deliveryId, multiplicity: "* : 1"}
+  - {from: notification-request, to: delivery, via: deliveryId, multiplicity: "* : 0..1"}
+no_aggregate: []

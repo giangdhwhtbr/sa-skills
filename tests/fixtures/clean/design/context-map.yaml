@@ -1,0 +1,5 @@
+relationships:
+  - {upstream: lockers, downstream: deliveries, pattern: customer-supplier, label: compartment reservations}
+  - {upstream: payments, downstream: deliveries, pattern: customer-supplier, label: payment collection}
+  - {upstream: identity, downstream: deliveries, pattern: open-host-service, label: customer identity}
+  - {upstream: deliveries, downstream: notifications, pattern: domain-events, label: delivery events}

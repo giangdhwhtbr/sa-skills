@@ -9,6 +9,7 @@ from typing import Any
 import yaml
 from jsonschema import Draft202012Validator
 
+from . import catalog
 from .catalog import StepSpec
 from .model import Finding
 
@@ -21,12 +22,24 @@ def json_path(parts: Iterable[Any]) -> str:
     return out or "(root)"
 
 
+parse = catalog.parse_yaml
+
+
 def load_yaml(path: Path) -> tuple[Any, Finding | None]:
     """Parse a YAML file; return the data or a SCHEMA finding describing the parse error."""
     try:
-        return yaml.safe_load(path.read_text()), None
+        return parse(path.read_text()), None
     except yaml.YAMLError as error:
         return None, Finding("SCHEMA", "error", path.name, "(file)", f"not valid YAML: {error}")
+
+
+def validate_data(data: Any, file_name: str, schema_file: Path) -> list[Finding]:
+    """Validate already-parsed data; every schema violation becomes a SCHEMA finding."""
+    validator = Draft202012Validator(parse(schema_file.read_text()))
+    return [
+        Finding("SCHEMA", "error", file_name, json_path(error.absolute_path), error.message)
+        for error in sorted(validator.iter_errors(data), key=lambda e: list(e.absolute_path))
+    ]
 
 
 def validate(data_file: Path, schema_file: Path) -> list[Finding]:
@@ -34,12 +47,7 @@ def validate(data_file: Path, schema_file: Path) -> list[Finding]:
     data, problem = load_yaml(data_file)
     if problem is not None:
         return [problem]
-    schema = yaml.safe_load(schema_file.read_text())
-    validator = Draft202012Validator(schema)
-    findings = []
-    for error in sorted(validator.iter_errors(data), key=lambda e: list(e.absolute_path)):
-        findings.append(Finding("SCHEMA", "error", data_file.name, json_path(error.absolute_path), error.message))
-    return findings
+    return validate_data(data, data_file.name, schema_file)
 
 
 def schema_for(step: StepSpec, refs: Path) -> Path:

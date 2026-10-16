@@ -1,0 +1,31 @@
+subdomains:
+  - id: deliveries
+    name: Deliveries
+    type: core
+    description: Runs a parcel from send to collect and orchestrates the send flow (pp-slow-change)
+    service: {id: delivery-service, name: Delivery service}
+    function_ids: [send-parcel, track-parcel, collect-parcel, drop-off-parcel]
+  - id: lockers
+    name: Lockers
+    type: core
+    description: Compartment availability and automatic allocation (pp-manual-allocation)
+    service: {id: locker-service, name: Locker service}
+    function_ids: [manage-lockers]
+  - id: notifications
+    name: Notifications
+    type: supporting
+    description: Sends codes and status messages
+    service: {id: notification-service, name: Notification service}
+    function_ids: [receive-notifications]
+  - id: payments
+    name: Payments
+    type: generic
+    description: Collects and refunds shipping payments
+    service: {id: payment-service, name: Payment service}
+    function_ids: [pay-for-shipping]
+  - id: identity
+    name: Identity
+    type: generic
+    description: Customer accounts and guest access
+    service: {id: identity-service, name: Identity service}
+    function_ids: [sign-in]

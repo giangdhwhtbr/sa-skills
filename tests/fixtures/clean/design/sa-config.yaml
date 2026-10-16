@@ -1,0 +1,8 @@
+# Design configuration. profile: high-level | detailed | custom
+profile: high-level
+# Cloud profile used from step 10 (architecture) and step 11 (stack): see references/profiles/<cloud>.md
+cloud: aws
+# Per-step options, e.g. {context-map: {detail: with-patterns}}. Allowed values are listed in each step guide.
+steps: {}
+# Rule severity overrides, e.g. {LV-01: warn}. Values: error | warn | off
+rules: {}

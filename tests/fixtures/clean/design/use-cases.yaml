@@ -1,0 +1,53 @@
+use_cases:
+- id: uc-sign-in
+  name: Sign in
+  actor_ids:
+  - customer
+  function_ids:
+  - sign-in
+  includes: []
+  extends: []
+- id: uc-send-parcel
+  name: Send a parcel
+  actor_ids:
+  - customer
+  - payment-provider
+  function_ids:
+  - send-parcel
+  - pay-for-shipping
+  includes:
+  - uc-sign-in
+  extends: []
+- id: uc-track-parcel
+  name: Track a parcel
+  actor_ids:
+  - customer
+  function_ids:
+  - track-parcel
+  includes: []
+  extends: []
+- id: uc-collect-parcel
+  name: Collect a parcel
+  actor_ids:
+  - customer
+  function_ids:
+  - collect-parcel
+  - receive-notifications
+  includes: []
+  extends: []
+- id: uc-drop-off
+  name: Drop off a parcel
+  actor_ids:
+  - courier
+  function_ids:
+  - drop-off-parcel
+  includes: []
+  extends: []
+- id: uc-manage-lockers
+  name: Manage lockers
+  actor_ids:
+  - operator
+  function_ids:
+  - manage-lockers
+  includes: []
+  extends: []

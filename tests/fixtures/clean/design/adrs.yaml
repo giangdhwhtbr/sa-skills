@@ -1,0 +1,25 @@
+adrs:
+  - id: adr-service-per-subdomain
+    title: One service per subdomain
+    decision: Each of the 5 subdomains is one deployable service
+    alternatives: [One modular deployable, A service per aggregate]
+    tradeoff: More services to run and monitor
+    rationale: A change touches one service, so releases no longer need a full regression
+    status: accepted
+    pain_points: [pp-slow-change]
+  - id: adr-orchestrated-saga
+    title: Orchestrated saga in the delivery service
+    decision: The delivery service orchestrates send-parcel as a saga with automatic compartment reservation
+    alternatives: [Choreography with events only]
+    tradeoff: The delivery service becomes a central component
+    rationale: One place shows and recovers every delivery; allocation is automatic
+    status: accepted
+    pain_points: [pp-manual-allocation]
+  - id: adr-two-zones
+    title: Two availability zones with isolated services
+    decision: Every service runs in two zones and failures are contained per service
+    alternatives: [Single zone]
+    tradeoff: Higher run cost
+    rationale: One failure no longer stops sending, collecting and payments together
+    status: accepted
+    pain_points: [pp-outages]

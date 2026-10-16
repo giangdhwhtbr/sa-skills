@@ -1,0 +1,42 @@
+system:
+  name: Parcel locker network
+  summary: Customers send and collect parcels through self-service lockers; couriers drop parcels off; operators run the locker
+    fleet.
+goals:
+- Allocate locker compartments automatically
+- Keep sending and collecting available during peaks and partial outages
+- Release changes to one area without retesting everything
+pain_points:
+- id: pp-manual-allocation
+  text: Compartments are allocated by hand and double bookings happen at peaks
+- id: pp-outages
+  text: One failure stops sending, collecting and payments at the same time
+- id: pp-slow-change
+  text: Every change needs a full regression of the whole system
+actors:
+- id: customer
+  name: Customer
+  kind: person
+- id: courier
+  name: Courier
+  kind: person
+- id: operator
+  name: Locker operator
+  kind: person
+- id: payment-provider
+  name: Payment provider
+  kind: system
+- id: sms-provider
+  name: SMS provider
+  kind: system
+nfrs:
+- id: nfr-availability
+  category: availability
+  target: 99.9% monthly
+- id: nfr-latency
+  category: latency
+  target: 95% of requests under 500 ms
+constraints:
+- Customers pay online before drop-off
+assumptions:
+- Peak load is ten times the daily average

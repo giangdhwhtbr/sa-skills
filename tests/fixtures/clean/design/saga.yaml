@@ -1,0 +1,88 @@
+flow:
+  id: send-parcel-saga
+  name: Send a parcel
+  orchestrator: delivery-service
+participants:
+- delivery-service
+- locker-service
+- payment-service
+- notification-service
+- payment-provider
+scenarios:
+- id: happy-path
+  name: Happy path
+  kind: happy
+  steps:
+  - n: 1
+    from: delivery-service
+    to: delivery-service
+    message: Save delivery as pending
+    kind: self
+  - n: 2
+    from: delivery-service
+    to: locker-service
+    message: Reserve compartment
+    kind: async
+  - n: 3
+    from: locker-service
+    to: delivery-service
+    message: Compartment reserved
+    kind: async
+  - n: 4
+    from: delivery-service
+    to: payment-service
+    message: Collect payment
+    kind: async
+  - n: 5
+    from: payment-service
+    to: payment-provider
+    message: Charge
+    kind: sync
+  - n: 6
+    from: payment-service
+    to: delivery-service
+    message: Payment captured
+    kind: async
+  - n: 7
+    from: delivery-service
+    to: notification-service
+    message: Delivery confirmed
+    kind: async
+- id: locker-full
+  name: No compartment free
+  kind: failure
+  steps:
+  - n: 1
+    from: delivery-service
+    to: locker-service
+    message: Reserve compartment
+    kind: async
+  - n: 2
+    from: locker-service
+    to: delivery-service
+    message: No compartment free
+    kind: async
+  - n: 3
+    from: delivery-service
+    to: delivery-service
+    message: Cancel delivery
+    kind: compensate
+- id: payment-timeout
+  name: Payment times out
+  kind: failure
+  steps:
+  - n: 1
+    from: payment-service
+    to: payment-provider
+    message: Charge
+    kind: sync
+  - n: 2
+    from: payment-service
+    to: payment-provider
+    message: Reconcile with the same key
+    kind: sync
+  - n: 3
+    from: delivery-service
+    to: locker-service
+    message: Release compartment
+    kind: compensate

@@ -1,0 +1,40 @@
+groups:
+- id: customer-functions
+  name: Customer functions
+  actor_ids:
+  - customer
+  functions:
+  - id: sign-in
+    name: Sign in
+    description: Sign in or continue as guest
+  - id: send-parcel
+    name: Send a parcel
+    description: Choose a locker and get a drop-off code
+  - id: pay-for-shipping
+    name: Pay for shipping
+    description: Pay online before drop-off
+  - id: track-parcel
+    name: Track a parcel
+    description: See where the parcel is
+  - id: collect-parcel
+    name: Collect a parcel
+    description: Open the compartment with a pickup code
+  - id: receive-notifications
+    name: Receive notifications
+    description: Get codes and status by SMS
+- id: courier-functions
+  name: Courier functions
+  actor_ids:
+  - courier
+  functions:
+  - id: drop-off-parcel
+    name: Drop off a parcel
+    description: Place a parcel into a reserved compartment
+- id: operator-functions
+  name: Operator functions
+  actor_ids:
+  - operator
+  functions:
+  - id: manage-lockers
+    name: Manage lockers
+    description: Add lockers and take compartments out of service

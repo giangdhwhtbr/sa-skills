@@ -1,0 +1,13 @@
+layers:
+- id: clients
+  name: Clients
+  choice: One cross-platform UI framework
+  reason: One team owns web, mobile and portal
+- id: services
+  name: Services
+  choice: A JVM framework with transaction support
+  reason: The saga and outbox need local transactions
+- id: messaging
+  name: Messaging
+  choice: Managed FIFO topics and queues
+  reason: Ordered per delivery; no brokers to run

@@ -1,0 +1,30 @@
+patterns:
+- id: security
+  summary: Sign in with the identity provider; the gateway validates the token; each service checks roles again
+  steps:
+  - n: 1
+    from: mobile-app
+    to: identity-provider
+    text: Sign in and get a token
+  - n: 2
+    from: mobile-app
+    to: api-gateway
+    text: Call with the token
+  - n: 3
+    from: api-gateway
+    to: delivery-service
+    text: Route; the service checks roles and resources
+- id: observability
+  summary: Traces, metrics and logs from every service; alarms to the on-call team
+  steps:
+  - n: 1
+    from: delivery-service
+    to: delivery-service
+    text: Emit traces, metrics and logs
+- id: resilience
+  summary: Timeouts, retries, circuit breaker and bulkhead on outbound calls
+  steps:
+  - n: 1
+    from: payment-service
+    to: payment-provider
+    text: Timeout, retry with jitter, circuit breaker
