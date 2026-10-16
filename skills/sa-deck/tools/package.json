@@ -1,0 +1,8 @@
+{
+  "name": "sa-deck-tools",
+  "private": true,
+  "description": "PowerPoint renderer for sa-deck (pptxgenjs)",
+  "dependencies": {
+    "pptxgenjs": "3.12.0"
+  }
+}
