@@ -120,3 +120,104 @@ def test_band_pages_readable() -> None:
         for key in ("functions", "subdomains", "logical-view", "patterns"):
             if f"{key}.yaml" in ctx.data or builders.BUILDERS[key][1][-1] in ctx.data:
                 readable(build(key, ctx))
+
+
+# ---------- Track 5: graph builders (elkjs) ----------
+
+TOOLS = ROOT / "skills" / "sa-diagrams" / "tools"
+needs_elk = pytest.mark.skipif(__import__("sadiagram.elk").elk.available(TOOLS) is not None,
+                               reason="Node or elkjs not installed")
+
+
+# REQ-DIAGRAMS-005
+@needs_elk
+def test_context_map_ud() -> None:
+    ctx = context(CLINIC)
+    pages = build("context-map", ctx)
+    rels = ctx.data["context-map.yaml"]["relationships"]
+    edges = pages[0].edges
+    assert len(edges) == len(rels) == 8
+    for edge, rel in zip(edges, rels, strict=True):
+        assert (edge.source, edge.target) == (rel["upstream"], rel["downstream"])
+        assert (edge.source_label, edge.target_label) == ("U", "D")
+        assert edge.kind == ("async" if rel["pattern"] == "domain-events" else "sync")
+        assert edge.label == rel["label"]
+    assert node_ids(pages) == {s["id"] for s in ctx.data["subdomains.yaml"]["subdomains"]}
+    readable(pages)
+
+
+# REQ-DIAGRAMS-006
+@needs_elk
+def test_context_map_externals_only_when_configured() -> None:
+    assert not [n for p in build("context-map", context(FOOD)) for n in p.nodes if n.kind == "external"]
+    ctx = context(FOOD_DETAILED)
+    pages = build("context-map", ctx)
+    externals = [n for n in pages[0].nodes if n.kind == "external"]
+    assert len(externals) == 2
+    assert all(n.parent == "externals" for n in externals)
+    acl = [e for e in pages[0].edges if e.kind == "external"]
+    assert len(acl) == 2 and all(e.label == "ACL" for e in acl)
+    payment = next(e for e in acl if e.target == "payment-provider")
+    assert payment.source == "payments"
+    assert {e.label for e in pages[0].edges if e.kind != "external"} <= {
+        r["pattern"].replace("-", " ") for r in ctx.data["context-map.yaml"]["relationships"]}
+    readable(pages)
+
+
+# REQ-DIAGRAMS-006
+@needs_elk
+def test_aggregates_detail() -> None:
+    ctx = context(FOOD)
+    pages = build("aggregates", ctx)
+    aggs = ctx.data["aggregates.yaml"]["aggregates"]
+    assert {n.id for n in pages[0].nodes} == {a["id"] for a in aggs}
+    assert all(n.kind == "aggregate-root" for n in pages[0].nodes)
+    refs = ctx.data["aggregates.yaml"]["references"]
+    assert [(e.source, e.target, e.kind) for e in pages[0].edges] == [(r["from"], r["to"], "reference") for r in refs]
+    assert all(r["via"] in e.label and r["multiplicity"] in e.label for e, r in zip(pages[0].edges, refs, strict=True))
+    readable(pages)
+
+    detailed = context(FOOD_DETAILED)
+    page = build("aggregates", detailed)[0]
+    for agg in detailed.data["aggregates.yaml"]["aggregates"]:
+        inside = {n.label for n in page.nodes if n.parent == agg["id"]}
+        assert {agg["root"], *agg["entities"], *agg["value_objects"], *agg["events"]} == inside
+    readable([page])
+
+
+# REQ-DIAGRAMS-005
+@needs_elk
+def test_aggregates_no_aggregate_note() -> None:
+    pages = build("aggregates", context(CLINIC))
+    assert any("Reporting" in note or "reporting" in note for note in pages[0].notes)
+
+
+# REQ-DIAGRAMS-005, REQ-DIAGRAMS-009
+@needs_elk
+def test_use_cases_pages() -> None:
+    ctx = context(CLINIC)
+    pages = build("use-cases", ctx)
+    assert len(pages) == len(ctx.data["functions.yaml"]["groups"]) == 3
+    shown = {n.id for p in pages for n in p.nodes if n.shape == "ellipse"}
+    assert shown == {u["id"] for u in ctx.data["use-cases.yaml"]["use_cases"]}
+    for page in pages:
+        ids = {n.id for n in page.nodes}
+        assert all(e.source in ids and e.target in ids for e in page.edges)
+        assert any(n.shape == "actor" for n in page.nodes)
+    kinds = {e.kind for p in pages for e in p.edges}
+    assert {"use", "include"} <= kinds
+    readable(pages)
+
+
+# REQ-DIAGRAMS-009
+@needs_elk
+def test_use_cases_split_large_group() -> None:
+    ctx = context(CLINIC)
+    data = copy.deepcopy(ctx.data)
+    data["use-cases.yaml"]["use_cases"] = [
+        {"id": f"uc-{i}", "name": f"Use case {i}", "actor_ids": ["patient"], "function_ids": [],
+         "includes": [], "extends": []} for i in range(50)]
+    pages = build("use-cases", BuildContext(data, ctx.options, ctx.vendor_terms))
+    assert len(pages) >= 2
+    assert {n.id for p in pages for n in p.nodes if n.shape == "ellipse"} == {f"uc-{i}" for i in range(50)}
+    readable(pages)

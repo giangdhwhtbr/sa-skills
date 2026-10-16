@@ -45,7 +45,7 @@ def _flowchart(page: Page) -> list[str]:
             lines.append(f'{indent}{safe_id(node.id)}{open_}"{_text(node.label)}"{close}')
             return
         group: Group = groups[item_id]
-        lines.append(f'{indent}subgraph {safe_id(group.id)}["{_text(group.label)}"]')
+        lines.append(f'{indent}subgraph g_{safe_id(group.id)}["{_text(group.label)}"]')
         for child in children.get(group.id, []):
             emit(child, indent + "  ")
         lines.append(f"{indent}end")

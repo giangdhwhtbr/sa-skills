@@ -54,7 +54,7 @@ def test_child_geometry_is_relative_to_group() -> None:
     xml = drawio.render(DiagramSet(2, "functions", [flow_page()], "h"))
     by_id = {c.get("id"): c for c in cells(xml)}
     child = next(c for i, c in by_id.items() if i.endswith("-c"))
-    assert child.get("parent").endswith("-g")
+    assert child.get("parent").endswith("-group-g")
     geo = child.find("mxGeometry")
     assert (float(geo.get("x")), float(geo.get("y"))) == (20.0, 20.0)
 
@@ -141,3 +141,16 @@ def test_geometry_checks() -> None:
     page.nodes.append(Node("e", "Eps", "core", x=900, y=900, parent="g"))
     assert ("a", "d") in geometry.overlaps(page)
     assert geometry.outside_parent(page) == ["e"]
+
+
+# REQ-DIAGRAMS-004
+def test_group_and_node_may_share_an_id() -> None:
+    page = Page("p", "Same IDs", [Node("x", "Root", "aggregate-root", x=20, y=60, parent="x")],
+                [Group("x", "X aggregate", "aggregate", x=0, y=0, w=200, h=140)], [])
+    xml = drawio.render(DiagramSet(5, "aggregates", [page], "h"))
+    ids = [c.get("id") for c in cells(xml)]
+    assert len(ids) == len(set(ids))
+    node = next(c for c in cells(xml) if c.get("value") == "Root")
+    assert node.get("parent").endswith("-group-x")
+    block = mermaid.render(DiagramSet(5, "aggregates", [page], "h"))
+    assert "subgraph g_n_x" in block and "n_x[" in block

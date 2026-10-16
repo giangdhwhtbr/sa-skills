@@ -54,6 +54,12 @@ def vendor_hit(text: str, terms: list[str]) -> str | None:
     return next((t for t in terms if re.search(rf"(?<![a-z0-9]){re.escape(t)}(?![a-z0-9])", lowered)), None)
 
 
+def text_width(text: str, minimum: float = 140, maximum: float = 240) -> float:
+    """Node width that fits a label on one or two lines."""
+    longest = max((len(line) for line in text.split("\n")), default=0)
+    return max(minimum, min(maximum, longest * 7 + 28))
+
+
 def wrap(page: Page, group: Group, children: list[Group], pad: float = 24, header: float = 40) -> None:
     """Put an outer group around already placed child groups, shifting nothing."""
     x0 = min(c.x for c in children)
@@ -76,6 +82,15 @@ def register(key: str, build: Builder) -> None:
     BUILDERS[key] = (number, inputs, build)
 
 
-from . import functions, logical, patterns, subdomains  # noqa: E402  (modules register themselves)
+from . import (  # noqa: E402  (modules register themselves)
+    aggregates,
+    context_map,
+    functions,
+    logical,
+    patterns,
+    subdomains,
+    use_cases,
+)
 
-__all__ = ["BUILDERS", "NEEDS_ELK", "BuildContext", "functions", "logical", "patterns", "subdomains"]
+__all__ = ["BUILDERS", "NEEDS_ELK", "BuildContext", "aggregates", "context_map", "functions", "logical",
+           "patterns", "subdomains", "use_cases"]

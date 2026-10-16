@@ -14,6 +14,7 @@ from .model import Page
 TIMEOUT = 60
 GROUP_PADDING = "[top=44,left=24,bottom=24,right=24]"
 CHAR_W = 7
+GROUP_PREFIX = "group::"  # group and node IDs may coincide (an aggregate and its root)
 LABEL_H = 16
 
 
@@ -62,7 +63,7 @@ def _graph(page: Page, direction: str) -> dict[str, Any]:
         for group in list(pending):
             parent = group.parent if group.parent in group_ids else None
             if parent in elements:
-                element = {"id": group.id, "children": [], "edges": [],
+                element = {"id": GROUP_PREFIX + group.id, "children": [], "edges": [],
                            "labels": [{"text": group.label, "width": len(group.label) * CHAR_W, "height": LABEL_H}],
                            "layoutOptions": {"elk.padding": GROUP_PADDING,
                                              "elk.nodeLabels.placement": "[H_LEFT, V_TOP, INSIDE]"}}
@@ -111,7 +112,8 @@ def layout(page: Page, direction: str = "RIGHT", tools_dir: Path | None = None) 
         for child in element.get("children", []):
             x, y = ox + child.get("x", 0), oy + child.get("y", 0)
             absolute[child["id"]] = (x, y)
-            target = nodes.get(child["id"]) or groups.get(child["id"])
+            cid = child["id"]
+            target = groups.get(cid[len(GROUP_PREFIX):]) if cid.startswith(GROUP_PREFIX) else nodes.get(cid)
             if target is not None:
                 target.x, target.y = x, y
                 target.w, target.h = child.get("width", target.w), child.get("height", target.h)

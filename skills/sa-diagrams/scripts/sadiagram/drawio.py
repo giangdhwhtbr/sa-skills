@@ -42,6 +42,9 @@ def _page_xml(page: Page, prefix: str) -> ET.Element:
     def cid(item_id: str) -> str:
         return f"{prefix}-{item_id}"
 
+    def gid(group_id: str) -> str:  # groups get their own namespace: an aggregate and its root share an ID
+        return f"{prefix}-group-{group_id}"
+
     def origin(parent: str | None) -> tuple[float, float]:
         group = groups.get(parent) if parent else None
         return (group.x, group.y) if group else (0.0, 0.0)
@@ -60,13 +63,13 @@ def _page_xml(page: Page, prefix: str) -> ET.Element:
 
     for group in _parents_first(page.groups):
         ox, oy = origin(group.parent)
-        cell = ET.SubElement(root, "mxCell", id=cid(group.id), value=_label(group.label),
+        cell = ET.SubElement(root, "mxCell", id=gid(group.id), value=_label(group.label),
                              style=style.group_style(group.kind), vertex="1",
-                             parent=cid(group.parent) if group.parent in groups else cid("1"))
+                             parent=gid(group.parent) if group.parent in groups else cid("1"))
         _geometry(cell, group.x - ox, group.y - oy, group.w, group.h)
 
     for node in nodes:
-        _node(root, node, cid, origin, groups)
+        _node(root, node, cid, gid, origin, groups)
 
     for edge in edges:
         _edge(root, edge, cid, node_by_id)
@@ -88,11 +91,11 @@ def _parents_first(groups: list[Group]) -> list[Group]:
     return sorted(groups, key=depth)
 
 
-def _node(root: ET.Element, node: Node, cid, origin, groups: dict[str, Group]) -> None:
+def _node(root: ET.Element, node: Node, cid, gid, origin, groups: dict[str, Group]) -> None:
     ox, oy = origin(node.parent)
     node_style = style.icon_style(node.kind, node.icon) if node.icon else style.node_style(node.kind, node.shape)
     cell = ET.SubElement(root, "mxCell", id=cid(node.id), value=_label(node.label), style=node_style, vertex="1",
-                         parent=cid(node.parent) if node.parent in groups else cid("1"))
+                         parent=gid(node.parent) if node.parent in groups else cid("1"))
     _geometry(cell, node.x - ox, node.y - oy, node.w, node.h)
 
 
