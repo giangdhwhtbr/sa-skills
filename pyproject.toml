@@ -1,6 +1,6 @@
 [project]
 name = "sa-design-kit"
-version = "0.2.0"
+version = "0.3.0"
 description = "Guided DDD + microservices solution design and review (Claude Code plugin)"
 requires-python = ">=3.10"
 dependencies = ["pyyaml", "jsonschema"]

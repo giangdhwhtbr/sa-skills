@@ -6,13 +6,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_manifest_names_three_skills() -> None:
-    """REQ-PLUGIN-001, REQ-DIAGRAMS-001: the plugin exposes the sa-design, sa-review and sa-diagrams skills."""
+def test_manifest_names_four_skills() -> None:
+    """REQ-PLUGIN-001, REQ-DIAGRAMS-001, REQ-DECK-001: the plugin exposes four skills."""
     manifest = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text())
     assert manifest["name"] == "sa-design-kit"
     assert manifest["version"]
     skills = sorted(p.parent.name for p in (ROOT / "skills").glob("*/SKILL.md"))
-    assert skills == ["sa-design", "sa-diagrams", "sa-review"]
+    assert skills == ["sa-deck", "sa-design", "sa-diagrams", "sa-review"]
 
 
 def test_marketplace_points_at_repository_root() -> None:
@@ -25,7 +25,7 @@ def test_marketplace_points_at_repository_root() -> None:
 
 def test_skill_front_matter_has_name_and_description() -> None:
     """REQ-PLUGIN-001: each skill declares its name and when to use it."""
-    for name in ("sa-design", "sa-review", "sa-diagrams"):
+    for name in ("sa-design", "sa-review", "sa-diagrams", "sa-deck"):
         text = (ROOT / "skills" / name / "SKILL.md").read_text()
         assert text.startswith("---\n")
         head = text.split("---\n")[1]
@@ -67,4 +67,15 @@ def test_sa_diagrams_sections() -> None:
     for name in ("diagrams.py", "--only", "--png", "--force", "npm install", "all-diagrams.drawio", "DG-01"):
         assert name in text, name
     for req in ("REQ-DIAGRAMS-001", "REQ-DIAGRAMS-002", "REQ-DIAGRAMS-010", "REQ-DIAGRAMS-011"):
+        assert f"<!-- {req} -->" in text, req
+
+
+def test_sa_deck_sections() -> None:
+    """REQ-DECK-001, REQ-DECK-002, REQ-DECK-009: the deck skill documents drafting and rendering."""
+    assert _sections("sa-deck") == ["## Before building", "## Draft the deck", "## Render", "## Never"]
+    text = (ROOT / "skills" / "sa-deck" / "SKILL.md").read_text()
+    for name in ("deck.py", "--outline", "--minutes", "--force", "deck.yaml", "references/outline.md",
+                 "npm install", "/sa-diagrams --png", "DK-01", "deck.html", "deck.pptx"):
+        assert name in text, name
+    for req in ("REQ-DECK-001", "REQ-DECK-002", "REQ-DECK-006", "REQ-DECK-009"):
         assert f"<!-- {req} -->" in text, req
