@@ -108,3 +108,13 @@ def test_aws_profile_covers_kinds() -> None:
     rows = {line.split("|")[1].strip() for line in text.splitlines() if line.startswith("| ") and "---" not in line}
     for kind in ("gateway", "identity-provider", "service", "broker", "datastore"):
         assert kind in rows, kind
+
+
+def test_inputs_come_from_earlier_steps() -> None:
+    """REQ-DESIGN-007: every input of a step is produced by an earlier step, so a missing prerequisite can be named."""
+    steps = catalog.load_steps(REFS)
+    producer = {s.data: s for s in steps}
+    for step in steps:
+        for name in step.inputs:
+            assert name in producer, (step.key, name)
+            assert producer[name].number < step.number, (step.key, name)
