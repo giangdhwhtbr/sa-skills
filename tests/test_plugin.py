@@ -31,3 +31,16 @@ def test_skill_front_matter_has_name_and_description() -> None:
         head = text.split("---\n")[1]
         assert f"name: {name}" in head
         assert "description:" in head
+
+
+def _sections(name: str) -> list[str]:
+    text = (ROOT / "skills" / name / "SKILL.md").read_text()
+    return [line for line in text.splitlines() if line.startswith("## ")]
+
+
+def test_sa_review_sections() -> None:
+    """REQ-REVIEW-001, REQ-REVIEW-003: the review skill runs checks, applies judgement rules and never edits files."""
+    assert _sections("sa-review") == ["## Run checks", "## Judgement rules", "## Write the report", "## Never"]
+    text = (ROOT / "skills" / "sa-review" / "SKILL.md").read_text()
+    for req in ("REQ-REVIEW-001", "REQ-REVIEW-003"):
+        assert f"<!-- {req} -->" in text
