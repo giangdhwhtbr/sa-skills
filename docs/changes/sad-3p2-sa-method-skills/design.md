@@ -21,8 +21,8 @@ skills/sa-review/SKILL.md                 # run check.py, then judgement rules, 
 skills/sa-review/scripts/check.py         # mechanical checks; exit 0/1
 tests/                                     # pytest
 tests/fixtures/<case>/design/              # fault fixtures + clean fixture
-examples/opentournext/design/              # golden replay
-examples/clinic-booking/design/            # generality trial (steps 01-05)
+examples/clinic-booking/                   # fictional brief + complete design set (all 12 steps)
+examples/food-delivery/                    # second fictional brief, steps 01-05 (generality trial)
 ```
 
 Step dependencies (which data files each step reads) are declared in the front matter of each step guide, so `/sa-design` and `check.py` share one source.
@@ -51,6 +51,7 @@ Data files are YAML with stable IDs (`kebab-case`). Markdown files carry the rat
 
 - pytest static tests: templates against schemas; `rules.yaml` well-formed; options referenced by rules are declared; presets only set declared options.
 - `check.py` unit tests on fault fixtures and one clean fixture: exact findings and exit codes.
-- Golden replay `examples/opentournext/` and trial `examples/clinic-booking/`: `check.py` exits 0.
+- Worked example `examples/clinic-booking/` and trial `examples/food-delivery/`: `check.py` exits 0.
+- Neutral-content test: `skills/` and `examples/` contain no term from a deny-list of project-specific names kept in `tests/`.
 - Test names or comments carry the REQ-ID they cover.
 - Verify commands to add to `.agent-workflow/config.yaml` at plan approval: `pytest`, `ruff check .`.

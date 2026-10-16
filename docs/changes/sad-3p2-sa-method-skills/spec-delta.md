@@ -199,21 +199,29 @@ The test suite SHALL include design-set fixtures with known faults (broken refer
 - WHEN `check.py` runs on it
 - THEN it reports no errors and exits 0
 
-### REQ-QUALITY-003: Golden replay
-The repository SHALL contain `examples/opentournext/`, the design set produced by running `/sa-design` on the OpenTourNext brief with the `high-level` preset, and `check.py` SHALL report no errors on it.
+### REQ-QUALITY-003: Complete worked example
+The repository SHALL contain `examples/clinic-booking/` with a fictional sample brief and the design set produced by running all 12 steps of `/sa-design` on it with the `high-level` preset, and `check.py` SHALL report no errors on it.
 
-#### Scenario: Replay matches decisions
-- GIVEN `examples/opentournext/`
-- WHEN its data files are read
-- THEN they contain 11 subdomains with one service each, a context map with U/D on every edge, aggregate roots with ID references, a saga with a happy path and two failure cases, and 8 ADRs each with a trade-off
+#### Scenario: Worked example is complete
+- GIVEN `examples/clinic-booking/`
+- WHEN `check.py` runs on its design folder
+- THEN all 12 steps are `done`, every context-map edge has U/D ends, every ADR states a trade-off, and there are no errors
 
 ### REQ-QUALITY-004: Generality trial
-The repository SHALL contain `examples/clinic-booking/` with steps 01-05 run on a second sample brief, and `check.py` SHALL report no errors on it.
+The repository SHALL contain `examples/food-delivery/` with a second fictional sample brief and steps 01-05 run on it, and `check.py` SHALL report no errors on it.
 
-#### Scenario: Second brief
-- GIVEN `examples/clinic-booking/`
+#### Scenario: Second domain
+- GIVEN `examples/food-delivery/`
 - WHEN `check.py` runs
 - THEN steps 01-05 are `done` and there are no errors
+
+### REQ-QUALITY-005: Project-independent content
+The plugin's skills, references, templates and examples SHALL NOT name any real client, course, organisation or past project; examples SHALL use fictional sample briefs.
+
+#### Scenario: Neutral content
+- GIVEN the plugin repository
+- WHEN a test scans `skills/` and `examples/` against a deny-list of project-specific terms kept in `tests/`
+- THEN no match is found
 
 ## MODIFIED
 
