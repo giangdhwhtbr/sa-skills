@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
 
 import yaml
 from sacheck.checks import _COUNT, NUMBER_WORDS
 
+from .assets import page_pages
 from .model import Block, Deck, Slide
 from .stamp import NUMBERS
 
@@ -26,15 +26,6 @@ class Finding:
 
 def _clock(seconds: int) -> str:
     return f"{seconds // 60}:{seconds % 60:02d}"
-
-
-def _page_count(design_dir: Path, step: str) -> int:
-    """Pages of diagrams/NN-step.drawio (0 when the file is missing or unreadable)."""
-    path = design_dir / "diagrams" / f"{NUMBERS[step]:02d}-{step}.drawio"
-    try:
-        return len(ET.parse(path).getroot().findall("diagram"))
-    except (OSError, ET.ParseError):
-        return 0
 
 
 def _inside(deck_dir: Path, name: str) -> bool:
@@ -96,7 +87,7 @@ def run(deck: Deck, design_dir: Path) -> list[Finding]:
                     found.append(Finding("error", slide.number, "block.step",
                                          f"'{ref.step}' has no diagram; drawable steps: {', '.join(NUMBERS)}"))
                     continue
-                pages = _page_count(design_dir, ref.step)
+                pages = page_pages(design_dir, ref.step)
                 if pages == 0:
                     found.append(Finding("error", slide.number, "block.step",
                                          f"no diagram for '{ref.step}'; run /sa-diagrams first"))

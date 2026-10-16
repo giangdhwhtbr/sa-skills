@@ -37,10 +37,21 @@ def _cache(cache_dir: Path) -> dict[str, str]:
         return {}
 
 
-def png(page_xml: str, out: Path, cmd: str, cache_dir: Path) -> bool:
+def _key(page_xml: str, scale: float) -> str:
+    """Cache key: the page content, plus the scale when it is not 1 (keeps existing caches valid)."""
+    text = page_xml if scale == 1 else f"{page_xml}\0scale={scale:g}"
+    return hashlib.sha256(text.encode()).hexdigest()
+
+
+def cached(page_xml: str, out: Path, cache_dir: Path, scale: float = 1) -> bool:
+    """True when `out` already holds the export of this page content at this scale."""
+    return out.exists() and _cache(cache_dir).get(out.name) == _key(page_xml, scale)
+
+
+def png(page_xml: str, out: Path, cmd: str, cache_dir: Path, scale: float = 1) -> bool:
     """Export one single-page mxfile to `out`. Returns True when exported, False when the cached PNG for the
     same page content was kept. Raises ExportError after the retries."""
-    key = hashlib.sha256(page_xml.encode()).hexdigest()
+    key = _key(page_xml, scale)
     cache = _cache(cache_dir)
     if cache.get(out.name) == key and out.exists():
         return False
@@ -52,8 +63,11 @@ def png(page_xml: str, out: Path, cmd: str, cache_dir: Path) -> bool:
         source.write_text(page_xml)
         for _ in range(1 + RETRIES):
             try:
-                done = subprocess.run([cmd, "--export", "--format", "png", "--border", "10", "--output", str(target),
-                                       str(source)], capture_output=True, text=True, timeout=TIMEOUT, check=False)
+                args = [cmd, "--export", "--format", "png", "--border", "10", "--output", str(target)]
+                if scale != 1:
+                    args += ["--scale", f"{scale:g}"]
+                done = subprocess.run([*args, str(source)], capture_output=True, text=True, timeout=TIMEOUT,
+                                      check=False)
                 if done.returncode == 0 and target.exists() and target.stat().st_size > 0:
                     shutil.copyfile(target, out)
                     cache[out.name] = key
