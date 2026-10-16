@@ -10,3 +10,7 @@
 # sa-diagrams graph layout dependency (npm install --prefix skills/sa-diagrams/tools)
 skills/sa-diagrams/tools/node_modules/
 skills/sa-diagrams/tools/package-lock.json
+
+# sa-deck PPTX dependency (npm install --prefix skills/sa-deck/tools)
+skills/sa-deck/tools/node_modules/
+skills/sa-deck/tools/package-lock.json

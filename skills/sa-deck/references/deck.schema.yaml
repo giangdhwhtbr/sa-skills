@@ -1,0 +1,123 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: deck.yaml
+type: object
+additionalProperties: false
+required: [meta, cover, sections]
+properties:
+  meta:
+    type: object
+    additionalProperties: false
+    required: [title, minutes]
+    properties:
+      title: {type: string, minLength: 1}
+      subtitle: {type: string}
+      presenter: {type: string}
+      date: {type: string}
+      minutes: {type: integer, minimum: 1, maximum: 120}
+  theme:
+    type: object
+    additionalProperties: false
+    properties:
+      primary: &colour {type: string, pattern: "^#[0-9A-Fa-f]{6}$"}
+      accent: *colour
+      text: *colour
+      muted: *colour
+      font: {type: string, minLength: 1}
+      logo: {type: [string, "null"]}
+      footer: {type: string}
+  cover:
+    type: object
+    additionalProperties: false
+    required: [notes, seconds]
+    properties:
+      notes: &notes {type: string, minLength: 1}
+      seconds: &seconds {type: integer, minimum: 5, maximum: 600}
+  sections:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      additionalProperties: false
+      required: [title, slides]
+      properties:
+        title: {type: string, minLength: 1}
+        slides:
+          type: array
+          minItems: 1
+          items:
+            type: object
+            additionalProperties: false
+            required: [title, message, notes, seconds]
+            properties:
+              title: {type: string, minLength: 1}
+              message: {type: string, maxLength: 140}
+              block:
+                type: object
+                required: [type]
+                properties:
+                  type: {enum: [bullets, table, diagram, diagrams, diagram-text, agenda, image]}
+              notes: *notes
+              seconds: *seconds
+$defs:
+  ref: &ref
+    type: object
+    additionalProperties: false
+    required: [step, page]
+    properties:
+      step: {type: string, minLength: 1}
+      page: {type: integer, minimum: 1}
+  text: &text {type: string, minLength: 1}
+  bullets:
+    type: object
+    additionalProperties: false
+    required: [type, items]
+    properties:
+      type: {const: bullets}
+      items: {type: array, minItems: 1, maxItems: 6, items: *text}
+  table:
+    type: object
+    additionalProperties: false
+    required: [type, header, rows]
+    properties:
+      type: {const: table}
+      header: {type: array, minItems: 1, maxItems: 5, items: *text}
+      rows: {type: array, minItems: 1, maxItems: 8, items: {type: array, minItems: 1, maxItems: 5, items: {type: string}}}
+      widths: {type: array, items: {type: number, exclusiveMinimum: 0}}
+  diagram:
+    type: object
+    additionalProperties: false
+    required: [type, step, page]
+    properties:
+      type: {const: diagram}
+      step: {type: string, minLength: 1}
+      page: {type: integer, minimum: 1}
+  diagrams:
+    type: object
+    additionalProperties: false
+    required: [type, left, right]
+    properties:
+      type: {const: diagrams}
+      left: *ref
+      right: *ref
+  diagram-text:
+    type: object
+    additionalProperties: false
+    required: [type, step, page, items]
+    properties:
+      type: {const: diagram-text}
+      step: {type: string, minLength: 1}
+      page: {type: integer, minimum: 1}
+      items: {type: array, minItems: 2, maxItems: 4, items: *text}
+  agenda:
+    type: object
+    additionalProperties: false
+    required: [type]
+    properties:
+      type: {const: agenda}
+  image:
+    type: object
+    additionalProperties: false
+    required: [type, file]
+    properties:
+      type: {const: image}
+      file: {type: string, minLength: 1}

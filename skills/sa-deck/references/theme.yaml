@@ -1,0 +1,8 @@
+# Neutral default theme for /sa-deck. Override any key in the theme block of deck.yaml.
+primary: "#1F3A68"   # titles, table headers, cover background
+accent: "#C2185B"    # cover rule, agenda numbers
+text: "#222222"      # body text
+muted: "#5A6478"     # key messages, footers, legends
+font: Calibri        # first choice; HTML falls back to Segoe UI, Arial, sans-serif
+logo: null           # image file inside design/deck/
+footer: ""           # text at the bottom left of content slides

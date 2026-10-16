@@ -1,0 +1,49 @@
+meta:
+  title: Clinic booking platform
+  subtitle: Architecture design
+  presenter: A. Presenter
+  date: "2026-10-16"
+  minutes: 10
+cover:
+  notes: Hello. This is the target architecture of the clinic booking platform.
+  seconds: 20
+sections:
+- title: Introduction
+  slides:
+  - title: Agenda
+    message: From the problem to the architecture
+    block: {type: agenda}
+    notes: We start with the problem, then the domain design, then the architecture.
+    seconds: 20
+  - title: Proposed solution
+    message: Five pain points, five **architectural answers**
+    block:
+      type: table
+      header: [Problem, Answer]
+      rows:
+      - [Double bookings, Scheduling owns every slot]
+      - [Phone-only booking, Web and mobile booking]
+    notes: The current system has five main problems. Here is how the design answers each one.
+    seconds: 60
+- title: Domain design
+  slides:
+  - title: Context map
+    message: Upstream and downstream between the eight contexts
+    block: {type: diagram, step: context-map, page: 1}
+    notes: Appointments depends on four upstream contexts and publishes events to notifications and reporting.
+    seconds: 60
+  - title: Logical view
+    message: Clients, edge, services, messaging and data, external systems
+    block:
+      type: diagram-text
+      step: logical-view
+      page: 1
+      items: [One gateway for web and mobile, Every service owns its data]
+    notes: Every request passes the gateway and the identity provider before it reaches a service.
+    seconds: 60
+- title: Close
+  slides:
+  - title: Questions
+    message: Thank you
+    notes: Thank you. I am happy to take questions.
+    seconds: 20
