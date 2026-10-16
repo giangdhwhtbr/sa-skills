@@ -53,6 +53,7 @@ GROUP_KINDS: dict[str, tuple[str, str, str]] = {
     "subnet-public": ("#E9F3E6", "#7AA116", ""),
     "subnet-app": ("#E6F2F8", "#147EBA", ""),
     "subnet-data": ("#FAF0E6", "#D86613", ""),
+    "compensation": ("#fdecea", "none", "opacity=60;"),
 }
 
 NODE_LABELS: dict[str, str] = {
