@@ -1,0 +1,53 @@
+artifacts:
+  layout: sdd
+harness: claude
+project:
+  monorepo: false
+  review: self_check
+  review_ledger: false
+  rigor: easy
+  shape: library
+  stack_intent: Python 3 generators (draw.io diagrams, HTML/PPTX decks, estimates)
+    + Markdown Claude Code skills; tests with pytest
+  stage: greenfield
+  worktree: never
+provider_mode: single
+quick:
+  max_files: 5
+routing:
+  review:
+    allow_self_review_fallback: false
+    independence: session
+    max_cycles: 2
+    require_independent: true
+    role: review
+  roles:
+    backend:
+      preferred:
+      - main_harness
+    docs:
+      preferred:
+      - main_harness
+    frontend:
+      preferred:
+      - main_harness
+    general:
+      preferred:
+      - main_harness
+    review:
+      preferred:
+      - main_harness
+rules:
+  packs:
+  - core
+  - python
+schema_version: '2.7'
+setup_cli_version: '2.7'
+verify:
+  checks:
+    build: ''
+    e2e: ''
+    lint: ''
+    test: ''
+    typecheck: ''
+workflow_version: '2.7'
