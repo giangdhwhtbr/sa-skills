@@ -67,3 +67,5 @@ rules:
      statement: "Each document's title matches what its content shows"}
   - {id: DOC-02, step: all, severity: warn, condition: null, check: judgement,
      statement: "Documents describe the solution, not how the design evolved or who reviewed it"}
+  - {id: DG-01, step: all, severity: warn, condition: null, check: script,
+     statement: "Every diagram in design/diagrams is up to date with its data"}

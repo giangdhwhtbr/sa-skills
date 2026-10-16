@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import re
+import xml.etree.ElementTree as ET
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from pathlib import Path
@@ -410,6 +412,56 @@ def rule_xs_02(ctx: Context) -> list[Hit]:
     return hits
 
 
+# ---------- diagrams (local copy of sadiagram.stamp, kept identical by tests/test_checks.py) ----------
+
+DIAGRAMS_DIR = "diagrams"
+STAMP_ATTRIBUTE = "sa-source-hash"
+DRAWN: dict[str, tuple[int, list[str], list[tuple[str, str]]]] = {
+    "functions": (2, ["brief.yaml", "functions.yaml"], []),
+    "subdomains": (3, ["subdomains.yaml"], []),
+    "context-map": (4, ["subdomains.yaml", "context-map.yaml"], [("context-map", "detail")]),
+    "aggregates": (5, ["subdomains.yaml", "aggregates.yaml"], [("aggregates", "detail")]),
+    "use-cases": (6, ["brief.yaml", "functions.yaml", "use-cases.yaml"], []),
+    "logical-view": (7, ["logical.yaml"], [("logical-view", "vendors")]),
+    "saga": (8, ["subdomains.yaml", "logical.yaml", "saga.yaml"], []),
+    "patterns": (9, ["logical.yaml", "patterns.yaml"], [("patterns", "split")]),
+    "architecture": (10, ["subdomains.yaml", "logical.yaml", "architecture.yaml"], [("architecture", "shared-layout")]),
+}
+
+
+def diagram_hash(design_dir: Path, key: str, options: dict[str, dict[str, Any]], cloud: str) -> str:
+    """Same value as sadiagram.stamp.step_hash: the data files and options a step's diagram is drawn from."""
+    _, inputs, option_deps = DRAWN[key]
+    picked: dict[str, Any] = {f"{step}.{name}": options.get(step, {}).get(name) for step, name in option_deps}
+    if key == "architecture":
+        picked["cloud"] = cloud
+    digest = hashlib.sha256()
+    for name in inputs:
+        path = design_dir / name
+        digest.update(name.encode() + b"\0")
+        digest.update(path.read_bytes() if path.exists() else b"<missing>")
+        digest.update(b"\0")
+    digest.update(json.dumps(picked, sort_keys=True).encode())
+    return digest.hexdigest()
+
+
+def rule_dg_01(ctx: Context) -> list[Hit]:
+    folder = ctx.design_dir / DIAGRAMS_DIR
+    hits = []
+    for key, (number, _, _) in DRAWN.items():
+        path = folder / f"{number:02d}-{key}.drawio"
+        if not path.exists():
+            continue
+        try:
+            recorded = ET.parse(path).getroot().get(STAMP_ATTRIBUTE)
+        except ET.ParseError:
+            recorded = None
+        if recorded != diagram_hash(ctx.design_dir, key, ctx.cfg.options, ctx.cfg.cloud):
+            hits.append((f"{DIAGRAMS_DIR}/{path.name}", path.name,
+                         "diagram is out of date with its data; run /sa-diagrams to redraw it"))
+    return hits
+
+
 RULES: dict[str, Callable[[Context], list[Hit]]] = {
     "BR-01": rule_br_01, "FN-02": rule_fn_02, "SD-01": rule_sd_01, "SD-02": rule_sd_02,
     "CM-01": rule_cm_01, "CM-02": rule_cm_02, "CM-03": rule_cm_03,
@@ -417,6 +469,7 @@ RULES: dict[str, Callable[[Context], list[Hit]]] = {
     "LV-01": rule_lv_01, "LV-02": rule_lv_02, "SG-01": rule_sg_01, "SG-02": rule_sg_02, "SG-03": rule_sg_03,
     "PT-01": rule_pt_01, "AR-01": rule_ar_01, "AR-02": rule_ar_02, "AR-03": rule_ar_03, "ST-01": rule_st_01,
     "AD-01": rule_ad_01, "TR-01": rule_tr_01, "XS-01": rule_xs_01, "XS-02": rule_xs_02,
+    "DG-01": rule_dg_01,
 }
 
 

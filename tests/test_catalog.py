@@ -26,7 +26,7 @@ def test_rule_catalogue_matches_plan(refs_dir: Path) -> None:
     expected = {
         "BR-01", "FN-01", "FN-02", "SD-01", "SD-02", "CM-01", "CM-02", "CM-03", "AG-01", "AG-02",
         "AG-03", "UC-01", "LV-01", "LV-02", "SG-01", "SG-02", "SG-03", "PT-01", "PT-02", "AR-01",
-        "AR-02", "AR-03", "ST-01", "AD-01", "TR-01", "XS-01", "XS-02", "DOC-01", "DOC-02",
+        "AR-02", "AR-03", "ST-01", "AD-01", "TR-01", "XS-01", "XS-02", "DOC-01", "DOC-02", "DG-01",
     }
     assert set(catalog.load_rules(refs_dir)) == expected
 

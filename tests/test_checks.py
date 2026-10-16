@@ -189,7 +189,7 @@ def test_every_script_rule_implemented() -> None:
 
 def test_every_script_rule_has_negative_test() -> None:
     """REQ-QUALITY-002: every script rule has a negative case here or in a dedicated test above."""
-    dedicated = {"LV-01", "AD-01", "TR-01", "XS-01", "XS-02", "AG-01"}
+    dedicated = {"LV-01", "AD-01", "TR-01", "XS-01", "XS-02", "AG-01", "DG-01"}
     assert set(checks.RULES) == set(NEGATIVE) | dedicated
 
 
@@ -236,3 +236,56 @@ def test_step_only_checks_that_step(tmp_path: Path) -> None:
     """REQ-DESIGN-009: --step limits the run to one step's schema and rules."""
     design = make_design(tmp_path, {"saga.yaml": lambda d: d["participants"].append("unknown-svc")})
     assert errors(design, "context-map") == []
+
+
+def draw_stub(design: Path, key: str) -> Path:
+    """Write a stamped diagram for one step, as /sa-diagrams would."""
+    from sadiagram import drawio, stamp
+    from sadiagram.model import DiagramSet, Node, Page
+
+    cfg = checks.config.effective(design, REFS)
+    number = stamp.DRAWN[key][0]
+    folder = design / "diagrams"
+    folder.mkdir(exist_ok=True)
+    out = folder / f"{number:02d}-{key}.drawio"
+    page = Page("p", key, [Node("n", "n", "core")], [], [])
+    out.write_text(drawio.render(DiagramSet(number, key, [page], stamp.step_hash(design, key, cfg.options, cfg.cloud))))
+    return out
+
+
+def test_dg01_out_of_date(tmp_path: Path) -> None:
+    """REQ-REVIEW-007: a diagram drawn from older data is reported as a DG-01 warning."""
+    design = make_design(tmp_path)
+    assert findings_of(design, "DG-01") == []  # no diagrams folder
+    draw_stub(design, "subdomains")
+    draw_stub(design, "context-map")
+    assert findings_of(design, "DG-01") == []  # up to date
+    path = design / "subdomains.yaml"
+    path.write_text(path.read_text() + "\n# edited\n")
+    hits = findings_of(design, "DG-01")
+    assert [(f.severity, f.file, f.item) for f in hits] == [
+        ("warn", "diagrams/03-subdomains.drawio", "03-subdomains.drawio"),
+        ("warn", "diagrams/04-context-map.drawio", "04-context-map.drawio"),
+    ]
+
+
+def test_dg01_option_change(tmp_path: Path) -> None:
+    """REQ-REVIEW-007: changing an option the drawing depends on makes it out of date."""
+    design = make_design(tmp_path)
+    draw_stub(design, "context-map")
+    draw_stub(design, "functions")
+    config_file = design / "sa-config.yaml"
+    config_file.write_text(config_file.read_text().replace("steps: {}", "steps: {context-map: {detail: with-patterns}}"))
+    assert [f.item for f in findings_of(design, "DG-01")] == ["04-context-map.drawio"]
+
+
+def test_hash_functions_identical(tmp_path: Path) -> None:
+    """REQ-REVIEW-007: sacheck's copy of the diagram hash equals sadiagram's."""
+    from sadiagram import stamp
+
+    design = make_design(tmp_path)
+    cfg = checks.config.effective(design, REFS)
+    assert checks.DRAWN == stamp.DRAWN
+    for key in stamp.DRAWN:
+        assert checks.diagram_hash(design, key, cfg.options, cfg.cloud) == stamp.step_hash(
+            design, key, cfg.options, cfg.cloud)
