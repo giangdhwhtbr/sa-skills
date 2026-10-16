@@ -25,19 +25,6 @@ def _inflate(node: Node) -> Rect:
     return (node.x - CLEAR, node.y - CLEAR, node.x + node.w + CLEAR, node.y + node.h + CLEAR)
 
 
-def _inside(p: Point, r: Rect) -> bool:
-    return r[0] < p[0] < r[2] and r[1] < p[1] < r[3]
-
-
-def _blocks(a: Point, b: Point, r: Rect) -> bool:
-    """True when the axis-parallel segment a-b enters the rectangle's interior."""
-    if a[1] == b[1]:
-        lo, hi = sorted((a[0], b[0]))
-        return r[1] < a[1] < r[3] and lo < r[2] and hi > r[0]
-    lo, hi = sorted((a[1], b[1]))
-    return r[0] < a[0] < r[2] and lo < r[3] and hi > r[1]
-
-
 def _side(a: Node, b: Node) -> str:
     """Side of a that faces b."""
     dx = (b.x + b.w / 2) - (a.x + a.w / 2)
@@ -80,33 +67,53 @@ def _simplify(points: list[Point]) -> list[Point]:
 
 
 class _Grid:
+    """Candidate lines and, precomputed once, which crossings and unit segments are free of obstacles."""
+
     def __init__(self, obstacles: list[Rect], xs: set[float], ys: set[float]) -> None:
-        self.obstacles = obstacles
         self.xs = sorted(xs)
         self.ys = sorted(ys)
+        self.x_index = {x: i for i, x in enumerate(self.xs)}
+        self.y_index = {y: i for i, y in enumerate(self.ys)}
+        nx, ny = len(self.xs), len(self.ys)
+        self.blocked_point = [[False] * ny for _ in range(nx)]
+        self.blocked_h = [[False] * ny for _ in range(max(nx - 1, 0))]   # (x_i, y) - (x_i+1, y)
+        self.blocked_v = [[False] * max(ny - 1, 0) for _ in range(nx)]   # (x, y_j) - (x, y_j+1)
+        for x0, y0, x1, y1 in obstacles:
+            xi0, xi1 = bisect_left(self.xs, x0), bisect_left(self.xs, x1)
+            yi0, yi1 = bisect_left(self.ys, y0), bisect_left(self.ys, y1)
+            inner_x = [i for i in range(xi0, min(xi1 + 1, nx)) if x0 < self.xs[i] < x1]
+            inner_y = [j for j in range(yi0, min(yi1 + 1, ny)) if y0 < self.ys[j] < y1]
+            for i in inner_x:
+                for j in inner_y:
+                    self.blocked_point[i][j] = True
+            for j in inner_y:  # horizontal unit segments crossing the rectangle at row j
+                for i in range(max(xi0 - 1, 0), min(xi1 + 1, nx - 1)):
+                    if self.xs[i] < x1 and self.xs[i + 1] > x0:
+                        self.blocked_h[i][j] = True
+            for i in inner_x:
+                for j in range(max(yi0 - 1, 0), min(yi1 + 1, ny - 1)):
+                    if self.ys[j] < y1 and self.ys[j + 1] > y0:
+                        self.blocked_v[i][j] = True
 
-    def free_point(self, p: Point, skip: set[int]) -> bool:
-        return not any(_inside(p, r) for i, r in enumerate(self.obstacles) if i not in skip)
-
-    def free_segment(self, a: Point, b: Point, skip: set[int]) -> bool:
-        return not any(_blocks(a, b, r) for i, r in enumerate(self.obstacles) if i not in skip)
+    def free_point(self, p: Point) -> bool:
+        return not self.blocked_point[self.x_index[p[0]]][self.y_index[p[1]]]
 
     def neighbours(self, p: Point) -> list[tuple[Point, str]]:
-        xi, yi = bisect_left(self.xs, p[0]), bisect_left(self.ys, p[1])
+        i, j = self.x_index[p[0]], self.y_index[p[1]]
         out = []
-        if xi > 0:
-            out.append(((self.xs[xi - 1], p[1]), "h"))
-        if xi + 1 < len(self.xs):
-            out.append(((self.xs[xi + 1], p[1]), "h"))
-        if yi > 0:
-            out.append(((p[0], self.ys[yi - 1]), "v"))
-        if yi + 1 < len(self.ys):
-            out.append(((p[0], self.ys[yi + 1]), "v"))
+        if i > 0 and not self.blocked_h[i - 1][j] and not self.blocked_point[i - 1][j]:
+            out.append(((self.xs[i - 1], p[1]), "h"))
+        if i + 1 < len(self.xs) and not self.blocked_h[i][j] and not self.blocked_point[i + 1][j]:
+            out.append(((self.xs[i + 1], p[1]), "h"))
+        if j > 0 and not self.blocked_v[i][j - 1] and not self.blocked_point[i][j - 1]:
+            out.append(((p[0], self.ys[j - 1]), "v"))
+        if j + 1 < len(self.ys) and not self.blocked_v[i][j] and not self.blocked_point[i][j + 1]:
+            out.append(((p[0], self.ys[j + 1]), "v"))
         return out
 
 
-def _search(grid: _Grid, start: Point, goal: Point, start_dir: str, used: dict[tuple[Point, Point], int],
-            skip: set[int]) -> list[Point] | None:
+def _search(grid: _Grid, start: Point, goal: Point, start_dir: str,
+            used: dict[tuple[Point, Point], int]) -> list[Point] | None:
     tie = count()
     queue = [(0.0, next(tie), start, start_dir, None)]
     best: dict[tuple[Point, str], float] = {(start, start_dir): 0.0}
@@ -122,8 +129,6 @@ def _search(grid: _Grid, start: Point, goal: Point, start_dir: str, used: dict[t
         if cost > best.get((p, d), float("inf")):
             continue
         for q, nd in grid.neighbours(p):
-            if not grid.free_point(q, skip) or not grid.free_segment(p, q, skip):
-                continue
             length = abs(q[0] - p[0]) + abs(q[1] - p[1])
             seg = (min(p, q), max(p, q))
             step = length + (BEND if nd != d else 0) + REUSE * length * used.get(seg, 0)
@@ -160,8 +165,8 @@ def route(page: Page) -> None:
     for edge, _a, _b, pa, sa, pb, sb, side_a in plans:
         start_dir = "v" if side_a in ("top", "bottom") else "h"
         path = None
-        if grid.free_point(sa, set()) and grid.free_point(sb, set()):
-            path = _search(grid, sa, sb, start_dir, used, set())
+        if grid.free_point(sa) and grid.free_point(sb):
+            path = _search(grid, sa, sb, start_dir, used)
         for p, q in zip(path or [], (path or [])[1:], strict=False):
             seg = (min(p, q), max(p, q))
             used[seg] = used.get(seg, 0) + 1

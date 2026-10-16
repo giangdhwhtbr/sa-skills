@@ -85,8 +85,7 @@ def build(ctx: BuildContext) -> list[Page]:
     rest = [c for c in cases if c["id"] not in placed]
     for i, chunk in enumerate(_chunks(rest) if rest else [], 1):
         pages.append(_page(f"Use cases: other actors ({i})", f"other-{i}", chunk, actors, system))
-    for page in pages:
-        elk.layout(page, "RIGHT")
+    elk.layout_many(pages, "RIGHT")
     return pages
 
 

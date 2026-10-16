@@ -94,5 +94,7 @@ from . import (  # noqa: E402  (modules register themselves)
     use_cases,
 )
 
+BUILDERS = dict(sorted(BUILDERS.items(), key=lambda item: item[1][0]))  # step order
+
 __all__ = ["BUILDERS", "NEEDS_ELK", "BuildContext", "aggregates", "architecture", "context_map", "functions",
            "logical", "patterns", "saga", "subdomains", "use_cases"]

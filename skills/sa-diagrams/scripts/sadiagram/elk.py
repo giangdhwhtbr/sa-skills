@@ -84,7 +84,7 @@ def _graph(page: Page, direction: str) -> dict[str, Any]:
     return root
 
 
-def _run(graph: dict[str, Any], tools_dir: Path) -> dict[str, Any]:
+def _run(graph: Any, tools_dir: Path) -> Any:
     with tempfile.TemporaryDirectory() as tmp:
         source, target = Path(tmp) / "in.json", Path(tmp) / "out.json"
         source.write_text(json.dumps(graph))
@@ -100,9 +100,21 @@ def _run(graph: dict[str, Any], tools_dir: Path) -> dict[str, Any]:
 
 def layout(page: Page, direction: str = "RIGHT", tools_dir: Path | None = None) -> None:
     """Lay out the page's nodes, groups and edges with elkjs; geometry is written back in page coordinates."""
+    layout_many([page], direction, tools_dir)
+
+
+def layout_many(pages: list[Page], direction: str = "RIGHT", tools_dir: Path | None = None) -> None:
+    """Lay out several pages in one Node process (Node and elkjs start once)."""
     if tools_dir is None:
         tools_dir = Path(__file__).resolve().parents[2] / "tools"
-    result = _run(_graph(page, direction), tools_dir)
+    if not pages:
+        return
+    results = _run([_graph(page, direction) for page in pages], tools_dir)
+    for page, result in zip(pages, results, strict=True):
+        _apply(page, result)
+
+
+def _apply(page: Page, result: dict[str, Any]) -> None:
     nodes = {n.id: n for n in page.nodes}
     groups = {g.id: g for g in page.groups}
     edges = {e.id: e for e in page.edges}

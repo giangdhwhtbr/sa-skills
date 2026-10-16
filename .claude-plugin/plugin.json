@@ -1,7 +1,7 @@
 {
   "name": "sa-design-kit",
-  "version": "0.1.0",
-  "description": "Guided DDD + microservices solution design (functions, subdomains, context map, aggregates, use cases, logical view, saga, patterns, architecture, stack, ADRs) and a read-only design review.",
+  "version": "0.2.0",
+  "description": "Guided DDD + microservices solution design (functions, subdomains, context map, aggregates, use cases, logical view, saga, patterns, architecture, stack, ADRs), a read-only design review, and generated draw.io / Mermaid diagrams of the design.",
   "author": {
     "name": "sa-design-kit contributors"
   }
