@@ -9,3 +9,4 @@ Changes are proposed in `../changes/<epic-id>-<slug>/spec-delta.md` and merged h
 - [config](config/spec.md)
 - [review](review/spec.md)
 - [quality](quality/spec.md)
+- [diagrams](diagrams/spec.md)

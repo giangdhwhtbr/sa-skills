@@ -43,3 +43,11 @@ The plugin's skills, references, templates and examples SHALL NOT name any real 
 - GIVEN the plugin repository
 - WHEN a test scans `skills/` and `examples/` against a deny-list of project-specific terms kept in `tests/`
 - THEN no match is found
+
+### REQ-QUALITY-006: Example diagrams
+The example design sets SHALL include generated diagrams: steps 02-10 for `examples/clinic-booking/design` and steps 02-05 for `examples/food-delivery/design` and `design-detailed`, and a test SHALL check that they are up to date with their data.
+
+#### Scenario: Examples up to date
+- GIVEN the committed examples
+- WHEN the example test runs
+- THEN every diagram's recorded source hash matches its data

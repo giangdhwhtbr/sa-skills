@@ -51,3 +51,11 @@ The schema, reference, consistency, traceability and script-checked rules SHALL 
 - GIVEN a design folder with one broken reference
 - WHEN `python check.py design/` runs
 - THEN it prints the finding and exits 1
+
+### REQ-REVIEW-007: Out-of-date diagrams
+The rule catalogue SHALL include DG-01 (severity `warn`, checked by script): a diagram in `design/diagrams/` whose recorded source hash differs from the current data is reported as out of date.
+
+#### Scenario: Data changed after drawing
+- GIVEN diagrams were drawn and `subdomains.yaml` changed afterwards
+- WHEN `check.py design` runs
+- THEN it reports DG-01 as a warning for `03-subdomains.drawio`
