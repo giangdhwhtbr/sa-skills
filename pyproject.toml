@@ -10,7 +10,7 @@ dev = ["pytest", "ruff"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["skills/sa-review/scripts"]
+pythonpath = ["skills/sa-review/scripts", "skills/sa-diagrams/scripts"]
 
 [tool.ruff]
 line-length = 120
