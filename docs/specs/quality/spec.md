@@ -51,3 +51,11 @@ The example design sets SHALL include generated diagrams: steps 02-10 for `examp
 - GIVEN the committed examples
 - WHEN the example test runs
 - THEN every diagram's recorded source hash matches its data
+
+### REQ-QUALITY-007: Example deck
+`examples/clinic-booking/design/deck/` SHALL contain a `deck.yaml` for a 20-minute talk and its rendered `deck.html` and `deck.pptx`, and a test SHALL check that the rendered deck is up to date with its sources.
+
+#### Scenario: Example deck up to date
+- GIVEN the committed example
+- WHEN the example test runs
+- THEN the recorded deck hash equals the hash of its current sources

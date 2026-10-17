@@ -10,3 +10,4 @@ Changes are proposed in `../changes/<epic-id>-<slug>/spec-delta.md` and merged h
 - [review](review/spec.md)
 - [quality](quality/spec.md)
 - [diagrams](diagrams/spec.md)
+- [deck](deck/spec.md)

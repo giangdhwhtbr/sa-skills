@@ -59,3 +59,11 @@ The rule catalogue SHALL include DG-01 (severity `warn`, checked by script): a d
 - GIVEN diagrams were drawn and `subdomains.yaml` changed afterwards
 - WHEN `check.py design` runs
 - THEN it reports DG-01 as a warning for `03-subdomains.drawio`
+
+### REQ-REVIEW-008: Out-of-date deck
+The rule catalogue SHALL include DK-01, a `warn` rule checked by script: a rendered deck whose recorded hash differs from the hash of its current sources (`deck.yaml`, theme, logo and the diagram pages it shows) is reported as out of date; diagrams older than their data stay under DG-01.
+
+#### Scenario: Deck source edited after rendering
+- GIVEN a rendered deck and `deck.yaml` edited afterwards
+- WHEN `check.py design` runs
+- THEN it reports DK-01 as a warning for `deck/deck.html`
